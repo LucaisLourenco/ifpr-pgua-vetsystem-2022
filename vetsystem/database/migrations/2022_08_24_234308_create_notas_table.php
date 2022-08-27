@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('notas', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->text('observacao');
+            $table->unsignedBigInteger('pet_id');
+            $table->foreign('pet_id')->references('id')->on('pets');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

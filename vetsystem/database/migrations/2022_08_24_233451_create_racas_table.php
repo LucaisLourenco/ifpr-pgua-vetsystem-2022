@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('racas', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->unsignedBigInteger('especie_id');
+            $table->foreign('especie_id')->references('id')->on('especies');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

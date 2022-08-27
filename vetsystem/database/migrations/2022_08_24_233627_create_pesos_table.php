@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('pesos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('pet_id');
+            $table->foreign('pet_id')->references('id')->on('pets');
+            $table->integer('peso');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

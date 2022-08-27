@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->string('cpf')->unique();
+            $table->string('email')->unique();
+            $table->dateTime('data_nascimento');
+            $table->unsignedBigInteger('genero_id');
+            $table->foreign('genero_id')->references('id')->on('generos');
+            $table->integer('ativo');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
