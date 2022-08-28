@@ -19,7 +19,7 @@
                 <tr>
                     <td class="d-none d-md-table-cell">{{ $item['id'] }}</td>
                     <td>{{ $item['nome'] }}</td>
-                    <td>
+                    <td style="width: 10%; text-align: center">
                         <a href= "{{ route($route.'.edit', $item['id']) }}" class="btn btn-success">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>

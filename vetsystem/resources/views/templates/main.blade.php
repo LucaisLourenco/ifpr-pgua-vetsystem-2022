@@ -238,5 +238,4 @@
     </script>
 
     @yield('script')
-    
 </html>
