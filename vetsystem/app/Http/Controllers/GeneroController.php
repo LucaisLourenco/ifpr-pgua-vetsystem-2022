@@ -9,9 +9,9 @@ class GeneroController extends Controller
 {
     public function index()
     {
-        $genero = Genero::all();
+        $generos = Genero::all();
 
-        return view('generos.index', compact(['genero']));
+        return view('generos.index', compact(['generos']));
     }
 
     public function create()

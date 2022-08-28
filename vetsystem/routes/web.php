@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::resource('parametros', 'ParametroController');
+Route::resource('generos', 'GeneroController');
+
 Route::get('/', function () {
     return view('templates.main')->with('titulo');
 })->middleware(['auth'])->name('index');
