@@ -11,7 +11,7 @@
                 :route="'generos'"
                 :header="['ID', 'NOME', 'AÇÕES']" 
                 :data="$generos"
-                :hide="[true, true, true]" 
+                :hide="[true, true, false]" 
             />
         </div>
     </div>
