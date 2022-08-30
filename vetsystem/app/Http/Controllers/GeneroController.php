@@ -6,13 +6,13 @@ use App\Models\Genero;
 use Illuminate\Http\Request;
 
 $GLOBALS['regras'] = [
-    'nome' => 'required|max:25|min:5',
+    'nome' => 'required|max:30|min:2',
 ];
 
 $GLOBALS['mensagem']= [
     "nome.required" => "O preenchimento do campo NOME é obrigatório!",
-    "nome.max" => "O campo NOME possui tamanho máxixo de 25 caracteres!",
-    "nome.min" => "O campo NOME possui tamanho mínimo de 5 caracteres!",
+    "nome.max" => "O campo NOME possui tamanho máxixo de 30 caracteres!",
+    "nome.min" => "O campo NOME possui tamanho mínimo de 2 caracteres!",
 ];
 
 class GeneroController extends Controller
