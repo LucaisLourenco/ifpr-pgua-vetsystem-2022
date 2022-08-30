@@ -6,13 +6,13 @@ use App\Models\Genero;
 use Illuminate\Http\Request;
 
 $GLOBALS['regras'] = [
-    'nome' => 'required|max:50|min:10',
+    'nome' => 'required|max:25|min:5',
 ];
 
 $GLOBALS['mensagem']= [
     "nome.required" => "O preenchimento do campo NOME é obrigatório!",
-    "nome.max" => "O campo NOME possui tamanho máxixo de 50 caracteres!",
-    "nome.min" => "O campo NOME possui tamanho mínimo de 10 caracteres!",
+    "nome.max" => "O campo NOME possui tamanho máxixo de 25 caracteres!",
+    "nome.min" => "O campo NOME possui tamanho mínimo de 5 caracteres!",
 ];
 
 class GeneroController extends Controller
@@ -33,9 +33,15 @@ class GeneroController extends Controller
     {
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
 
-        Genero::create([
+        $verify = Genero::create([
             "nome" => mb_strtoupper($request->nome)
         ]);
+
+        session(['verify' => $verify]);
+
+       if($verify == true) {
+            session(['mensagem' => "Item cadastrado com sucesso"]);
+        }
 
         return redirect()->route('generos.index');
     }
@@ -47,8 +53,6 @@ class GeneroController extends Controller
 
     public function edit(Genero $genero)
     {
-        $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
-
         return view('generos.edit', compact(['genero']));
     }
 
@@ -56,9 +60,15 @@ class GeneroController extends Controller
     {
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
 
-        $genero->update([
+        $verify = $genero->update([
             "nome" => mb_strtoupper($request->nome)
         ]);
+
+        session(['verify' => $verify]);
+
+        if($verify == true) {
+            session(['mensagem' => "Item alterado com sucesso"]);
+        }
 
         return redirect()->route('generos.index');
     }
@@ -67,11 +77,17 @@ class GeneroController extends Controller
     {
         try
         {
-            $genero->delete();
+           $verify = $genero->delete();
+
+           session(['verify' => $verify]);
+
+           if($verify == true) {
+                session(['mensagem' => "Item excluído com sucesso"]);
+            }
             
-        } catch(\Illuminate\Database\QueryException $ex)
+        } catch(\Illuminate\Database\QueryException $exception)
         { 
-            session(['mensagem' => $ex->getMessage()]);
+            session(['mensagem' => "Erro ao excluir o item desejado"]);
         }
 
         return redirect()->route('generos.index');

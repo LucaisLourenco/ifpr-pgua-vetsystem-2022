@@ -233,6 +233,14 @@
             $("#removeModal").modal('hide')
         }
 
+        $(document).ready(function(){
+            setTimeout(() => {
+                $(".alert").fadeOut("slow", function(){
+                    $(this).alert('close');
+                })
+            }, 5000);
+        });
+
     </script>
 
     @yield('script')
