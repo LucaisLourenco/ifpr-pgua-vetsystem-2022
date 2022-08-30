@@ -48,6 +48,11 @@
                 <tr>
                     <td>{{ $item['id'] }}</td>
                     <td>{{ $item['nome'] }}</td>
+
+                    @if($route == "racas")
+                        <td>{{$item->especie['nome']}}</td>
+                    @endif
+
                     <td style="width: 18%; text-align: center">
                         <a href= "{{ route($route.'.edit', $item['id']) }}" class="btn btn-success">Editar
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">

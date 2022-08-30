@@ -10,4 +10,8 @@ class Especie extends Model
     use HasFactory;
 
     protected $fillable = ['nome'];
+
+    public function raca() {
+        return $this->belongsTo('App\Models\Raca');
+    }
 }

@@ -21,7 +21,7 @@
                             {{ $errors->first('nome') }}
                         </div>
                     @endif
-                    <label for="nome">Gênero</label>
+                    <label for="nome">Espécie</label>
                 </div>
             </div>
         </div>
