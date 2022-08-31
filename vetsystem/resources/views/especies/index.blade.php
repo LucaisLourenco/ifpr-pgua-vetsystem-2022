@@ -5,7 +5,7 @@
 @section('conteudo')
 
     <div class="row">
-        <div class="col">
+        <div class="col">   
             <x-datalist
                 :title="'Espécies'"
                 :route="'especies'"

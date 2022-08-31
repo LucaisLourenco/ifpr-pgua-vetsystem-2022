@@ -33,14 +33,21 @@ class GeneroController extends Controller
     {
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
 
-        $verify = Genero::create([
-            "nome" => mb_strtoupper($request->nome)
-        ]);
+        try 
+        {
+            $resultado = Genero::create([
+                "nome" => mb_strtoupper($request->nome)
+            ]);
 
-        session(['verify' => $verify]);
+            session(['resultado' => $resultado]);
 
-       if($verify == true) {
-            session(['mensagem' => "Item cadastrado com sucesso"]);
+            if($resultado != null) {
+                session(['mensagem' => "Item cadastrado com sucesso."]);
+            }
+
+        } catch(\Exception $exception)
+        {
+            session(['mensagem' => $exception->getMessage()]);
         }
 
         return redirect()->route('generos.index');
@@ -59,15 +66,21 @@ class GeneroController extends Controller
     public function update(Request $request, Genero $genero)
     {
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+        
+        try
+        {
+            $resultado = $genero->update([
+                "nome" => mb_strtoupper($request->nome)
+            ]);
 
-        $verify = $genero->update([
-            "nome" => mb_strtoupper($request->nome)
-        ]);
+            session(['resultado' => $resultado]);
 
-        session(['verify' => $verify]);
-
-        if($verify == true) {
-            session(['mensagem' => "Item alterado com sucesso"]);
+            if($resultado != null) {
+                session(['mensagem' => "Item alterado com sucesso"]);
+            }
+        } catch(\Exception $exception) 
+        {
+            session(['mensagem' => $exception->getMessage()]);
         }
 
         return redirect()->route('generos.index');
@@ -77,17 +90,17 @@ class GeneroController extends Controller
     {
         try
         {
-           $verify = $genero->delete();
+           $resultado = $genero->delete();
 
-           session(['verify' => $verify]);
+           session(['resultado' => $resultado]);
 
-           if($verify == true) {
-                session(['mensagem' => "Item excluído com sucesso"]);
+           if($resultado != null) {
+                session(['mensagem' => "Item excluído com sucesso."]);
             }
             
-        } catch(\Illuminate\Database\QueryException $exception)
+        } catch(\Exception $exception)
         { 
-            session(['mensagem' => "Erro ao excluir o item desejado"]);
+            session(['mensagem' => $exception->getMessage()]);
         }
 
         return redirect()->route('generos.index');

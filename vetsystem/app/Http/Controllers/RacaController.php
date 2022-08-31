@@ -39,17 +39,25 @@ class RacaController extends Controller
     {
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
 
-        $especie = Especie::find($request->especie_id);        
-        $raca = new Raca();
-        $raca->nome = mb_strtoupper($request->nome);
-        $raca->especie()->associate($especie);
-        $verify = $raca->save();
+        try
+        {
+            $especie = Especie::find($request->especie_id);        
+            $raca = new Raca();
+            $raca->nome = mb_strtoupper($request->nome);
+            $raca->especie()->associate($especie);
+            $resultado = $raca->save();
 
-        session(['verify' => $verify]);
+            session(['resultado' => $resultado]);
 
-        if($verify == true) {
-            session(['mensagem' => "Item cadastrado com sucesso"]);
+            if($resultado != null) {
+                session(['mensagem' => "Item cadastrado com sucesso."]);
+            }
+
+        } catch(\Exception $exception)
+        {
+            session(['mensagem' => $exception->getMessage()]);
         }
+
 
         return redirect()->route('racas.index');
     }
@@ -70,15 +78,22 @@ class RacaController extends Controller
     {
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
      
-        $verify = $raca->update([
-            "nome" => mb_strtoupper($request->nome),
-            "especie_id" => $request->especie_id
-        ]);
+        try
+        {
+            $resultado = $raca->update([
+                "nome" => mb_strtoupper($request->nome),
+                "especie_id" => $request->especie_id
+            ]);
 
-        session(['verify' => $verify]);
+            session(['resultado' => $resultado]);
 
-        if($verify == true) {
-            session(['mensagem' => "Item alterado com sucesso"]);
+            if($resultado != null) {
+                session(['mensagem' => "Item alterado com sucesso"]);
+            }
+
+        } catch(\Exception $exception) 
+        {
+            session(['mensagem' => $exception->getMessage()]);
         }
 
         return redirect()->route('racas.index');
@@ -88,17 +103,17 @@ class RacaController extends Controller
     {
         try
         {
-           $verify = $raca->delete();
+           $resultado = $raca->delete();
 
-           session(['verify' => $verify]);
+           session(['resultado' => $resultado]);
 
-           if($verify == true) {
-                session(['mensagem' => "Item excluído com sucesso"]);
+           if($resultado != null) {
+                session(['mensagem' => "Item excluído com sucesso."]);
             }
             
-        } catch(\Illuminate\Database\QueryException $exception)
+        } catch(\Exception $exception)
         { 
-            session(['mensagem' => "Erro ao excluir o item desejado"]);
+            session(['mensagem' => $exception->getMessage()]);
         }
 
         return redirect()->route('racas.index');

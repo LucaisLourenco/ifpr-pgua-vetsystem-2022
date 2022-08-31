@@ -86,16 +86,17 @@
                         </li>    
                         <li class="nav-item dropdown ps-1">
                             <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.5 1.246c.832-.855 2.913.642 0 2.566-2.913-1.924-.832-3.421 0-2.566ZM9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276ZM15 2.165c.555-.57 1.942.428 0 1.711-1.942-1.283-.555-2.281 0-1.71Z"/>
-                                </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-layout-text-window" viewBox="0 0 16 16">
+                                <path d="M3 6.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v1H1V2a1 1 0 0 1 1-1h12zm1 3v10a1 1 0 0 1-1 1h-2V4h3zm-4 0v11H2a1 1 0 0 1-1-1V4h10z"/>
+                            </svg>
                                 <span class="ps-1 text-dark">Cadastros</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href=" " class="dropdown-item">Manter Pets</a></li>
+                                <li><a href=" " class="dropdown-item">Manter Clientes</a></li>
                                 <li><a href=" " class="dropdown-item">Manter Veterinários</a></li>
                                 <li><a href=" " class="dropdown-item">Manter Serviços</a></li>
-                                <li><a href=" " class="dropdown-item">Manter Clientes</a></li>
                             </ul>
                         </li>               
                         <li class="nav-item dropdown ps-1">
@@ -107,8 +108,7 @@
                                 <span class="ps-1 text-dark">Administrador</span>
                             </a>
                             <ul class="dropdown-menu ">
-                                <li><a href=" " class="dropdown-item">Gestão de Usuários</a></li>
-                                <li><a href="{{ route('parametros.index') }}" class="dropdown-item">Gestão de Parâmetros</a></li>
+                                <li><a href="{{ route('parametros.index') }}" class="dropdown-item">Estabelecimento</a></li>
                             </ul>
                         </li>
                         <li class="nav-item ps-2 me-3">
@@ -142,7 +142,8 @@
                 @endif
             </div>
             <hr>
-            @yield('conteudo')
+                @yield('conteudo')
+            <hr>
         </div>
         <nav class="navbar fixed-bottom navbar-dark bg-warning">
             <div class="container-fluid">
@@ -151,23 +152,52 @@
         </nav>
     </body>
 
-    <div class="modal fade" tabindex="-1" id="infoModal">
+    <div class="modal fade" tabindex="-1" id="infoModalSuccess">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-primary">Mais Informações</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="infoModal" onclick="closeInfoModal()" aria-label="Close"></button>
+                    <h4 class="modal-title text-success">Success
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-envelope-check" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
+                            <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
+                        </svg>
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="infoModalSuccess" onclick="closeInfoModalSuccess()" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-secondary">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-block align-content-center" onclick="closeInfoModal()">
+                    <button type="button" class="btn btn-success btn-block align-content-center" onclick="closeInfoModalSuccess()">
                         OK
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" tabindex="-1" id="infoModalDanger">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-danger">Warning
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-envelope-x" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
+                            <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-4.854-1.354a.5.5 0 0 0 0 .708l.647.646-.647.646a.5.5 0 0 0 .708.708l.646-.647.646.647a.5.5 0 0 0 .708-.708l-.647-.646.647-.646a.5.5 0 0 0-.708-.708l-.646.647-.646-.647a.5.5 0 0 0-.708 0Z"/>
+                        </svg>
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="infoModalDanger" onclick="closeInfoModalDanger()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-secondary">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-block align-content-center" onclick="closeInfoModalDanger()">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
     <div class="modal fade" tabindex="-1" id="removeModal">
         <div class="modal-dialog">
@@ -203,16 +233,28 @@
 
     <script type="text/javascript">
 
-        function showInfoModal() {
-            $('#infoModal').modal().find('.modal-body').html("");
+        function showInfoModalSuccess() {
+            $('#infoModalSuccess').modal().find('.modal-body').html("");
             for(let a=0; a< arguments.length; a++) {
-                $('#infoModal').modal().find('.modal-body').append("<b>" + arguments[a] + "</b><br>");
+                $('#infoModalSuccess').modal().find('.modal-body').append("<h7><strong> Hi {{Auth::user()->name}}! </strong>" + arguments[a] + "</h7>");
             }
-            $("#infoModal").modal('show');
+            $("#infoModalSuccess").modal('show');
         }
 
-        function closeInfoModal() {
-            $("#infoModal").modal('hide');
+        function closeInfoModalSuccess() {
+            $("#infoModalSuccess").modal('hide');
+        }
+
+        function showInfoModalDanger() {
+            $('#infoModalDanger').modal().find('.modal-body').html("");
+            for(let a=0; a< arguments.length; a++) {
+                $('#infoModalDanger').modal().find('.modal-body').append("<h7><strong> Hi {{Auth::user()->name}}! </strong>" + arguments[a] + "</h7>");
+            }
+            $("#infoModalDanger").modal('show');
+        }
+
+        function closeInfoModalDanger() {
+            $("#infoModalDanger").modal('hide');
         }
 
         function showRemoveModal(id, nome) {
@@ -238,6 +280,13 @@
                 $(".alert").fadeOut("slow", function(){
                     $(this).alert('close');
                 })
+            }, 4000);
+        });
+
+        $(document).ready(function(){
+            setTimeout(() => {
+                closeInfoModalDanger();
+                closeInfoModalSuccess();
             }, 5000);
         });
 
