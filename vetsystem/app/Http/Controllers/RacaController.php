@@ -45,19 +45,16 @@ class RacaController extends Controller
             $raca = new Raca();
             $raca->nome = mb_strtoupper($request->nome);
             $raca->especie()->associate($especie);
-            $resultado = $raca->save();
+            $raca->save();
 
-            session(['resultado' => $resultado]);
+            session()->flash('mensagem', "Item cadastrado com sucesso.");
+            session()->flash('resultado', true);
 
-            if($resultado != null) {
-                session(['mensagem' => "Item cadastrado com sucesso."]);
-            }
-
-        } catch(\Exception $exception)
+        } catch(\Exception $exception) 
         {
-            session(['mensagem' => $exception->getMessage()]);
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
         }
-
 
         return redirect()->route('racas.index');
     }
@@ -80,20 +77,18 @@ class RacaController extends Controller
      
         try
         {
-            $resultado = $raca->update([
+            $raca->update([
                 "nome" => mb_strtoupper($request->nome),
                 "especie_id" => $request->especie_id
             ]);
 
-            session(['resultado' => $resultado]);
-
-            if($resultado != null) {
-                session(['mensagem' => "Item alterado com sucesso"]);
-            }
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
 
         } catch(\Exception $exception) 
         {
-            session(['mensagem' => $exception->getMessage()]);
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
         }
 
         return redirect()->route('racas.index');
@@ -103,17 +98,14 @@ class RacaController extends Controller
     {
         try
         {
-           $resultado = $raca->delete();
-
-           session(['resultado' => $resultado]);
-
-           if($resultado != null) {
-                session(['mensagem' => "Item excluído com sucesso."]);
-            }
-            
+            $raca->delete();
+            session()->flash('mensagem', "Item excluído com sucesso.");
+            session()->flash('resultado', true);
+           
         } catch(\Exception $exception)
         { 
-            session(['mensagem' => $exception->getMessage()]);
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
         }
 
         return redirect()->route('racas.index');

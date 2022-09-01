@@ -47,14 +47,14 @@
     </table>
 </div>
 
-@if(session('mensagem') && session('resultado') == null)
+@if(session('mensagem') && session('resultado') == false)
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script>
         $(document).ready(function(){
             showInfoModalDanger('{{session('mensagem')}}');
         });
     </script>
-@elseif(session('mensagem'))
+@elseif(session('mensagem') && session('resultado') == true)
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script>
         $(document).ready(function(){
@@ -62,6 +62,3 @@
         });
     </script>
 @endif
-
-{{session(['mensagem' => null])}}
-{{session(['resultado' => null])}}

@@ -35,19 +35,17 @@ class GeneroController extends Controller
 
         try 
         {
-            $resultado = Genero::create([
+            Genero::create([
                 "nome" => mb_strtoupper($request->nome)
             ]);
 
-            session(['resultado' => $resultado]);
-
-            if($resultado != null) {
-                session(['mensagem' => "Item cadastrado com sucesso."]);
-            }
+            session()->flash('mensagem', "Item cadastrado com sucesso.");
+            session()->flash('resultado', true);
 
         } catch(\Exception $exception)
         {
-            session(['mensagem' => $exception->getMessage()]);
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
         }
 
         return redirect()->route('generos.index');
@@ -69,18 +67,17 @@ class GeneroController extends Controller
         
         try
         {
-            $resultado = $genero->update([
+            $genero->update([
                 "nome" => mb_strtoupper($request->nome)
             ]);
 
-            session(['resultado' => $resultado]);
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
 
-            if($resultado != null) {
-                session(['mensagem' => "Item alterado com sucesso"]);
-            }
         } catch(\Exception $exception) 
         {
-            session(['mensagem' => $exception->getMessage()]);
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
         }
 
         return redirect()->route('generos.index');
@@ -90,17 +87,14 @@ class GeneroController extends Controller
     {
         try
         {
-           $resultado = $genero->delete();
-
-           session(['resultado' => $resultado]);
-
-           if($resultado != null) {
-                session(['mensagem' => "Item excluído com sucesso."]);
-            }
+            $genero->delete();
+            session()->flash('mensagem', "Item excluído com sucesso.");
+            session()->flash('resultado', true);
             
         } catch(\Exception $exception)
         { 
-            session(['mensagem' => $exception->getMessage()]);
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
         }
 
         return redirect()->route('generos.index');

@@ -33,21 +33,19 @@ class EspecieController extends Controller
     {
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
 
-        try
+        try 
         {
-            $resultado = Especie::create([
+            Especie::create([
                 "nome" => mb_strtoupper($request->nome)
             ]);
 
-            session(['resultado' => $resultado]);
+            session()->flash('mensagem', "Item cadastrado com sucesso.");
+            session()->flash('resultado', true);
 
-            if($resultado != null) {
-                session(['mensagem' => "Item cadastrado com sucesso."]);
-            }
-
-        } catch(\Exception $exception)
+        } catch(\Exception $exception) 
         {
-            session(['mensagem' => $exception->getMessage()]);
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
         }
 
         return redirect()->route('especies.index');
@@ -73,15 +71,13 @@ class EspecieController extends Controller
                 "nome" => mb_strtoupper($request->nome)
             ]);
 
-            session(['resultado' => $resultado]);
-
-            if($resultado != null) {
-                session(['mensagem' => "Item alterado com sucesso"]);
-            }
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
 
         } catch(\Exception $exception) 
         {
-            session(['mensagem' => $exception->getMessage()]);
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
         }
 
         return redirect()->route('especies.index');
@@ -91,17 +87,14 @@ class EspecieController extends Controller
     {
         try
         {
-           $resultado = $especy->delete();
-
-           session(['resultado' => $resultado]);
-
-           if($resultado != null) {
-                session(['mensagem' => "Item excluído com sucesso."]);
-            }
+            $especy->delete();
+            session()->flash('mensagem', "Item excluído com sucesso.");
+            session()->flash('resultado', true);
             
         } catch(\Exception $exception)
         { 
-            session(['mensagem' => $exception->getMessage()]);
+           session()->flash('mensagem', $exception->getMessage());
+           session()->flash('resultado', null);
         }
 
         return redirect()->route('especies.index');
