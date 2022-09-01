@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Genero;
 use Illuminate\Http\Request;
+use App\Facades\UserPermissions;
 
 $GLOBALS['regras'] = [
     'nome' => 'required|max:30|min:2',
@@ -17,6 +18,10 @@ $GLOBALS['mensagem']= [
 
 class GeneroController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Genero::class, 'genero');
+    }
+
     public function index()
     {
         $generos = Genero::all();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Raca;
 use App\Models\Especie;
 use Illuminate\Http\Request;
+use App\Facades\UserPermissions;
 
 $GLOBALS['regras'] = [
     'nome' => 'required|max:30|min:2',
@@ -20,6 +21,10 @@ $GLOBALS['mensagem']= [
 
 class RacaController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Raca::class, 'raca');
+    }
+
     public function index()
     {
         $racas = Raca::with(['especie'])->get();
