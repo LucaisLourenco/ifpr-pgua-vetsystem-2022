@@ -113,6 +113,20 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        'veterinarios' => [
+            'provider' => 'veterinarios',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'clientes' => [
+            'provider' => 'clientes',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
     /*

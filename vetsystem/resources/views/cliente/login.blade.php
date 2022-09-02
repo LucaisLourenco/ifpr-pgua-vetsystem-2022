@@ -4,11 +4,6 @@
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
-        </x-slot>
-
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <h2>Login Cliente</h2>
 
