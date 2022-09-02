@@ -40,6 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'cliente' => [
+            'driver' => 'session',
+            'provider' => 'clientes',
+        ],
+
+        'veterinario' => [
+            'driver' => 'session',
+            'provider' => 'veterinarios',
+        ],
     ],
 
     /*
@@ -63,6 +73,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'clientes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Cliente::class,
+        ],
+
+        'veterinarios' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Veterinario::class,
         ],
 
         // 'users' => [

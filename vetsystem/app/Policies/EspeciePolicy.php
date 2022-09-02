@@ -5,6 +5,8 @@ namespace App\Policies;
 use App\Models\Especie;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Facades\UserPermissions;
+
 
 class EspeciePolicy
 {

@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Pet;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Facades\UserPermissions;
 
 class PetPolicy
 {
