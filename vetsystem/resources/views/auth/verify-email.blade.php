@@ -18,8 +18,8 @@
 
         <div class="mt-4 flex items-center justify-between">
             <form method="POST" action="{{ route('verification.send') }}">
-                @csrf
-
+                {{ csrf_field() }}
+              
                 <div>
                     <x-button>
                         {{ __('Resend Verification Email') }}
@@ -28,7 +28,7 @@
             </form>
 
             <form method="POST" action="{{ route('logout') }}">
-                @csrf
+                {{ csrf_field() }}
 
                 <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
                     {{ __('Log Out') }}

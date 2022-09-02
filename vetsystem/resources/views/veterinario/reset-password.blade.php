@@ -10,7 +10,7 @@
         <h2>Veterinario</h2>
 
         <form method="POST" action="{{ route('veterinario.password.update') }}">
-            @csrf
+            {{ csrf_field() }}
 
             <input type="hidden" name="token" value="{{ $request->route('veterinario.token') }}">
 

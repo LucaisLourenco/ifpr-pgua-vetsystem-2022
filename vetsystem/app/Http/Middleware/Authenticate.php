@@ -23,11 +23,11 @@ class Authenticate
             else {
                 switch ($guard) {
                     case 'cliente':
-                        $path = 'cliente/login';
+                        $path = 'cliente.login';
                         break;
 
                     case 'veterinario':
-                        $path = 'veterinario/login';
+                        $path = 'veterinario.login';
                         break;  
 
                     default:
@@ -35,7 +35,7 @@ class Authenticate
                         break;
                 }
 
-                return redirect($path);
+                return redirect()->route($path);
             }
         }
 

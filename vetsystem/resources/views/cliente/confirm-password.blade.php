@@ -15,7 +15,7 @@
         <h2>Cliente</h2>
 
         <form method="POST" action="{{ route('cliente.password.confirm') }}">
-            @csrf
+            {{ csrf_field() }}
 
             <div>
                 <x-label for="password" :value="__('Password')" />

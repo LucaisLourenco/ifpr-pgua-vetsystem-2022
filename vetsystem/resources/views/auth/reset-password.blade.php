@@ -9,7 +9,7 @@
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form method="POST" action="{{ route('password.update') }}">
-            @csrf
+            {{ csrf_field() }}
 
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 

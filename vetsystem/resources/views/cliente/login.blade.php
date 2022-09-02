@@ -13,7 +13,7 @@
         <h2>Login Cliente</h2>
 
         <form method="POST" action="{{ route('cliente.login') }}">
-            @csrf
+            {{ csrf_field() }}
 
             <div>
                 <x-label for="email" :value="__('Email')" />

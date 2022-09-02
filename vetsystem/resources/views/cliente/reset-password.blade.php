@@ -11,7 +11,7 @@
         <h2>Cliente</h2>
 
         <form method="POST" action="{{ route('cliente.password.update') }}">
-            @csrf
+            {{ csrf_field() }}
 
             <input type="hidden" name="token" value="{{ $request->route('cliente.token') }}">
 

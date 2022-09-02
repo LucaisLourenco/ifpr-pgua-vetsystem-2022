@@ -10,7 +10,7 @@
         <h2>Veterinário</h2>
 
         <form method="POST" action="{{ route('veterinario.register') }}">
-            @csrf
+            {{ csrf_field() }}
 
             <div>
                 <x-label for="name" :value="__('Name')" />

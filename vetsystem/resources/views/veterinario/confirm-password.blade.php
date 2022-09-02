@@ -15,7 +15,7 @@
         <h2>Veterinário</h2>
 
         <form method="POST" action="{{ route('veterinario.password.confirm') }}">
-            @csrf
+            {{ csrf_field() }}
 
             <div>
                 <x-label for="password" :value="__('Password')" />

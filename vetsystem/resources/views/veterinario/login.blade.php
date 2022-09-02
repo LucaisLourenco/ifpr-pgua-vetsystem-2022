@@ -13,7 +13,7 @@
         <h2>Login Veterinário</h2>
 
         <form method="POST" action="{{ route('veterinario.login') }}">
-            @csrf
+            {{ csrf_field() }}
 
             <div>
                 <x-label for="email" :value="__('Email')" />

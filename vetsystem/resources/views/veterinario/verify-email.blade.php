@@ -19,7 +19,7 @@
 
         <div class="mt-4 flex items-center justify-between">
             <form method="POST" action="{{ route('veterinario.verification.send') }}">
-                @csrf
+                {{ csrf_field() }}
 
                 <div>
                     <x-button>
@@ -29,7 +29,7 @@
             </form>
 
             <form method="POST" action="{{ route('veterinario.logout') }}">
-                @csrf
+                {{ csrf_field() }}
 
                 <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
                     {{ __('Log Out') }}

@@ -11,7 +11,7 @@
         <h2>Cliente</h2>
 
         <form method="POST" action="{{ route('cliente.register') }}">
-            @csrf
+            {{ csrf_field() }}
 
             <div>
                 <x-label for="name" :value="__('Name')" />
