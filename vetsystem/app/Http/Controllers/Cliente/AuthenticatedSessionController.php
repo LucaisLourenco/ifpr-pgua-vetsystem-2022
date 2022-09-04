@@ -19,18 +19,20 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
+        //$request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::HOME_CLIENTE);
     }
 
     public function destroy(Request $request)
     {
+
+
         Auth::guard('cliente')->logout();
 
-        $request->session()->invalidate();
+        //$request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        //$request->session()->regenerateToken();
 
         return redirect('cliente');
     }
