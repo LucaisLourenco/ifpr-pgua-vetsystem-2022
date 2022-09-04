@@ -1,54 +1,81 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Login Tutor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <h2>Login Cliente</h2>
+        <link rel="stylesheet" type="text/css" href="../css/util.css">
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+    </head>
+    <body>
+        
+        <div class="limiter">
+            <div class="container-logincliente100">
+                <div class="wrap-login100">
+                    <div class="login100-pic js-tilt" data-tilt>
+                        <img src="../images/img-03.png" alt="IMG">
+                    </div>
 
-        <form method="POST" action="{{ route('cliente.login') }}">
-            {{ csrf_field() }}
+                    <form method="POST" action="{{ route('cliente.login') }}">
+                        {{ csrf_field() }}
+                        <span class="login100-form-title">
+                            Login Tutor
+                        </span>
 
-            <div>
-                <x-label for="email" :value="__('Email')" />
+                        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                            <input name="email" type="email" value="{{ old('email') }}" class="input100" placeholder="Email">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </span>
+                        </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                        <div class="wrap-input100 validate-input" data-validate = "Password is required">
+                            <input name="password" type="password" class="input100" placeholder="Senha">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        
+                        <div class="container-login100-form-btn">
+                            <button type="submit" value="login" class="login100-form-btncliente">
+                                Login
+                            </button>
+                        </div>
+
+                        <div class="text-center p-t-12">
+                            @if (Route::has('password.request'))
+                                <span class="txt1">
+                                    Forgot
+                                </span>
+                                <a class="txt2" href="{{ route('cliente.password.request') }}">
+                                    Username / Password?
+                                </a>
+                            @endif
+                        </div>
+
+                        <div class="text-center p-t-136">
+                            <a class="txt2" href="#">
+                                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('register'))
-                            <a href="{{ route('cliente.register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                @endif
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('cliente.password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+                
+        <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+        <script src="../vendor/bootstrap/js/popper.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../vendor/select2/select2.min.js"></script>
+        <script src="../vendor/tilt/tilt.jquery.min.js"></script>
+        <script >
+            $('.js-tilt').tilt({
+                scale: 1.1
+            })
+        </script>
+        <script src="../js/main.js"></script>
+    </body>
+</html>

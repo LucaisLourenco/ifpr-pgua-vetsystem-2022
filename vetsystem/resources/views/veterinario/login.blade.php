@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
     <head>
         <title>Login Veterinário</title>
         <meta charset="UTF-8">
@@ -14,7 +14,7 @@
             <div class="container-login100">
                 <div class="wrap-login100">
                     <div class="login100-pic js-tilt" data-tilt>
-                        <img src="images/img-01.png" alt="IMG">
+                        <img src="../images/img-02.png" alt="IMG">
                     </div>
 
                     <form method="POST" action="{{ route('veterinario.login') }}">
@@ -24,7 +24,7 @@
                         </span>
 
                         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                            <input name="email" type="email" value="{{ old('email') }}" class="form-control" placeholder="Email">
+                            <input name="email" type="email" value="{{ old('email') }}" class="input100" placeholder="Email">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input name="password" type="password" class="form-control" placeholder="Senha">
+                            <input name="password" type="password" class="input100" placeholder="Senha">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -54,6 +54,12 @@
                                     Username / Password?
                                 </a>
                             @endif
+                        </div>
+
+                        <div class="text-center p-t-136">
+                            <a class="txt2" href="#">
+                                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </form>
                 </div>

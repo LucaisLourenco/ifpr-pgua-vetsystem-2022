@@ -42,7 +42,7 @@
     </head>
 
     <body>
-        <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-dark bg-primary">
+        <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-dark" style="background-color: #c44d4d; border-color: #c44d4d;">
             <div class="container-fluid">
                 <a href="{{route('cliente')}}" class="navbar-brand ms-sm-3 text-dark">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
@@ -92,9 +92,9 @@
                 @yield('conteudo')
             <hr>
         </div>
-        <nav class="navbar fixed-bottom navbar-dark bg-primary">
+        <nav class="navbar fixed-bottom navbar-dark" style="background-color: #c44d4d; border-color: #c44d4d;">
             <div class="container-fluid">
-                <span class="text-dark fw-light">{{ Auth::guard('cliente')->user()->name }}</span>
+                <span class="text-dark fw-light">Tutor(a) {{ Auth::guard('cliente')->user()->name }}</span>
             </div>
         </nav>
     </body>

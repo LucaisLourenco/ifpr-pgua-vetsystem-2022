@@ -8,7 +8,9 @@
         <title> VetSystem Veterinário @yield('titulo')</title>
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
+        <link rel="stylesheet" type="text/css" href="../css/main.css">
+        <link rel="stylesheet" type="text/css" href="../css/util.css">
+        
         <style type="text/css">
 
             @media all and (min-width: 992px) {
@@ -42,7 +44,7 @@
     </head>
 
     <body>
-        <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-dark bg-danger">
+        <nav id="navbar-vet" class="navbar sticky-top navbar-expand-md navbar-dark"  style="background-color: #bdecb6; border-color: #3a6332;">
             <div class="container-fluid">
                 <a href="{{route('veterinario')}}" class="navbar-brand ms-sm-3 text-dark">
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
@@ -92,9 +94,9 @@
                 @yield('conteudo')
             <hr>
         </div>
-        <nav class="navbar fixed-bottom navbar-dark bg-danger">
+        <nav class="navbar fixed-bottom navbar-dark" style="background-color: #bdecb6; border-color: #3a6332;">
             <div class="container-fluid">
-                <span class="text-dark fw-light">{{ Auth::guard('veterinario')->user()->name }}</span>
+                <span class="text-dark fw-light">Veterinário(a) {{ Auth::guard('veterinario')->user()->name }}</span>
             </div>
         </nav>
     </body>
