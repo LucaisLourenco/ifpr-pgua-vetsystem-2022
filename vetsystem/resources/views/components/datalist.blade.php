@@ -8,7 +8,7 @@
                     @if($hide[$cont])
                         <th scope="col" class="d-none d-md-table-cell">{{ $item }}</th>
                     @else
-                        <th scope="col" style="width: 18%; text-align: center">{{ $item }}</th>
+                        <th id="coluna-acoes" scope="col">{{ $item }}</th>
                     @endif
                     @php $cont++; @endphp
                 @endforeach
@@ -24,7 +24,7 @@
                         <td>{{$item->especie['nome']}}</td>
                     @endif
 
-                    <td style="width: 18%; text-align: center">
+                    <td>
                         <a href= "{{ route($route.'.edit', $item['id']) }}" class="btn btn-success">Editar
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>

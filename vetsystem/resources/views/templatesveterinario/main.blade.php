@@ -8,68 +8,31 @@
         <title> VetSystem Veterinário @yield('titulo')</title>
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="../css/main.css">
-        <link rel="stylesheet" type="text/css" href="../css/util.css">
-        
-        <style type="text/css">
-
-            @media all and (min-width: 992px) {
-                .dropdown-menu li{
-                    position: relative;
-                }
-                
-                .dropdown-menu .submenu{ 
-                    display: none;
-                    position: absolute;
-                    right:100%; top:10px;
-                }
-                
-                .dropdown-menu .submenu-left{ 
-                    right:100%; left:auto;
-                }
-
-                .dropdown-menu > li:hover{ background-color: #f1f1f1 }
-                .dropdown-menu > li:hover > .submenu{
-                    display: block;
-                }
-            }	
-
-            @media (max-width: 991px) {
-                .dropdown-menu .dropdown-menu{
-                    margin-left:0.7rem; margin-right:0.7rem; margin-bottom: .5rem;
-                }
-            }	
-        </style>
-               
+        <link rel="stylesheet" type="text/css" href="../css/templates.css">
     </head>
 
     <body>
-        <nav id="navbar-vet" class="navbar sticky-top navbar-expand-md navbar-dark"  style="background-color: #bdecb6; border-color: #3a6332;">
+        <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-dark" style="background-color: #92d8c1;">
             <div class="container-fluid">
-                <a href="{{route('veterinario')}}" class="navbar-brand ms-sm-3 text-dark">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01L8 2.748ZM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Zm8.252-6.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162l-1.874-4.686Z"/>
-                    </svg>
-                    <span class="ms-3 fs-5 text-dark">VetSystem Medico Veterinário</span>
+                <a href="{{route('veterinario')}}">
+                    <img id="logo-img" src="../images/img-08.png" alt="IMG">
                 </a>
-                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#itens">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-menu-button-wide" viewBox="0 0 16 16">
-                        <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v2A1.5 1.5 0 0 1 14.5 5h-13A1.5 1.5 0 0 1 0 3.5v-2zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-13z"/>
-                        <path d="M2 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm10.823.323-.396-.396A.25.25 0 0 1 12.604 2h.792a.25.25 0 0 1 .177.427l-.396.396a.25.25 0 0 1-.354 0zM0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2H1zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2h14zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
-                </button>
                 <div class="collapse navbar-collapse" id="itens">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item ps-2 me-3">
-                            <form method="POST" action="{{ route('veterinario.logout') }}" id="form">
-                                    {{ csrf_field() }}
-                                <a nohref style="cursor:pointer" class="nav-link text-dark" onclick="document.getElementById('form').submit()">  
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-                                    </svg>
-                                    <span class="ps-1 text-dark">Sair</span>
-                                </a>
-                            </form>
+                        <li class="nav-item dropdown ps-1">
+                            <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4.5 5.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                                </svg> {{ Auth::guard('veterinario')->user()->name }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form method="POST" action="{{ route('veterinario.logout') }}" id="form">
+                                        {{ csrf_field() }}    
+                                        <a nohref style="cursor:pointer" class="dropdown-item" onclick="document.getElementById('form').submit()">Logout</a>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -94,9 +57,9 @@
                 @yield('conteudo')
             <hr>
         </div>
-        <nav class="navbar fixed-bottom navbar-dark" style="background-color: #bdecb6; border-color: #3a6332;">
+        <nav class="navbar fixed-bottom navbar-dark" style="background-color: #92d8c1;">
             <div class="container-fluid">
-                <span class="text-dark fw-light">Veterinário(a) {{ Auth::guard('veterinario')->user()->name }}</span>
+                <span class="text-dark fw-light">&copy; 2022 developed by Lucas Lourenco.</span>
             </div>
         </nav>
     </body>

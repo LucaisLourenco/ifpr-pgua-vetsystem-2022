@@ -1,0 +1,21 @@
+@font-face {
+    font-family: Poppins-Regular;
+    src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+  }
+
+body, html {
+	font-family: Poppins-Regular, sans-serif;
+}
+
+#coluna-acoes {
+    width: 18%; 
+    text-align: center;
+}
+
+#logo-img {
+    max-width:220px;
+    max-height:50px;
+    width: 220px;
+    height: auto;
+    position: relative;
+}

@@ -18,9 +18,9 @@ $GLOBALS['mensagem']= [
 
 class EspecieController extends Controller
 {
-    public function __construct() {
+   /* public function __construct() {
         $this->authorizeResource(Especie::class, 'especie');
-    }
+    } */
 
     public function index()
     {

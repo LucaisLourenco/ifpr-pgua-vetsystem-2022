@@ -24,7 +24,7 @@
                         </span>
 
                         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                            <input name="email" type="email" value="{{ old('email') }}" class="input100" placeholder="Email">
+                            <input name="email" type="email" value="{{ old('email') }}" class="input100" placeholder="Email" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                            <input name="password" type="password" class="input100" placeholder="Senha">
+                            <input name="password" type="password" class="input100" placeholder="Senha" required>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>

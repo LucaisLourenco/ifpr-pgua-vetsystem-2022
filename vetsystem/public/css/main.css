@@ -224,6 +224,7 @@ iframe {
 
 /*------------------------------------------------------------------
 [  ]*/
+
 .login100-pic {
   width: 55%;
   margin-top:-90px;
@@ -242,7 +243,7 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: Poppins-Bold;
+  font-family: 'Segoe UI';
   font-size: 24px;
   color: #333333;
   line-height: 1.2;
