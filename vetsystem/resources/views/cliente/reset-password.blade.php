@@ -13,7 +13,7 @@
         <form method="POST" action="{{ route('cliente.password.update') }}">
             {{ csrf_field() }}
 
-            <input type="hidden" name="token" value="{{ $request->route('cliente.token') }}">
+            <input type="hidden" name="token" value="{{ csrf_token() }}">
 
             <div>
                 <x-label for="email" :value="__('Email')" />

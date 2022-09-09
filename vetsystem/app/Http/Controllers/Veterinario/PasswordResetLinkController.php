@@ -19,7 +19,7 @@ class PasswordResetLinkController extends Controller
             'email' => ['required', 'email'],
         ]);
 
-        $status = Password::sendResetLink(
+        $status = Password::broker('veterinarios')->sendResetLink(
             $request->only('email')
         );
 
