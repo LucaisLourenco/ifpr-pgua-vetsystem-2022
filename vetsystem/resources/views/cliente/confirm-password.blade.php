@@ -8,7 +8,12 @@
         </span>
 
         <div class="wrap-input100 validate-input" data-validate = "Password is required">
-            <input name="password" type="password" class="input100" placeholder="Senha" required>
+            <input name="password" type="password" class="input100 {{ $errors->has('email') ? 'is-invalid' : '' }}" placeholder="Senha" required>
+            @if($errors->has('password'))
+                <div class='invalid-feedback'>
+                    {{ $errors->first('password') }}
+                </div>
+            @endif
             <span class="focus-input100"></span>
             <span class="symbol-input100">
                 <i class="fa fa-lock" aria-hidden="true"></i>

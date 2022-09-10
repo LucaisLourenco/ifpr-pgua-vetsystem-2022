@@ -7,14 +7,13 @@
             Login Tutor
         </span>
 
-        @if ($errors->has('email'))
-            <div class="mensagem-false">
-                Autenticação Inválida!
-            </div>
-        @endif
-
         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-            <input name="email" type="email" value="{{ old('email') }}" class="input100" placeholder="Email" required>
+            <input name="email" type="email" value="{{ old('email') }}" class="input100 {{ $errors->has('email') ? 'is-invalid' : '' }}" placeholder="Email" required>
+            @if($errors->has('email'))
+                <div class='invalid-feedback'>
+                    {{ $errors->first('email') }}
+                </div>
+            @endif
             <span class="focus-input100"></span>
             <span class="symbol-input100">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -22,7 +21,12 @@
         </div>
 
         <div class="wrap-input100 validate-input" data-validate = "Password is required">
-            <input name="password" type="password" class="input100" placeholder="Senha" required>
+            <input name="password" type="password" class="input100 {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Senha" required>
+            @if($errors->has('password'))
+                <div class='invalid-feedback'>
+                    {{ $errors->first('password') }}
+                </div>
+            @endif
             <span class="focus-input100"></span>
             <span class="symbol-input100">
                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -38,10 +42,10 @@
         <div class="text-center p-t-12">
             @if (Route::has('password.request'))
                 <span class="txt1">
-                    Forgot
+                    Esqueceu sua
                 </span>
                 <a class="txt2" href="{{ route('cliente.password.request') }}">
-                    Username / Password?
+                    Palavra-chave?
                 </a>
             @endif
         </div>
