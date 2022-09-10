@@ -1,35 +1,43 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('cliente.logintemplate', ['titulo' => "Redefir Senha Cliente"])
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@section('conteudo')
+    <form method="POST" action="{{ route('cliente.password.email') }}">
+        {{ csrf_field() }}
+        <span class="login100-form-title">
+            Redefir Senha Cliente
+        </span>
+
+        @if (session('status') == 'link-enviado')
+            <div class="mensagem-true">
+                Seu E-mail de redefinição foi enviado!
+            </div>
+        @endif
+        
+        @if (session('status') == 'link-nao-enviado')
+            <div class="mensagem-false">
+                O E-mail informado não foi encontrado!
+            </div>
+        @endif
+
+        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+            <input name="email" type="email" value="{{ old('email') }}" class="input100" placeholder="Email" required>
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+            </span>
+        </div>
+                        
+        <div class="container-login100-form-btn">
+            <button type="submit" value="redefinir" class="login100-form-btncliente">
+                Redefinir Senha
+            </button>
         </div>
 
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+        <div class="text-center p-t-136">
+            <a class="txt2" href="#">
+                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            </a>
+        </div>
+    </form>
+@endsection
 
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-     
-        <h2>Cliente</h2>
-
-        <form method="POST" action="{{ route('cliente.password.email') }}">
-            {{ csrf_field() }}
-
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>

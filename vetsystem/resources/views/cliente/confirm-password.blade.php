@@ -1,36 +1,31 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('cliente.logintemplate', ['titulo' => "Confirmar Senha Cliente"])
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+@section('conteudo')
+    <form method="POST" action="{{ route('cliente.password.confirm') }}">
+            {{ csrf_field() }}
+        <span class="login100-form-title">
+            Confirmar Senha Cliente
+        </span>
+
+        <div class="wrap-input100 validate-input" data-validate = "Password is required">
+            <input name="password" type="password" class="input100" placeholder="Senha" required>
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+            </span>
+        </div>
+                        
+        <div class="container-login100-form-btn">
+            <button type="submit" value="redefinir" class="login100-form-btncliente">
+                Confirmar Senha
+            </button>
         </div>
 
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        
-        <h2>Cliente</h2>
+        <div class="text-center p-t-136">
+            <a class="txt2" href="#">
+                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            </a>
+        </div>
+    </form>
+@endsection
 
-        <form method="POST" action="{{ route('cliente.password.confirm') }}">
-            {{ csrf_field() }}
-
-            <div>
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <div class="flex justify-end mt-4">
-                <x-button>
-                    {{ __('Confirm') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>

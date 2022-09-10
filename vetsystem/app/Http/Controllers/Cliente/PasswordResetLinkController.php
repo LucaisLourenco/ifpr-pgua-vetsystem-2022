@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Cliente;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use App\Models\Cliente;
+use Illuminate\Support\Facades\DB;
 
 class PasswordResetLinkController extends Controller
 {
@@ -16,16 +18,18 @@ class PasswordResetLinkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email']
         ]);
 
-        $status = Password::broker('clientes')->sendResetLink(
-            $request->only('email')
-        );
+        if(DB::table('clientes')->where('email', $request->email)->exists()) {
+            $user = Cliente::where('email', request()->input('email'))->first();
+            $token = Password::getRepository()->create($user);
+            $user->sendPasswordResetNotification($token);
+            $status = "link-enviado";
+        }  else {
+            $status = "link-nao-enviado";
+        }
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+        return back()->with('status', $status);
     }
 }
