@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Veterinario;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use App\Models\Veterinario;
+use Illuminate\Support\Facades\DB;
 
 class PasswordResetLinkController extends Controller
 {
@@ -19,13 +21,15 @@ class PasswordResetLinkController extends Controller
             'email' => ['required', 'email'],
         ]);
 
-        $status = Password::broker('veterinarios')->sendResetLink(
-            $request->only('email')
-        );
+        if(DB::table('veterinarios')->where('email', $request->email)->exists()) {
+            $user = Veterinario::where('email', request()->input('email'))->first();
+            $token = Password::getRepository()->create($user);
+            $user->sendPasswordResetNotification($token);
+            $status = "link-enviado";
+        }  else {
+            $status = "link-nao-enviado";
+        }
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+        return back()->with('status', $status);
     }
 }

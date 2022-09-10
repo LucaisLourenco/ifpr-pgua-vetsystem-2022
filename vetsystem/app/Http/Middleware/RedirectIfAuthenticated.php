@@ -19,19 +19,19 @@ class RedirectIfAuthenticated
                 switch ($guard) {
                     case 'cliente':
                         if(Auth::guard($guard)->check()){
-                            return redirect()->route('templatescliente.main');
+                            return redirect()->route('cliente');
                         }
                         break;
 
                     case 'veterinario':
                         if(Auth::guard($guard)->check()){
-                            return redirect()->route('templatesveterinario.main');
+                            return redirect()->route('veterinario');
                         }
                         break;  
 
                     default:
                         if(Auth::guard($guard)->check()){
-                            return redirect()->route('templates.main');
+                            return redirect()->route('sistema');
                         }
                         break;
                 }
