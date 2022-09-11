@@ -1,4 +1,4 @@
-@extends('veterinario.logintemplate', ['titulo' => "Confirmar Senha Veterinário"])
+@extends('veterinario.logintemplate')
 
 @section('conteudo')
     <form method="POST" action="{{ route('veterinario.password.confirm') }}">

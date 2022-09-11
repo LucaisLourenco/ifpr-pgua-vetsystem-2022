@@ -1,4 +1,4 @@
-@extends('cliente.logintemplate', ['titulo' => "Confirmar Senha Cliente"])
+@extends('cliente.logintemplate')
 
 @section('conteudo')
     <form method="POST" action="{{ route('cliente.password.confirm') }}">
