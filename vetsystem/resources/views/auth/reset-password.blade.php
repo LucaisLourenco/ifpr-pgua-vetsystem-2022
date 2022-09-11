@@ -30,7 +30,7 @@
                         <div class="wrap-input100 validate-input" data-validate = "Password is required">
                             <input name="password" type="password" class="input100 {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Senha" required>
                             @if($errors->has('password'))
-                                <div class='invalid-feedback'>
+                                <div class='invalid-feedback text-center'>
                                     {{ $errors->first('password') }}
                                 </div>
                             @endif
@@ -43,7 +43,7 @@
                         <div class="wrap-input100 validate-input" data-validate = "Password_confirmation is required">
                             <input name="password_confirmation" type="password" class="input100 {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" placeholder="Confirme a Senha" required>
                             @if($errors->has('password_confirmation'))
-                                <div class='invalid-feedback'>
+                                <div class='invalid-feedback text-center'>
                                     {{ $errors->first('password_confirmation') }}
                                 </div>
                             @endif

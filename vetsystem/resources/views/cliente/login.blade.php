@@ -10,7 +10,7 @@
         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
             <input name="email" type="email" value="{{ old('email') }}" class="input100 {{ $errors->has('email') ? 'is-invalid' : '' }}" placeholder="Email" required>
             @if($errors->has('email'))
-                <div class='invalid-feedback'>
+                <div class='invalid-feedback text-center'>
                     {{ $errors->first('email') }}
                 </div>
             @endif
@@ -23,7 +23,7 @@
         <div class="wrap-input100 validate-input" data-validate = "Password is required">
             <input name="password" type="password" class="input100 {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Senha" required>
             @if($errors->has('password'))
-                <div class='invalid-feedback'>
+                <div class='invalid-feedback text-center'>
                     {{ $errors->first('password') }}
                 </div>
             @endif
