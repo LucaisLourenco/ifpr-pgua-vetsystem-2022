@@ -16,6 +16,7 @@
                     name="nome" 
                     placeholder="Nome"
                     value="{{$especy['nome']}}"
+                    required
                 />
                 @if($errors->has('nome'))
                     <div class='invalid-feedback'>

@@ -15,6 +15,7 @@
                         name="nome" 
                         placeholder="Nome"
                         value="{{old('nome')}}"
+                        required
                     />
                     @if($errors->has('nome'))
                         <div class='invalid-feedback'>
@@ -28,7 +29,7 @@
         <div class="row">
             <div class="col" >
                 <div class="form-floating mb-3">
-                    <select name="especie_id" class="form-control {{ $errors->has('especie_id') ? 'is-invalid' : '' }}">
+                    <select name="especie_id" class="form-control {{ $errors->has('especie_id') ? 'is-invalid' : '' }}" required>
                     <option value="{{null}}">SELECIONE A ESPÉCIE</option>
                         @foreach ($especies as $item) 
                             <option value="{{$item->id}}">

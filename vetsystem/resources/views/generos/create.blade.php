@@ -15,6 +15,7 @@
                         name="nome" 
                         placeholder="Nome"
                         value="{{old('nome')}}"
+                        required
                     />
                     @if($errors->has('nome'))
                         <div class='invalid-feedback'>

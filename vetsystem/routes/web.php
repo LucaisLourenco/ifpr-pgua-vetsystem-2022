@@ -6,6 +6,7 @@ Route::resource('parametros', 'ParametroController');
 Route::resource('generos', 'GeneroController');
 Route::resource('especies', 'EspecieController');
 Route::resource('racas', 'RacaController');
+Route::resource('enderecos', 'EnderecoController');
 
 Route::get('/sistema', function () {
     return view('templates.main')->with('titulo');

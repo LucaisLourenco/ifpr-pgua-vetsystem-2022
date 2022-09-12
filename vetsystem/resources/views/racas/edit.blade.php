@@ -16,6 +16,7 @@
                         name="nome" 
                         placeholder="Nome"
                         value="{{$raca['nome']}}"
+                        required
                     />
                     @if($errors->has('nome'))
                         <div class='invalid-feedback'>
@@ -29,7 +30,7 @@
         <div class="row">
             <div class="col" >
                 <div class="form-floating mb-3">
-                    <select name="especie_id" class="form-control {{ $errors->has('especie_id') ? 'is-invalid' : '' }}">
+                    <select name="especie_id" class="form-control {{ $errors->has('especie_id') ? 'is-invalid' : '' }}" required>
                         @foreach ($especies as $item) 
                             <option value="{{$item->id}}" @if($item->id == $raca->especie_id) selected="true" @endif>
                                 {{$item->nome}}
