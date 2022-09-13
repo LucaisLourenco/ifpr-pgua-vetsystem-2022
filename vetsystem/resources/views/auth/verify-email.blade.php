@@ -1,39 +1,39 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+@extends('auth.logintemplate')
+
+@section('conteudo')
+    <form method="POST" action="{{ route('verification.send') }}">
+        {{ csrf_field() }}
+        <span class="login100-form-title">
+            Verificar E-mail
+        </span>
+                        
+        <div class="container-login100-form-btn">
+            <button type="submit" value="redefinir" class="login100-form-btngestao">
+                Redefinir Senha
+            </button>
+        </div>
+
+        <div class="text-center p-t-136">
+            <a class="txt2" href="#">
+                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
             </a>
-        </x-slot>
+        </div>
+    </form>
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+    <form method="POST" action="{{ route('logout') }}">
+        {{ csrf_field() }}
+
+        <div class="container-login100-form-btn">
+            <button type="submit" value="logout" class="login100-form-btngestao">
+                Desconectar
+            </button>
         </div>
 
-        @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-            </div>
-        @endif
-
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="{{ route('verification.send') }}">
-                {{ csrf_field() }}
-              
-                <div>
-                    <x-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
-                </div>
-            </form>
-
-            <form method="POST" action="{{ route('logout') }}">
-                {{ csrf_field() }}
-
-                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    {{ __('Log Out') }}
-                </button>
-            </form>
+        <div class="text-center p-t-136">
+            <a class="txt2" href="#">
+                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            </a>
         </div>
-    </x-auth-card>
-</x-guest-layout>
+    </form>
+@endsection
+

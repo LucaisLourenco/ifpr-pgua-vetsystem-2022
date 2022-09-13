@@ -4,7 +4,7 @@
     <form method="POST" action="{{ route('password.email') }}">
         {{ csrf_field() }}
         <span class="login100-form-title">
-            Redefir Senha Cliente
+            Redefir Senha 
         </span>
 
         @if (session('status') == 'link-enviado')

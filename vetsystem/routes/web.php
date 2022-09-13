@@ -2,15 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::resource('parametros', 'ParametroController');
-Route::resource('generos', 'GeneroController');
-Route::resource('especies', 'EspecieController');
-Route::resource('racas', 'RacaController');
-Route::resource('enderecos', 'EnderecoController');
+Route::resource('parametros', 'ParametroController')->middleware(['auth']);
+Route::resource('generos', 'GeneroController')->middleware(['auth']);
+Route::resource('especies', 'EspecieController')->middleware(['auth']);
+Route::resource('racas', 'RacaController')->middleware(['auth']);
+Route::resource('enderecos', 'EnderecoController')->middleware(['auth']);
 
 Route::get('/sistema', function () {
     return view('templates.main')->with('titulo');
-})->middleware(['auth'])->name('sistema');
+})->middleware(['auth','verified'])->name('sistema');
 
 require __DIR__.'/auth.php';
 
