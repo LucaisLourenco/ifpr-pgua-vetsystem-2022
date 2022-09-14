@@ -16,7 +16,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/cliente', function () {
     return view('templatescliente.main')->with('titulo');
-})->middleware(['auth:cliente'])->name('cliente');
+})->middleware(['auth:cliente', 'cliente.verified'])->name('cliente');
 
 require __DIR__.'/cliente.php';
 
