@@ -16,11 +16,15 @@ class Cliente extends Authenticatable implements MustVerifyEmail
 
     protected $guard = 'cliente';
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name', 'email', 'password', 'cpf', 'genero_id', 'data_nascimento', 'ativo'];
+
+    public function endereco() {
+        return $this->belongsTo('App\Models\Endereco');
+    }
+
+    public function telefone() {
+        return $this->belongsTo('App\Models\Telefone');
+    }
 
     protected $hidden = [
         'password',
