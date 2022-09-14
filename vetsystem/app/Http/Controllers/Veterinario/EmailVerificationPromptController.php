@@ -10,7 +10,7 @@ class EmailVerificationPromptController extends Controller
 {
     public function __invoke(Request $request)
     {
-        return $request->user()->hasVerifiedEmail()
+        return $request->user('veterinario')->hasVerifiedEmail()
                     ? redirect()->intended(RouteServiceProvider::HOME_VETERINARIO)
                     : view('veterinario.verify-email');
     }

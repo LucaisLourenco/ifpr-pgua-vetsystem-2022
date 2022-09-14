@@ -22,6 +22,6 @@ require __DIR__.'/cliente.php';
 
 Route::get('/veterinario', function () {
     return view('templatesveterinario.main')->with('titulo');
-})->middleware(['auth:veterinario'])->name('veterinario');
+})->middleware(['auth:veterinario', 'veterinario.verified'])->name('veterinario');
 
 require __DIR__.'/veterinario.php';
