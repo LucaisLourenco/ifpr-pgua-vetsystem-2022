@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('telefones', function (Blueprint $table) {
             $table->id();
-            $table->string('numero');
+            $table->string('contato');
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->softDeletes();

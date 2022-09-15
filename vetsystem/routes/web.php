@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::resource('parametros', 'ParametroController')->middleware(['auth']);
-Route::resource('generos', 'GeneroController')->middleware(['auth']);
-Route::resource('especies', 'EspecieController')->middleware(['auth']);
-Route::resource('racas', 'RacaController')->middleware(['auth']);
-Route::resource('enderecos', 'EnderecoController')->middleware(['auth']);
+Route::resource('parametros', 'ParametroController')->middleware(['auth','verified']);
+Route::resource('generos', 'GeneroController')->middleware(['auth','verified']);
+Route::resource('especies', 'EspecieController')->middleware(['auth','verified']);
+Route::resource('racas', 'RacaController')->middleware(['auth','verified']);
+Route::resource('enderecos', 'EnderecoController')->middleware(['auth','verified']);
+Route::resource('clientes', 'ClienteController')->middleware(['auth','verified']);
 
 Route::get('/sistema', function () {
     return view('templates.main')->with('titulo');

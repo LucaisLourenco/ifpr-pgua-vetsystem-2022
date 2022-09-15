@@ -9,8 +9,8 @@ class Endereco extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'cep', 'rua', 'numero', 'complemento', '
-        bairro', 'cidade', 'uf', 'cliente_id'];
+    protected $fillable = ['nome', 'cep', 'rua', 'numero', 'complemento', 
+        'bairro', 'cidade', 'uf', 'cliente_id'];
 
     public function cliente() {
         return $this->belongsTo('App\Models\Cliente');
