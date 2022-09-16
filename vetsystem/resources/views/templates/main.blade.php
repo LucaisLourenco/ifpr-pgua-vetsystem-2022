@@ -55,7 +55,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href=" " class="dropdown-item">Manter Pets</a></li>
-                                <li><a href=" route('clientes.index') " class="dropdown-item">Manter Clientes</a></li>
+                                <li><a href="{{ route('clientes.index') }}" class="dropdown-item">Manter Clientes</a></li>
                                 <li><a href=" " class="dropdown-item">Manter Veterinários</a></li>
                                 <li><a href=" " class="dropdown-item">Manter Serviços</a></li>
                             </ul>
@@ -196,65 +196,5 @@
 
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 
-    <script type="text/javascript">
-
-        function showInfoModalSuccess() {
-            $('#infoModalSuccess').modal().find('.modal-body').html("");
-            for(let a=0; a< arguments.length; a++) {
-                $('#infoModalSuccess').modal().find('.modal-body').append("<h7><strong> Hi {{Auth::user()->name}}! </strong>" + arguments[a] + "</h7>");
-            }
-            $("#infoModalSuccess").modal('show');
-        }
-
-        function closeInfoModalSuccess() {
-            $("#infoModalSuccess").modal('hide');
-        }
-
-        function showInfoModalDanger() {
-            $('#infoModalDanger').modal().find('.modal-body').html("");
-            for(let a=0; a< arguments.length; a++) {
-                $('#infoModalDanger').modal().find('.modal-body').append("<h7><strong> Hi {{Auth::user()->name}}! </strong>" + arguments[a] + "</h7>");
-            }
-            $("#infoModalDanger").modal('show');
-        }
-
-        function closeInfoModalDanger() {
-            $("#infoModalDanger").modal('hide');
-        }
-
-        function showRemoveModal(id, nome) {
-            $('#id_remove').val(id);
-            $('#removeModal').modal().find('.modal-body').html("");
-            $('#removeModal').modal().find('.modal-body').append("Deseja remover o registro <b class='text-danger'>'"+nome+"'</b> ?");
-            $("#removeModal").modal('show');
-        }
-
-        function closeRemoveModal() {
-            $("#removeModal").modal('hide');
-        }
-
-        function remove() {
-            let id = $('#id_remove').val();
-            let form = "form_" + $('#id_remove').val();
-            document.getElementById(form).submit();
-            $("#removeModal").modal('hide')
-        }
-
-        $(document).ready(function(){
-            setTimeout(() => {
-                $(".alert").fadeOut("slow", function(){
-                    $(this).alert('close');
-                })
-            }, 4000);
-        });
-
-        $(document).ready(function(){
-            setTimeout(() => {
-                closeInfoModalDanger();
-                closeInfoModalSuccess();
-            }, 10000);
-        });
-
-    </script>
-
+    <script src="{{ asset('js/utils.js') }}"></script>
 </html>
