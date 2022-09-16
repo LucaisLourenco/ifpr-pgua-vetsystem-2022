@@ -19,8 +19,12 @@
                 <tr>
                     <td>{{ $item['id'] }}</td>
                     <td>{{ $item['name'] }}</td>
-                    <td>{{ $item['cpf'] }}</td>
-
+                    <td>{{ $item['cpf'] }}</td> 
+                    @if($item->ativo == 1)
+                        <td>ATIVO</td>
+                    @else
+                        <td>INATIVO</td>
+                    @endif
                     <td>
                         <a href= "{{ route($route.'.edit', $item['id']) }}" class="btn btn-success">Editar
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">

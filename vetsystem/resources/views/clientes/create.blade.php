@@ -33,7 +33,6 @@
                         class="form-control {{ $errors->has('cpf') ? 'is-invalid' : '' }}" 
                         name="cpf" 
                         onkeydown="javascript: fMasc( this, mCPF );"
-                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
                         placeholder="CPF"
                         value="{{old('cpf')}}"
                         required

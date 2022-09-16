@@ -14,10 +14,10 @@ use Illuminate\Validation\Rules;
 
 $GLOBALS['regras'] = [
     'name' => 'required|max:100|min:2',
-    'cpf' => 'required|unique:clientes',
+    'cpf' => 'required|min:14|unique:clientes',
     'email' => 'required|string|email|max:255|unique:clientes',
-    'contato' => 'required|min:14'
-
+    'contato' => 'required|min:14',
+    'cep' => 'required|min:10'
 ];
 
 $GLOBALS['mensagem']= [
@@ -25,11 +25,15 @@ $GLOBALS['mensagem']= [
     "name.max" => "O campo NOME possui tamanho máxixo de 100 caracteres!",
     "name.min" => "O campo NOME possui tamanho mínimo de 2 caracteres!",
     "cpf.required" => "O preenchimento do campo CPF é obrigatório!",
+    "cpf.min" => "O campo CPF possui tamanho mínimo de 11 dígitos!",
     "cpf.unique" => "O CPF informado já existe!",
     "email.required" => "O preenchimento do campo E-mail é obrigatório!",
     "email.unique" => "O E-mail informado já existe!",
     "email.max" => "O campo E-mail possui tamanho máxixo de 255 caracteres!",
+    "contato.required" => "O preenchimento do campo Contato é obrigatório!",
     "contato.min" => "O campo Contato possui tamanho mínimo de 10 dígitos!",
+    "cep.required" => "O preenchimento do campo CEP é obrigatório!",
+    "cep.min" => "O campo CEP possui tamanho mínimo de 8 dígitos!",
 ];
 
 class ClienteController extends Controller

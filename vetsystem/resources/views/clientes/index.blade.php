@@ -9,9 +9,9 @@
             <x-datalist-users
                 :title="'Clientes'"
                 :route="'clientes'"
-                :header="['ID', 'NOME', 'CPF', 'AÇÕES']" 
+                :header="['ID', 'NOME', 'CPF', 'TELEFONE', 'AÇÕES']" 
                 :data="$clientes"
-                :hide="[true, true, true, false]" 
+                :hide="[true, true, true, true, false]" 
             />
         </div>
     </div>

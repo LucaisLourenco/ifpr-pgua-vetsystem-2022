@@ -2,7 +2,7 @@
 function showInfoModalSuccess() {
     $('#infoModalSuccess').modal().find('.modal-body').html("");
     for(let a=0; a< arguments.length; a++) {
-        $('#infoModalSuccess').modal().find('.modal-body').append("<h7><strong> Hi {{Auth::user()->name}}! </strong>" + arguments[a] + "</h7>");
+        $('#infoModalSuccess').modal().find('.modal-body').append("<h7><strong> Hi! </strong>" + arguments[a] + "</h7>");
     }
     $("#infoModalSuccess").modal('show');
 }
