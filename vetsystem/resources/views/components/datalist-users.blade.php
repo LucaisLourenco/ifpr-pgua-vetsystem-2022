@@ -20,6 +20,7 @@
                     <td>{{ $item['id'] }}</td>
                     <td>{{ $item['name'] }}</td>
                     <td>{{ $item['cpf'] }}</td> 
+                    <td>{{ $item['email'] }}</td> 
                     @if($item->ativo == 1)
                         <td>ATIVO</td>
                     @else
