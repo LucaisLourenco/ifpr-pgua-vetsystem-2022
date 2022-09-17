@@ -17,7 +17,15 @@ $GLOBALS['regras'] = [
     'cpf' => 'required|min:14|unique:clientes',
     'email' => 'required|string|email|max:255|unique:clientes',
     'contato' => 'required|min:14',
-    'cep' => 'required|min:10'
+    'cep' => 'required|min:10',
+    'genero_id' => 'required',
+    'data_nascimento' => 'required',
+    'nome' => 'required|min:3|max:30',
+    'rua' => 'required|max:60',
+    'bairro' => 'required|min:3|max:30',
+    'cidade' => 'required|min:3|max:30',
+    'numero' => 'required|max:10',
+    'uf' => 'required|min:2|max:2',
 ];
 
 $GLOBALS['mensagem']= [
@@ -34,6 +42,24 @@ $GLOBALS['mensagem']= [
     "contato.min" => "O campo Contato possui tamanho mínimo de 10 dígitos!",
     "cep.required" => "O preenchimento do campo CEP é obrigatório!",
     "cep.min" => "O campo CEP possui tamanho mínimo de 8 dígitos!",
+    "uf.required" => "O preenchimento do campo UF é obrigatório!",
+    "uf.max" => "O campo UF possui tamanho máxixo de 2 caracteres!",
+    "uf.min" => "O campo UF possui tamanho mínimo de 2 caracteres!",
+    "cidade.required" => "O preenchimento do campo Cidade é obrigatório!",
+    "cidade.max" => "O campo Cidade possui tamanho máxixo de 30 caracteres!",
+    "cidade.min" => "O campo Cidade possui tamanho mínimo de 3 caracteres!",
+    "bairro.required" => "O preenchimento do campo Bairro é obrigatório!",
+    "bairro.max" => "O campo Bairro possui tamanho máxixo de 30 caracteres!",
+    "bairro.min" => "O campo Bairro possui tamanho mínimo de 3 caracteres!",
+    "genero_id.required" => "A seleção do campo Gênero é obrigatório!",
+    "numero.required" => "O preenchimento do campo Número é obrigatório!",
+    "numero.max" => "O campo Número possui tamanho máxixo de 10 dígitos!",
+    "nome.required" => "O preenchimento do campo Nome do Endereço é obrigatório!",
+    "nome.max" => "O campo Nome do Endereço possui tamanho máxixo de 30 caracteres!",
+    "nome.min" => "O campo Nome do Endereço possui tamanho mínimo de 2 caracteres!",
+    "rua.required" => "O preenchimento do campo Rua é obrigatório!",
+    "rua.max" => "O campo Rua possui tamanho máxixo de 30 caracteres!",
+    "data_nascimento.required" => "O preenchimento do campo Data de Nascimento é obrigatório!"
 ];
 
 class ClienteController extends Controller
@@ -77,7 +103,7 @@ class ClienteController extends Controller
             $endereco->complemento = $request->complemento;
             $endereco->bairro = $request->bairro;
             $endereco->cidade = $request->cidade;
-            $endereco->uf = $request->uf;
+            $endereco->uf = mb_strtoupper($request->uf);
             $endereco->cliente()->associate($cliente);
             $endereco->save();
 
@@ -100,12 +126,17 @@ class ClienteController extends Controller
 
     public function show(Cliente $cliente)
     {
-        
+        $cliente = Cliente::with('enderecos')->findOrFail($cliente->id);
+
+        ($cliente);
+        return view('clientes.show', compact(['cliente']));
     }
 
     public function edit(Cliente $cliente)
     {
-        //
+        $generos = Genero::all();
+
+        return view('clientes.edit', compact(['generos']));
     }
 
     public function update(Request $request, Cliente $cliente)

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Authenticatable implements MustVerifyEmail
 {
@@ -18,11 +19,11 @@ class Cliente extends Authenticatable implements MustVerifyEmail
 
     protected $fillable = ['name', 'email', 'password', 'cpf', 'genero_id', 'data_nascimento', 'ativo'];
 
-    public function endereco() {
+    public function enderecos() {
         return $this->hasMany('App\Models\Endereco');
     }
 
-    public function telefone() {
+    public function telefones() {
         return $this->hasMany('App\Models\Telefone');
     }
 
