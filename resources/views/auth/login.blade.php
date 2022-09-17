@@ -4,7 +4,7 @@
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <span class="login100-form-title">
-            Login Gestão
+            Login Gestão Júlia Chata
         </span>
 
         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
