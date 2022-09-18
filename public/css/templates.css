@@ -17,6 +17,16 @@ body, html {
     text-align: center;
 }
 
+#coluna-acoes-users-perfil {
+    width: 19%; 
+    text-align: center;
+}
+
+#coluna-acoes-users-perfil-enderecos {
+    width: 28%; 
+    text-align: center;
+}
+
 #logo-img {
     max-width:220px;
     max-height:50px;

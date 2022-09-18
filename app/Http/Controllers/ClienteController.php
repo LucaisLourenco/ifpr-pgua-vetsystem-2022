@@ -22,7 +22,7 @@ $GLOBALS['regras'] = [
     'data_nascimento' => 'required',
     'nome' => 'required|min:3|max:30',
     'rua' => 'required|max:60',
-    'bairro' => 'required|min:3|max:30',
+    'bairro' => 'required|min:3|max:60',
     'cidade' => 'required|min:3|max:30',
     'numero' => 'required|max:10',
     'uf' => 'required|min:2|max:2',
@@ -49,7 +49,7 @@ $GLOBALS['mensagem']= [
     "cidade.max" => "O campo Cidade possui tamanho máxixo de 30 caracteres!",
     "cidade.min" => "O campo Cidade possui tamanho mínimo de 3 caracteres!",
     "bairro.required" => "O preenchimento do campo Bairro é obrigatório!",
-    "bairro.max" => "O campo Bairro possui tamanho máxixo de 30 caracteres!",
+    "bairro.max" => "O campo Bairro possui tamanho máxixo de 60 caracteres!",
     "bairro.min" => "O campo Bairro possui tamanho mínimo de 3 caracteres!",
     "genero_id.required" => "A seleção do campo Gênero é obrigatório!",
     "numero.required" => "O preenchimento do campo Número é obrigatório!",
@@ -126,7 +126,7 @@ class ClienteController extends Controller
 
     public function show(Cliente $cliente)
     {
-        $cliente = Cliente::with('enderecos')->findOrFail($cliente->id);
+        $cliente = Cliente::with('enderecos','telefones','genero')->findOrFail($cliente->id);
 
         ($cliente);
         return view('clientes.show', compact(['cliente']));

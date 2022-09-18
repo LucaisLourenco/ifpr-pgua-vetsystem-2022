@@ -23,6 +23,10 @@ class Cliente extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\Endereco');
     }
 
+    public function genero() {
+        return $this->belongsTo('App\Models\Genero');
+    }
+
     public function telefones() {
         return $this->hasMany('App\Models\Telefone');
     }

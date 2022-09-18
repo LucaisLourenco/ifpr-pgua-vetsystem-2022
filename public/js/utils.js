@@ -1,4 +1,4 @@
-//MOSTRAR MODALS SUCCESS E DANGER
+//MOSTRAR MODALS SUCCESS
 function showInfoModalSuccess() {
     $('#infoModalSuccess').modal().find('.modal-body').html("");
     for(let a=0; a< arguments.length; a++) {
@@ -11,6 +11,7 @@ function closeInfoModalSuccess() {
     $("#infoModalSuccess").modal('hide');
 }
 
+//MOSTRAR MODALS DANGER
 function showInfoModalDanger() {
     $('#infoModalDanger').modal().find('.modal-body').html("");
     for(let a=0; a< arguments.length; a++) {
@@ -23,6 +24,25 @@ function closeInfoModalDanger() {
     $("#infoModalDanger").modal('hide');
 }
 
+//MOSTRAR MODALS ENDERECO
+function showInfoModalEndereco(nome, cep, rua, numero, complemento, bairro, cidade, uf ) {
+    $('#infoModalEndereco').modal().find('.modal-body').html("");
+    $('#infoModalEndereco').modal().find('.modal-body').append("<strong>Nome do Endereço: </strong>"+"<em>"+nome+"</em><br>");
+    $('#infoModalEndereco').modal().find('.modal-body').append("<strong>CEP: </strong>"+"<em>"+cep+"</em><br>");
+    $('#infoModalEndereco').modal().find('.modal-body').append("<strong>Rua: </strong>"+"<em>"+rua+"</em><br>");
+    $('#infoModalEndereco').modal().find('.modal-body').append("<strong>Número: </strong>"+"<em>"+numero+"</em><br>");
+    $('#infoModalEndereco').modal().find('.modal-body').append("<strong>complemento: </strong>"+"<em>"+complemento+"</em><br>");
+    $('#infoModalEndereco').modal().find('.modal-body').append("<strong>Bairro: </strong>"+"<em>"+bairro+"</em><br>");
+    $('#infoModalEndereco').modal().find('.modal-body').append("<strong>Cidade: </strong>"+"<em>"+cidade+"</em><br>");
+    $('#infoModalEndereco').modal().find('.modal-body').append("<strong>UF: </strong>"+"<em>"+uf+"</em><br>");
+    $("#infoModalEndereco").modal('show');
+}
+
+function closeInfoModalEndereco() {
+    $("#infoModalEndereco").modal('hide');
+}
+
+//MODAL REMOVER
 function showRemoveModal(id, nome) {
     $('#id_remove').val(id);
     $('#removeModal').modal().find('.modal-body').html("");
@@ -41,6 +61,45 @@ function remove() {
     $("#removeModal").modal('hide')
 }
 
+//MODAL REMOVE ENDERECO
+function showRemoveModalEndereco(id, nome) {
+    $('#id_remove').val(id);
+    $('#removeModalEndereco').modal().find('.modal-body').html("");
+    $('#removeModalEndereco').modal().find('.modal-body').append("Deseja remover o registro <b class='text-danger'>'"+nome+"'</b> ?");
+    $("#removeModalEndereco").modal('show');
+}
+
+function closeRemoveModalEndereco() {
+    $("#removeModalEndereco").modal('hide');
+}
+
+function removeEndereco() {
+    let id = $('#id_remove').val();
+    let form = "endereco_" + $('#id_remove').val();
+    document.getElementById(form).submit();
+    $("#removeModalEndereco").modal('hide')
+}
+
+//MODAL REMOVE TELEDONE
+function showRemoveModalTelefone(id, nome) {
+    $('#id_remove').val(id);
+    $('#removeModalTelefone').modal().find('.modal-body').html("");
+    $('#removeModalTelefone').modal().find('.modal-body').append("Deseja remover o registro <b class='text-danger'>'"+nome+"'</b> ?");
+    $("#removeModalTelefone").modal('show');
+}
+
+function closeRemoveModalTelefone() {
+    $("#removeModalTelefone").modal('hide');
+}
+
+function removeTelefone() {
+    let id = $('#id_remove').val();
+    let form = "telefone_" + $('#id_remove').val();
+    document.getElementById(form).submit();
+    $("#removeModalTelefone").modal('hide')
+}
+
+//FUNCOES
 $(document).ready(function(){
     setTimeout(() => {
         $(".alert").fadeOut("slow", function(){
