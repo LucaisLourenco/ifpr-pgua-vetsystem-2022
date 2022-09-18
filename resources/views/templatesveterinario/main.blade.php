@@ -18,6 +18,10 @@
                 <a href="{{route('veterinario')}}">
                     <img id="logo-img" src="../images/img-08.png" alt="IMG">
                 </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#itens"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="itens">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item dropdown ps-1">
