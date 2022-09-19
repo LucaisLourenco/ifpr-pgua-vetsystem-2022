@@ -252,7 +252,7 @@
                                     class="form-control {{ $errors->has('complemento') ? 'is-invalid' : '' }}" 
                                     name="complemento" 
                                     placeholder="complemento"
-                                    value="{{complemento}}"
+                                    value="{{$endereco->complemento}}"
                                 />
                                 @if($errors->has('complemento'))
                                     <div class='invalid-feedback'>
