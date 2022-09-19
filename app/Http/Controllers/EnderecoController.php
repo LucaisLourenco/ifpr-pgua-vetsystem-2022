@@ -57,7 +57,7 @@ class EnderecoController extends Controller
 
     public function update(Request $request, Endereco $endereco)
     {
-        //
+        dd($endereco);
     }
 
     public function destroy(Endereco $endereco)
