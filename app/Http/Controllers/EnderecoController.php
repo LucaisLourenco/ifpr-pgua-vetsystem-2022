@@ -19,7 +19,7 @@ class EnderecoController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+       //$request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
 
         try 
         {
@@ -30,7 +30,8 @@ class EnderecoController extends Controller
                 "numero" => $request->numero,
                 "complemento" => $request->complemento,
                 "bairro" => $request->bairro,
-                "uf" => $request->uf
+                "uf" => $request->uf,
+                "cliente_id" => $request->cliente_id
             ]);
 
             session()->flash('mensagem', "Item cadastrado com sucesso.");
@@ -52,12 +53,36 @@ class EnderecoController extends Controller
 
     public function edit(Endereco $endereco)
     {
-        //
+        return view('enderecos.edit', compact(['endereco']));
     }
 
     public function update(Request $request, Endereco $endereco)
     {
-        dd($endereco);
+        //$request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+     
+        try
+        {
+            $endereco->update([
+                "nome" => mb_strtoupper($request->nome),
+                "cep" => $request->cep,
+                "rua" => $request->rua,
+                "numero" => $request->numero,
+                "complemento" => $request->complemento,
+                "bairro" => $request->bairro,
+                "cidade" => $request->cidade,
+                "uf" => mb_strtoupper($request->uf)
+            ]);
+
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->to('clientes/'.$endereco->cliente_id);
     }
 
     public function destroy(Endereco $endereco)
