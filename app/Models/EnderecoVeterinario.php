@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Endereco extends Model
+class EnderecoVeterinario extends Model
 {
     use HasFactory;
 
     protected $fillable = ['nome', 'cep', 'rua', 'numero', 'complemento', 
-        'bairro', 'cidade', 'uf', 'user_id'];
+        'bairro', 'cidade', 'uf', 'veterinario_id'];
 
-    public function user() {
-        return $this->belongsTo('App\Models\User');
+    public function veterinario() {
+        return $this->belongsTo('App\Models\Veterinario');
     }
 }

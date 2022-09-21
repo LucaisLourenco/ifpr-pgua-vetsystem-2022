@@ -121,7 +121,25 @@
                     <label for="genero_id">Gênero</label>
                 </div>
             </div>
-            <div class="col-8" >
+            <div class="col-4" >
+                <div class="form-floating mb-3">
+                    <input 
+                        type="text" 
+                        class="form-control {{ $errors->has('nome_contato') ? 'is-invalid' : '' }}" 
+                        name="nome_contato" 
+                        placeholder="nome_contato"
+                        value="{{old('nome_contato')}}"
+                        required
+                    />
+                    @if($errors->has('nome_contato'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('nome_contato') }}
+                        </div>
+                    @endif
+                    <label for="nome_contato">Nome do Contato</label>
+                </div>
+            </div>
+            <div class="col-4" >
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
@@ -147,18 +165,18 @@
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
-                        class="form-control {{ $errors->has('nome') ? 'is-invalid' : '' }}" 
-                        name="nome" 
-                        placeholder="Nome"
-                        value="{{old('nome')}}"
+                        class="form-control {{ $errors->has('nome_endereco') ? 'is-invalid' : '' }}" 
+                        name="nome_endereco" 
+                        placeholder="nome_endereco"
+                        value="{{old('nome_endereco')}}"
                         required
                     />
-                    @if($errors->has('nome'))
+                    @if($errors->has('nome_endereco'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('nome') }}
+                            {{ $errors->first('nome_endereco') }}
                         </div>
                     @endif
-                    <label for="nome">Nome do Endereço</label>
+                    <label for="nome_endereco">Nome do Endereço</label>
                 </div>
             </div>
         </div>

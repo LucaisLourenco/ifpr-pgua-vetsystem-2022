@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('telefones', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
             $table->string('contato');
-            $table->unsignedBigInteger('cliente_id');
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();
             $table->timestamps();
         });

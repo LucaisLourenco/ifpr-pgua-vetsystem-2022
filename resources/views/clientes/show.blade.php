@@ -90,6 +90,7 @@
                 <caption>Lista de <b>Contatos</b></caption>
                 <thead>
                     <tr>
+                        <th scope="col" class="d-none d-md-table-cell">NOME DO CONTATO</th>
                         <th scope="col" class="d-none d-md-table-cell">CONTATO</th>
                         <th id="coluna-acoes-users-perfil" scope="col">AÇÕES</th>
                     </tr>
@@ -97,6 +98,7 @@
                 <tbody>
                     @foreach ($cliente->telefones as $item)
                         <tr>
+                            <td>{{ $item['nome'] }}</td>
                             <td>{{ $item['contato'] }}</td>
                             <td>
                                 <a href= "#" class="btn btn-success">

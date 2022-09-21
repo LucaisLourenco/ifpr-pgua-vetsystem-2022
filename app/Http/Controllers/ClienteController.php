@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Genero;
-use App\Models\Endereco;
-use App\Models\Telefone;
+use App\Models\EnderecoCliente;
+use App\Models\TelefoneCliente;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,11 +16,12 @@ $GLOBALS['regras'] = [
     'name' => 'required|max:100|min:2',
     'cpf' => 'required|min:14|unique:clientes',
     'email' => 'required|string|email|max:255|unique:clientes',
+    'nome_contato' => 'required|min:3|max:30',
     'contato' => 'required|min:14',
     'cep' => 'required|min:10',
     'genero_id' => 'required',
     'data_nascimento' => 'required',
-    'nome' => 'required|min:3|max:30',
+    'nome_endereco' => 'required|min:3|max:30',
     'rua' => 'required|max:60',
     'bairro' => 'required|min:3|max:60',
     'cidade' => 'required|min:3|max:30',
@@ -38,6 +39,9 @@ $GLOBALS['mensagem']= [
     "email.required" => "O preenchimento do campo E-mail é obrigatório!",
     "email.unique" => "O E-mail informado já existe!",
     "email.max" => "O campo E-mail possui tamanho máxixo de 255 caracteres!",
+    "nome_contato.required" => "O preenchimento do campo Nome do Contato é obrigatório!",
+    "nome_contato.max" => "O campo Nome do Contato possui tamanho máxixo de 30 caracteres!",
+    "nome_contato.min" => "O campo Nome do Contato possui tamanho mínimo de 2 caracteres!",
     "contato.required" => "O preenchimento do campo Contato é obrigatório!",
     "contato.min" => "O campo Contato possui tamanho mínimo de 10 dígitos!",
     "cep.required" => "O preenchimento do campo CEP é obrigatório!",
@@ -54,9 +58,9 @@ $GLOBALS['mensagem']= [
     "genero_id.required" => "A seleção do campo Gênero é obrigatório!",
     "numero.required" => "O preenchimento do campo Número é obrigatório!",
     "numero.max" => "O campo Número possui tamanho máxixo de 10 dígitos!",
-    "nome.required" => "O preenchimento do campo Nome do Endereço é obrigatório!",
-    "nome.max" => "O campo Nome do Endereço possui tamanho máxixo de 30 caracteres!",
-    "nome.min" => "O campo Nome do Endereço possui tamanho mínimo de 2 caracteres!",
+    "nome_endereco.required" => "O preenchimento do campo Nome do Endereço é obrigatório!",
+    "nome_endereco.max" => "O campo Nome do Endereço possui tamanho máxixo de 30 caracteres!",
+    "nome_endereco.min" => "O campo Nome do Endereço possui tamanho mínimo de 2 caracteres!",
     "rua.required" => "O preenchimento do campo Rua é obrigatório!",
     "rua.max" => "O campo Rua possui tamanho máxixo de 30 caracteres!",
     "data_nascimento.required" => "O preenchimento do campo Data de Nascimento é obrigatório!"
@@ -95,8 +99,8 @@ class ClienteController extends Controller
                 'ativo' => 1
             ]);
 
-            $endereco = new Endereco();
-            $endereco->nome = mb_strtoupper($request->nome);
+            $endereco = new EnderecoCliente();
+            $endereco->nome = mb_strtoupper($request->nome_endereco);
             $endereco->cep = $request->cep;
             $endereco->rua = $request->rua;
             $endereco->numero = $request->numero;
@@ -107,7 +111,8 @@ class ClienteController extends Controller
             $endereco->cliente()->associate($cliente);
             $endereco->save();
 
-            $telefone = new Telefone();
+            $telefone = new TelefoneCliente();
+            $telefone->nome = mb_strtoupper($request->nome_contato);
             $telefone->contato = $request->contato;
             $telefone->cliente()->associate($cliente);
             $telefone->save();

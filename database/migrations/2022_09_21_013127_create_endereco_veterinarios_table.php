@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('enderecos', function (Blueprint $table) {
+        Schema::create('endereco_veterinarios', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->string('cep');
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('bairro');
             $table->string('cidade');
             $table->string('uf');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('veterinario_id');
+            $table->foreign('veterinario_id')->references('id')->on('veterinarios');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enderecos');
+        Schema::dropIfExists('endereco_veterinarios');
     }
 };

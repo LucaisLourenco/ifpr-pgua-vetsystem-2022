@@ -20,7 +20,7 @@ class Cliente extends Authenticatable implements MustVerifyEmail
     protected $fillable = ['name', 'email', 'password', 'cpf', 'genero_id', 'data_nascimento', 'ativo'];
 
     public function enderecos() {
-        return $this->hasMany('App\Models\Endereco');
+        return $this->hasMany('App\Models\EnderecoCliente');
     }
 
     public function genero() {
@@ -28,7 +28,7 @@ class Cliente extends Authenticatable implements MustVerifyEmail
     }
 
     public function telefones() {
-        return $this->hasMany('App\Models\Telefone');
+        return $this->hasMany('App\Models\TelefoneCliente');
     }
 
     protected $hidden = [
