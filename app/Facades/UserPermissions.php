@@ -6,10 +6,10 @@ use App\Models\Permission;
 
 class UserPermissions {
     
-    public static function loadPermissions($user_type) { 
+    public static function loadPermissions($user_paper) { 
         
         $sess = Array();    
-        $perm = Permission::with('role')->where('type_id', $user_type)->get();
+        $perm = Permission::with('role')->where('paper_id', $user_paper)->get();
 
         foreach($perm as $item) {
             $sess[$item->role->nome] = (boolean) $item->permissao;
@@ -25,7 +25,7 @@ class UserPermissions {
 
         if(array_key_exists($rule, $permissions)) {
             return $permissions[$rule];
-        }
+        } 
 
         return false;
     }

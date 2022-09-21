@@ -18,10 +18,10 @@ $GLOBALS['mensagem']= [
 
 class GeneroController extends Controller
 {
-   /* public function __construct() {
+    public function __construct() {
         $this->authorizeResource(Genero::class, 'genero');
     }
- */
+ 
     public function index()
     {
         $generos = Genero::all();
