@@ -8,8 +8,8 @@
         </span>
                         
         <div class="container-login100-form-btn">
-            <button type="submit" value="redefinir" class="login100-form-btngestao">
-                Redefinir Senha
+            <button type="submit" value="enviar" class="login100-form-btngestao">
+                Enviar E-mail de Verificação
             </button>
         </div>
 

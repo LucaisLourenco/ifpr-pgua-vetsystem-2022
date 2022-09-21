@@ -9,7 +9,7 @@
                         
         <div class="container-login100-form-btn">
             <button type="submit" value="redefinir" class="login100-form-btngestao">
-                Redefinir Senha
+                Enviar E-mail de Verificação
             </button>
         </div>
 
@@ -20,11 +20,11 @@
         </div>
     </form>
 
-    <form method="POST" action="{{ route('veterinario.logout') }}">
+    <form method="POST" action="{{ route('logout') }}">
         {{ csrf_field() }}
 
         <div class="container-login100-form-btn">
-            <button type="submit" value="logout" class="login100-form-btn">
+            <button type="submit" value="logout" class="login100-form-btngestao">
                 Desconectar
             </button>
         </div>
