@@ -15,7 +15,9 @@ class RegisteredUserController extends Controller
 {
     public function create()
     {
-        return view('auth.register');
+        $papers = Paper::orderBy('nome')->get();
+
+        return view('auth.register', compact('papers'));
     }
 
     public function store(Request $request)
@@ -29,6 +31,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'paper_id' => $request->paper_id,
             'password' => Hash::make($request->password),
         ]);
 

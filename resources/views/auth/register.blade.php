@@ -27,6 +27,16 @@
                             name="password_confirmation" required />
         </div>
 
+        <div class="mt-4"> 
+            <select name="paper_id" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"> 
+                @foreach($papers as $item) 
+                    <option value="{{$item->id}}"> 
+                        {{$item->nome}} 
+                    </option> 
+                @endforeach 
+            </select> 
+        </div>
+
         <button class="ml-4" type="submit">
             {{ __('Register') }}
         </button>

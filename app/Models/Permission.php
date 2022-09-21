@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+
+    public function paper() {
+        return $this->belongsTo('\App\Models\Paper');
+    }
+
+    public function role() {
+        return $this->belongsTo('\App\Models\Role');
+    }
 }
