@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Facades\UserPermissions;
+use App\Events\HomeEvent;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -21,8 +22,10 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         //$request->session()->regenerate();
+        //UserPermissions::loadPermissions(Auth::user('web')->role_id);
 
-        UserPermissions::loadPermissions(Auth::user('web')->role_id);
+        $role = Auth::user('web')->role_id;
+        event(new HomeEvent($role));
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
