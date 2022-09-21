@@ -10,15 +10,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use App\Models\Paper;
+use App\Models\Role;
 
 class RegisteredUserController extends Controller
 {
     public function create()
     {
-        $papers = Paper::orderBy('nome')->get();
+        $roles = Role::orderBy('nome')->get();
 
-        return view('auth.register', compact('papers'));
+        return view('auth.register', compact('roles'));
     }
 
     public function store(Request $request)
@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'paper_id' => $request->paper_id,
+            'role_id' => $request->role_id,
             'password' => Hash::make($request->password),
         ]);
 

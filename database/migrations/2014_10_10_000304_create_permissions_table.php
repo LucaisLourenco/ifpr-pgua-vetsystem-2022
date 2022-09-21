@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('paper_id');
-            $table->foreign('paper_id')->references('id')->on('papers');
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->unsignedBigInteger('resource_id');
+            $table->foreign('resource_id')->references('id')->on('resources');
             $table->boolean('permissao');
             $table->timestamps();
         });

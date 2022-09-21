@@ -22,7 +22,7 @@ class AuthenticatedSessionController extends Controller
 
         //$request->session()->regenerate();
 
-        UserPermissions::loadPermissions(Auth::user('web')->paper_id);
+        UserPermissions::loadPermissions(Auth::user('web')->role_id);
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
