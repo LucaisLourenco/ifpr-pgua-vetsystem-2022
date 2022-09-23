@@ -131,7 +131,7 @@ class ClienteController extends Controller
 
     public function show(Cliente $cliente)
     {
-        $cliente = Cliente::with('enderecos','telefones','genero')->findOrFail($cliente->id);
+        $cliente = Cliente::with('enderecos','telefones', 'pets','genero')->findOrFail($cliente->id);
 
         ($cliente);
         return view('clientes.show', compact(['cliente']));

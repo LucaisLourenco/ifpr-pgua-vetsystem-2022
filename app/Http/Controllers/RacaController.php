@@ -21,9 +21,9 @@ $GLOBALS['mensagem']= [
 
 class RacaController extends Controller
 {
-    public function __construct() {
+    /*public function __construct() {
         $this->authorizeResource(Raca::class, 'raca');
-    }
+    }*/
 
     public function index()
     {

@@ -31,6 +31,10 @@ class Cliente extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\TelefoneCliente');
     }
 
+    public function pets() {
+        return $this->hasMany('App\Models\Pet');
+    }
+
     protected $hidden = [
         'password',
         'remember_token',

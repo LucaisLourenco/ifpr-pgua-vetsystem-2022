@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('genero_id');
             $table->foreign('genero_id')->references('id')->on('generos');
             $table->string('email')->unique();
-            $table->dateTime('data_nascimento');
+            $table->date('data_nascimento');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('ativo');
