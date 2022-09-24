@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\Role;
+use App\Events\HomeEvent;
 
 class RegisteredUserController extends Controller
 {
@@ -39,6 +40,9 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        
+        $role = Auth::user('web')->role_id;
+        event(new HomeEvent($role));
 
         return redirect(RouteServiceProvider::HOME);
     }
