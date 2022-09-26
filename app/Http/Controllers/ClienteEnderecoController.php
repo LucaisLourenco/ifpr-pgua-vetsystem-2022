@@ -94,7 +94,7 @@ class ClienteEnderecoController extends Controller
                 "nome" => mb_strtoupper($request->nome_endereco),
                 "cep" => $request->cep,
                 "rua" => $request->rua,
-                "numero" => $request->numero,
+                "numero" => $request->numero_endereco,
                 "complemento" => $request->complemento,
                 "bairro" => $request->bairro,
                 "cidade" => $request->cidade,

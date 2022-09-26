@@ -70,20 +70,20 @@
             <div class="col-2" >
                 <div class="form-floating mb-3">
                     <input 
-                        id="numero"
+                        id="numero_endereco"
                         type="number" 
-                        class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" 
-                        name="numero" 
+                        class="form-control {{ $errors->has('numero_endereco') ? 'is-invalid' : '' }}" 
+                        name="numero_endereco" 
                         placeholder="Número"
                         value="{{$clienteEndereco['numero']}}"
                         required
                     />
-                    @if($errors->has('numero'))
+                    @if($errors->has('numero_endereco'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('numero') }}
+                            {{ $errors->first('numero_endereco') }}
                         </div>
                     @endif
-                    <label for="numero">Número</label>
+                    <label for="numero_endereco">Número</label>
                 </div>
             </div>
         </div>
