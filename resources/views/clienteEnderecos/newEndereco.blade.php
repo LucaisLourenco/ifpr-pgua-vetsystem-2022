@@ -1,12 +1,14 @@
-@extends('templates.main', ['titulo' => "Alterar Endereço"])
+@extends('templates.main', ['titulo' => "Novo Endereço"])
 
 @section('titulo') Endereços @endsection
 
 @section('conteudo')
 
-    <form action="{{ route('clienteEnderecos.update', $clienteEndereco) }}" method="POST">
+    <form action="{{ route('clienteEnderecos.store') }}" method="POST">
         @csrf
-        @method('PUT')
+
+        <input type="hidden" name="cliente_id" value="{{ $cliente }}"/>
+
         <div class="row">
             <div class="col" >
                 <div class="form-floating mb-3">
@@ -15,7 +17,7 @@
                         class="form-control {{ $errors->has('nome_endereco') ? 'is-invalid' : '' }}" 
                         name="nome_endereco" 
                         placeholder="nome_endereco"
-                        value="{{$clienteEndereco['nome']}}"
+                        value="{{old('nome_endereco')}}"
                         required
                     />
                     @if($errors->has('nome_endereco'))
@@ -37,7 +39,7 @@
                         name="cep" 
                         onkeydown="javascript: fMasc( this, mCEP );"
                         placeholder="CEP"
-                        value="{{$clienteEndereco['cep']}}"
+                        value="{{old('cep')}}"
                         required
                     />
                     @if($errors->has('cep'))
@@ -56,7 +58,7 @@
                         class="form-control {{ $errors->has('rua') ? 'is-invalid' : '' }}" 
                         name="rua" 
                         placeholder="rua"
-                        value="{{$clienteEndereco['rua']}}"
+                        value="{{old('rua')}}"
                         required
                     />
                     @if($errors->has('rua'))
@@ -70,20 +72,20 @@
             <div class="col-2" >
                 <div class="form-floating mb-3">
                     <input 
-                        id="numero"
+                        id="numero_endereco"
                         type="number" 
-                        class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" 
-                        name="numero" 
+                        class="form-control {{ $errors->has('numero_endereco') ? 'is-invalid' : '' }}" 
+                        name="numero_endereco" 
                         placeholder="Número"
-                        value="{{$clienteEndereco['numero']}}"
+                        value="{{old('numero_endereco')}}"
                         required
                     />
-                    @if($errors->has('numero'))
+                    @if($errors->has('numero_endereco'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('numero') }}
+                            {{ $errors->first('numero_endereco') }}
                         </div>
                     @endif
-                    <label for="numero">Número</label>
+                    <label for="numero_endereco">Número</label>
                 </div>
             </div>
         </div>
@@ -96,7 +98,7 @@
                         class="form-control {{ $errors->has('bairro') ? 'is-invalid' : '' }}" 
                         name="bairro" 
                         placeholder="bairro"
-                        value="{{$clienteEndereco['bairro']}}"
+                        value="{{old('bairro')}}"
                         required
                     />
                     @if($errors->has('bairro'))
@@ -115,7 +117,7 @@
                         class="form-control {{ $errors->has('complemento') ? 'is-invalid' : '' }}" 
                         name="complemento" 
                         placeholder="complemento"
-                        value="{{$clienteEndereco['complemento']}}"
+                        value="{{old('complemento')}}"
                     />
                     @if($errors->has('complemento'))
                         <div class='invalid-feedback'>
@@ -133,7 +135,7 @@
                         class="form-control {{ $errors->has('cidade') ? 'is-invalid' : '' }}" 
                         name="cidade" 
                         placeholder="cidade"
-                        value="{{$clienteEndereco['cidade']}}"
+                        value="{{old('cidade')}}"
                         required
                     />
                     @if($errors->has('cidade'))
@@ -152,7 +154,7 @@
                         class="form-control {{ $errors->has('uf') ? 'is-invalid' : '' }}" 
                         name="uf" 
                         placeholder="uf"
-                        value="{{$clienteEndereco['uf']}}"
+                        value="{{old('uf')}}"
                         required
                     />
                     @if($errors->has('uf'))
@@ -166,17 +168,17 @@
         </div>
         <div class="row">
             <div class="col">
-                <a href="{{ route('clientes.show', $clienteEndereco->cliente_id) }}" class="btn btn-secondary btn-block align-content-center">
+                <a href="{{ route('clientes.show', $cliente) }}" class="btn btn-secondary btn-block align-content-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
                         <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
                     </svg>
                     &nbsp; Voltar
                 </a>
                 <button class="btn btn-success btn-block align-content-center" type="submit" id="bt_salvar">
-                    <b>Confirmar</b>&nbsp;
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                    </svg>
+                        <b>Confirmar</b>&nbsp;
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </svg>
                 </button>
             </div>
         </div>
