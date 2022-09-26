@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('telefone_clientes', function (Blueprint $table) {
+        Schema::create('cliente_telefones', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('contato');
+            $table->string('numero');
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->softDeletes();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('telefone_clientes');
+        Schema::dropIfExists('cliente_telefones');
     }
 };

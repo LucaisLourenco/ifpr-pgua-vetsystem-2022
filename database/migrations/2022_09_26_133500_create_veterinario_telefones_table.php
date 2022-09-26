@@ -13,16 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('endereco_clientes', function (Blueprint $table) {
+        Schema::create('veterinario_telefones', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('cep');
-            $table->string('rua');
-            $table->integer('numero');
-            $table->string('complemento')->nullable();
-            $table->string('bairro');
-            $table->string('cidade');
-            $table->string('uf');
+            $table->string('numero');
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->softDeletes();
@@ -37,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('endereco_clientes');
+        Schema::dropIfExists('veterinario_telefones');
     }
 };

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EnderecoVeterinario;
+use App\Models\ClienteTelefone;
 use Illuminate\Http\Request;
 
-class EnderecoVeterinarioController extends Controller
+class ClienteTelefoneController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class EnderecoVeterinarioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\EnderecoVeterinario  $enderecoVeterinario
+     * @param  \App\Models\ClienteTelefone  $clienteTelefone
      * @return \Illuminate\Http\Response
      */
-    public function show(EnderecoVeterinario $enderecoVeterinario)
+    public function show(ClienteTelefone $clienteTelefone)
     {
         //
     }
@@ -52,10 +52,10 @@ class EnderecoVeterinarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\EnderecoVeterinario  $enderecoVeterinario
+     * @param  \App\Models\ClienteTelefone  $clienteTelefone
      * @return \Illuminate\Http\Response
      */
-    public function edit(EnderecoVeterinario $enderecoVeterinario)
+    public function edit(ClienteTelefone $clienteTelefone)
     {
         //
     }
@@ -64,10 +64,10 @@ class EnderecoVeterinarioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\EnderecoVeterinario  $enderecoVeterinario
+     * @param  \App\Models\ClienteTelefone  $clienteTelefone
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EnderecoVeterinario $enderecoVeterinario)
+    public function update(Request $request, ClienteTelefone $clienteTelefone)
     {
         //
     }
@@ -75,10 +75,10 @@ class EnderecoVeterinarioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\EnderecoVeterinario  $enderecoVeterinario
+     * @param  \App\Models\ClienteTelefone  $clienteTelefone
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EnderecoVeterinario $enderecoVeterinario)
+    public function destroy(ClienteTelefone $clienteTelefone)
     {
         //
     }

@@ -4,7 +4,7 @@
 
 @section('conteudo')
 
-    <form action="{{ route('endereco-clientes.update', $enderecoCliente) }}" method="POST">
+    <form action="{{ route('clienteEnderecos.update', $enderecoCliente) }}" method="POST">
     @csrf
     @method('PUT')
     <div class="row">

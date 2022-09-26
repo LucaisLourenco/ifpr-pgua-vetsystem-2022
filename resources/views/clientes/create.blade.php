@@ -125,37 +125,37 @@
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
-                        class="form-control {{ $errors->has('nome_contato') ? 'is-invalid' : '' }}" 
-                        name="nome_contato" 
-                        placeholder="nome_contato"
-                        value="{{old('nome_contato')}}"
+                        class="form-control {{ $errors->has('nome_telefone') ? 'is-invalid' : '' }}" 
+                        name="nome_telefone" 
+                        placeholder="nome_telefone"
+                        value="{{old('nome_telefone')}}"
                         required
                     />
-                    @if($errors->has('nome_contato'))
+                    @if($errors->has('nome_telefone'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('nome_contato') }}
+                            {{ $errors->first('nome_telefone') }}
                         </div>
                     @endif
-                    <label for="nome_contato">Nome do Contato</label>
+                    <label for="nome_telefone">Tipo de Telefone</label>
                 </div>
             </div>
             <div class="col-4" >
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
-                        class="form-control {{ $errors->has('contato') ? 'is-invalid' : '' }}" 
-                        name="contato" 
+                        class="form-control {{ $errors->has('numero_telefone') ? 'is-invalid' : '' }}" 
+                        name="numero_telefone" 
                         onkeypress="mask(this, mphone);"
-                        placeholder="Contato"
-                        value="{{old('contato')}}"
+                        placeholder="numero_telefone"
+                        value="{{old('numero_telefone')}}"
                         required
                     />
-                    @if($errors->has('contato'))
+                    @if($errors->has('numero_telefone'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('contato') }}
+                            {{ $errors->first('numero_telefone') }}
                         </div>
                     @endif
-                    <label for="contato">Contato do Cliente</label>
+                    <label for="numero_telefone">Número do Telefone</label>
                 </div>
             </div>
         </div>
@@ -223,20 +223,20 @@
             <div class="col-2" >
                 <div class="form-floating mb-3">
                     <input 
-                        id="numero"
+                        id="numero_endereco"
                         type="number" 
-                        class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" 
-                        name="numero" 
+                        class="form-control {{ $errors->has('numero_endereco') ? 'is-invalid' : '' }}" 
+                        name="numero_endereco" 
                         placeholder="Número"
-                        value="{{old('numero')}}"
+                        value="{{old('numero_endereco')}}"
                         required
                     />
-                    @if($errors->has('numero'))
+                    @if($errors->has('numero_endereco'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('numero') }}
+                            {{ $errors->first('numero_endereco') }}
                         </div>
                     @endif
-                    <label for="numero">Número</label>
+                    <label for="numero_endereco">Número</label>
                 </div>
             </div>
         </div>

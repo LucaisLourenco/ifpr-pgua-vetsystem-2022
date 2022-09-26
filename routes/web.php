@@ -8,7 +8,7 @@ Route::resource('especies', 'EspecieController')->middleware(['auth','verified']
 Route::resource('racas', 'RacaController')->middleware(['auth','verified']);
 Route::resource('enderecos', 'EnderecoController')->middleware(['auth','verified']);
 Route::resource('clientes', 'ClienteController')->middleware(['auth','verified']);
-Route::resource('endereco-clientes', 'EnderecoClienteController')->middleware(['auth','verified']);
+Route::resource('clienteEnderecos', 'ClienteEnderecoController')->middleware(['auth','verified']);
 
 
 Route::get('/sistema', function () {

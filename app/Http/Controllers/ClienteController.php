@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Genero;
-use App\Models\EnderecoCliente;
-use App\Models\TelefoneCliente;
+use App\Models\ClienteEndereco;
+use App\Models\ClienteTelefone;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,8 +16,8 @@ $GLOBALS['regras'] = [
     'name' => 'required|max:100|min:2',
     'cpf' => 'required|min:14|unique:clientes',
     'email' => 'required|string|email|max:255|unique:clientes',
-    'nome_contato' => 'required|min:3|max:30',
-    'contato' => 'required|min:14',
+    'nome_telefone' => 'required|min:3|max:30',
+    'numero_telefone' => 'required|min:14',
     'cep' => 'required|min:10',
     'genero_id' => 'required',
     'data_nascimento' => 'required',
@@ -25,7 +25,7 @@ $GLOBALS['regras'] = [
     'rua' => 'required|max:60',
     'bairro' => 'required|min:3|max:60',
     'cidade' => 'required|min:3|max:30',
-    'numero' => 'required|max:10',
+    'numero_endereco' => 'required|max:10',
     'uf' => 'required|min:2|max:2',
 ];
 
@@ -39,11 +39,11 @@ $GLOBALS['mensagem']= [
     "email.required" => "O preenchimento do campo E-mail é obrigatório!",
     "email.unique" => "O E-mail informado já existe!",
     "email.max" => "O campo E-mail possui tamanho máxixo de 255 caracteres!",
-    "nome_contato.required" => "O preenchimento do campo Nome do Contato é obrigatório!",
-    "nome_contato.max" => "O campo Nome do Contato possui tamanho máxixo de 30 caracteres!",
-    "nome_contato.min" => "O campo Nome do Contato possui tamanho mínimo de 2 caracteres!",
-    "contato.required" => "O preenchimento do campo Contato é obrigatório!",
-    "contato.min" => "O campo Contato possui tamanho mínimo de 10 dígitos!",
+    "nome_telefone.required" => "O preenchimento do campo Nome do Contato é obrigatório!",
+    "nome_telefone.max" => "O campo Nome do Contato possui tamanho máxixo de 30 caracteres!",
+    "nome_telefone.min" => "O campo Nome do Contato possui tamanho mínimo de 2 caracteres!",
+    "numero_telefone.required" => "O preenchimento do campo Contato é obrigatório!",
+    "numero_telefone.min" => "O campo Contato possui tamanho mínimo de 10 dígitos!",
     "cep.required" => "O preenchimento do campo CEP é obrigatório!",
     "cep.min" => "O campo CEP possui tamanho mínimo de 8 dígitos!",
     "uf.required" => "O preenchimento do campo UF é obrigatório!",
@@ -56,8 +56,8 @@ $GLOBALS['mensagem']= [
     "bairro.max" => "O campo Bairro possui tamanho máxixo de 60 caracteres!",
     "bairro.min" => "O campo Bairro possui tamanho mínimo de 3 caracteres!",
     "genero_id.required" => "A seleção do campo Gênero é obrigatório!",
-    "numero.required" => "O preenchimento do campo Número é obrigatório!",
-    "numero.max" => "O campo Número possui tamanho máxixo de 10 dígitos!",
+    "numero_endereco.required" => "O preenchimento do campo Número é obrigatório!",
+    "numero_endereco.max" => "O campo Número possui tamanho máxixo de 10 dígitos!",
     "nome_endereco.required" => "O preenchimento do campo Nome do Endereço é obrigatório!",
     "nome_endereco.max" => "O campo Nome do Endereço possui tamanho máxixo de 30 caracteres!",
     "nome_endereco.min" => "O campo Nome do Endereço possui tamanho mínimo de 2 caracteres!",
@@ -99,11 +99,11 @@ class ClienteController extends Controller
                 'ativo' => 1
             ]);
 
-            $endereco = new EnderecoCliente();
+            $endereco = new ClienteEndereco();
             $endereco->nome = mb_strtoupper($request->nome_endereco);
             $endereco->cep = $request->cep;
             $endereco->rua = $request->rua;
-            $endereco->numero = $request->numero;
+            $endereco->numero = $request->numero_endereco;
             $endereco->complemento = $request->complemento;
             $endereco->bairro = $request->bairro;
             $endereco->cidade = $request->cidade;
@@ -111,9 +111,9 @@ class ClienteController extends Controller
             $endereco->cliente()->associate($cliente);
             $endereco->save();
 
-            $telefone = new TelefoneCliente();
-            $telefone->nome = mb_strtoupper($request->nome_contato);
-            $telefone->contato = $request->contato;
+            $telefone = new ClienteTelefone();
+            $telefone->nome = mb_strtoupper($request->nome_telefone);
+            $telefone->numero = $request->numero_telefone;
             $telefone->cliente()->associate($cliente);
             $telefone->save();
 

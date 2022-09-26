@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EnderecoCliente;
+use App\Models\ClienteEndereco;
 use Illuminate\Http\Request;
 
-class EnderecoClienteController extends Controller
+class ClienteEnderecoController extends Controller
 {
     public function index()
     {
@@ -21,18 +21,18 @@ class EnderecoClienteController extends Controller
     {
         //
     }
-
-    public function show(EnderecoCliente $enderecoCliente)
+ 
+    public function show(ClienteEndereco $clienteEndereco)
     {
         //
     }
-
-    public function edit(EnderecoCliente $enderecoCliente)
+ 
+    public function edit(ClienteEndereco $clienteEndereco)
     {
-        return view('endereco-clientes.edit', compact(['enderecoCliente']));
+        //
     }
-
-    public function update(Request $request, EnderecoCliente $enderecoCliente)
+ 
+    public function update(Request $request, ClienteEndereco $clienteEndereco)
     {
         try
         {
@@ -58,8 +58,8 @@ class EnderecoClienteController extends Controller
 
         return redirect()->to('clientes/'.$enderecoCliente->cliente_id);
     }
-
-    public function destroy(EnderecoCliente $enderecoCliente)
+ 
+    public function destroy(ClienteEndereco $clienteEndereco)
     {
         //
     }
