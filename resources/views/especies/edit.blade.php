@@ -1,6 +1,6 @@
 @extends('templates.main', ['titulo' => "Alterar Espécie"])
 
-@section('titulo') Espécies @endsection
+@section('titulo')- Alterar Espécie @endsection
 
 @section('conteudo')
 

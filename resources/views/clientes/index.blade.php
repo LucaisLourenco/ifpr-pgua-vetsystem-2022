@@ -1,6 +1,6 @@
 @extends('templates.main', ['titulo' => "Clientes", 'rota' => "clientes.create"])
 
-@section('titulo') Clientes @endsection
+@section('titulo')- Clientes @endsection
 
 @section('conteudo')
 

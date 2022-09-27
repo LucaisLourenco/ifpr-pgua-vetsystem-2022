@@ -1,6 +1,6 @@
 @extends('templates.main', ['titulo' => "Novo Gênero"])
 
-@section('titulo') Gêneros @endsection
+@section('titulo')- Cadastrar Gênero @endsection
 
 @section('conteudo')
 

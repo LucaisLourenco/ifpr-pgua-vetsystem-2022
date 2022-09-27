@@ -1,6 +1,6 @@
 @extends('templates.main', ['titulo' => "Alterar Gênero"])
 
-@section('titulo') Gêneros @endsection
+@section('titulo')- Alterar Gênero @endsection
 
 @section('conteudo')
 

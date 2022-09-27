@@ -1,6 +1,6 @@
 @extends('templates.main', ['titulo' => "Estabelecimento"])
 
-@section('titulo') Parâmetros @endsection
+@section('titulo')- Parâmetros @endsection
 
 @section('conteudo')
     <table class="table align-middle caption-top table-striped">

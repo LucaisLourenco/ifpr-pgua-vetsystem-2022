@@ -1,6 +1,6 @@
 @extends('templates.main', ['titulo' => "Nova Espécie"])
 
-@section('titulo') Espécies @endsection
+@section('titulo')- Cadastrar Espécie @endsection
 
 @section('conteudo')
 

@@ -1,6 +1,6 @@
 @extends('templates.main', ['titulo' => $cliente->name])
 
-@section('titulo') Clientes @endsection
+@section('titulo')- Cliente @endsection
 
 @section('conteudo')
     <h3>Dados Cadastrais</h3>

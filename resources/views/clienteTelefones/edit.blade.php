@@ -1,6 +1,6 @@
 @extends('templates.main', ['titulo' => "Alterar Telefone"])
 
-@section('titulo') Telefones @endsection
+@section('titulo')- Alterar Telefone @endsection
 
 @section('conteudo')
 

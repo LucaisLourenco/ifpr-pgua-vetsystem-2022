@@ -1,6 +1,6 @@
 @extends('templates.main', ['titulo' => "Novo Endereço"])
 
-@section('titulo') Endereços @endsection
+@section('titulo')- Cadastrar Endereço @endsection
 
 @section('conteudo')
 
