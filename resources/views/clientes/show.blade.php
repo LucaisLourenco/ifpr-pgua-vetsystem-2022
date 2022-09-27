@@ -3,7 +3,9 @@
 @section('titulo')- Cliente @endsection
 
 @section('conteudo')
+
     <h3>Dados Cadastrais</h3>
+
     <dl class="row">
         <dt class="col-sm-2">Tutor</dt>
         <dd class="col-sm-10">{{ $cliente->name }}</dd>
@@ -28,6 +30,23 @@
             <dd class="col-sm-10">Tutor desabilitado</dd>
         @endif
     </dl>
+
+    <div class="row">
+        <!--EDITAR DADOS CADASTRAIS-->
+        <div class="col-2">
+            <a href= "{{ route('clientes.edit', $cliente) }}">Alterar Dados Cadastrais</a>
+        </div>
+
+         <!--EXCLUIR CLIENTE-->
+         <div class="col-2">
+            <a href= "#">Excluir Cliente Permanentemente</a>
+        </div>
+
+         <!--REDEFINIR SENHA-->
+         <div class="col-2">
+            <a href= "#">Redefinir Senha</a>
+        </div>
+    </div>
 
     <hr>
     <div class="row">    

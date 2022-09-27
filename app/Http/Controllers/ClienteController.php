@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\Rule;
 
 $GLOBALS['regras'] = [
     'name' => 'required|max:100|min:2',
@@ -141,12 +142,43 @@ class ClienteController extends Controller
     {
         $generos = Genero::all();
 
-        return view('clientes.edit', compact(['generos']));
+        return view('clientes.edit', compact(['cliente','generos']));
     }
 
     public function update(Request $request, Cliente $cliente)
     {
-        //
+
+        $regras = [
+            'name' => 'required|max:100|min:2',
+            'cpf' => ['required','min:14',Rule::unique('clientes')->ignore($cliente->id)],
+            'email' => ['required','string','email','max:255',Rule::unique('clientes')->ignore($cliente->id)],
+            'genero_id' => 'required',
+            'data_nascimento' => 'required',
+        ];
+
+        $request->validate($regras,$GLOBALS['mensagem']);
+
+        try
+        {
+            $cliente->update([
+                "name" => mb_strtoupper($request->name),
+                'email' => $request->email,
+                'cpf' => $request->cpf,
+                'genero_id' => $request->genero_id,
+                'data_nascimento' => $request->data_nascimento,
+                'ativo' => $request->ativo
+            ]);
+
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->to('clientes/'.$cliente->id);
     }
 
     public function destroy(Cliente $cliente)
