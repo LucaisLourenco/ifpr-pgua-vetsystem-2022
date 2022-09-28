@@ -1,30 +1,18 @@
-@extends('cliente.logintemplate')
+@extends('templatescliente.main', ['titulo' => "Seu usuário ainda não foi verificado."])
 
 @section('conteudo')
     <form method="POST" action="{{ route('cliente.verification.send') }}">
         {{ csrf_field() }}
-        <span class="login100-form-title">
-            Verificar E-mail
-        </span>
-                        
-            <button type="submit" value="redefinir" class="login100-form-btncliente">
-                Enviar E-mail de Verificação
-            </button>
+       
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="text-justify">Verificar E-mail</p>
+                    <button type="submit" value="enviar" class="btn btn-secondary btn-block align-content-center">
+                        Enviar E-mail de Verificação
+                    </button>
+                </div>
+            </div>
+        </div>
     </form>
-
-    <form method="POST" action="{{ route('logout') }}">
-        {{ csrf_field() }}
-
-        <div class="container-login100-form-btn">
-            <button type="submit" value="logout" class="login100-form-btngestao">
-                Desconectar
-            </button>
-        </div>
-
-        <div class="text-center p-t-136">
-            <a class="txt2" href="#">
-                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-            </a>
-        </div>
-    </form>        
 @endsection
