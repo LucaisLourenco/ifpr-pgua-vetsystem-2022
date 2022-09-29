@@ -10,7 +10,7 @@ use App\Http\Controllers\Cliente\RegisteredUserController;
 use App\Http\Controllers\Cliente\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['guest:cliente'], 'prefix' => 'cliente', 'as' => 'cliente.'], function() {
+Route::group(['middleware' => ['guest:cliente'], 'prefix' => 'WebCliente', 'as' => 'cliente.'], function() {
 
     /*Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
@@ -35,7 +35,7 @@ Route::group(['middleware' => ['guest:cliente'], 'prefix' => 'cliente', 'as' => 
                 ->name('password.update');
 });
 
-Route::group(['middleware' => ['auth:cliente'], 'prefix' => 'cliente', 'as' => 'cliente.'], function() {
+Route::group(['middleware' => ['auth:cliente'], 'prefix' => 'WebCliente', 'as' => 'cliente.'], function() {
 
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');

@@ -32,13 +32,13 @@ Route::get('/sistema', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/cliente', function () {
+Route::get('/WebCliente', function () {
     return view('templatescliente.main')->with('titulo');
 })->middleware(['auth:cliente', 'cliente.verified'])->name('cliente');
 
 require __DIR__.'/cliente.php';
 
-Route::get('/veterinario', function () {
+Route::get('/WebVeterinario', function () {
     return view('templatesveterinario.main')->with('titulo');
 })->middleware(['auth:veterinario', 'veterinario.verified'])->name('veterinario');
 

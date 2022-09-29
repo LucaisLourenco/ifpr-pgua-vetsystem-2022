@@ -19,13 +19,13 @@ class RedirectIfAuthenticated
                 switch ($guard) {
                     case 'cliente':
                         if(Auth::guard($guard)->check()){
-                            return redirect()->route('cliente');
+                            return redirect('WebCliente');
                         }
                         break;
 
                     case 'veterinario':
                         if(Auth::guard($guard)->check()){
-                            return redirect()->route('veterinario');
+                            return redirect('WebVeterinario');
                         }
                         break;  
 

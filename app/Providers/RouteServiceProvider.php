@@ -18,8 +18,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/sistema';
-    public const HOME_CLIENTE = '/cliente';
-    public const HOME_VETERINARIO = '/veterinario';
+    public const HOME_CLIENTE = '/WebCliente';
+    public const HOME_VETERINARIO = '/WebVeterinario';
 
     /**
      * The controller namespace for the application.

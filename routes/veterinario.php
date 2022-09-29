@@ -10,7 +10,7 @@ use App\Http\Controllers\Veterinario\RegisteredUserController;
 use App\Http\Controllers\Veterinario\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['guest:veterinario'], 'prefix' => 'veterinario', 'as' => 'veterinario.'], function() {
+Route::group(['middleware' => ['guest:veterinario'], 'prefix' => 'WebVeterinario', 'as' => 'veterinario.'], function() {
 
     /*Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
@@ -35,7 +35,7 @@ Route::group(['middleware' => ['guest:veterinario'], 'prefix' => 'veterinario', 
                 ->name('password.update');
 });
 
-Route::group(['middleware' => ['auth:veterinario'], 'prefix' => 'veterinario', 'as' => 'veterinario.'], function() {
+Route::group(['middleware' => ['auth:veterinario'], 'prefix' => 'WebVeterinario', 'as' => 'veterinario.'], function() {
 
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');
