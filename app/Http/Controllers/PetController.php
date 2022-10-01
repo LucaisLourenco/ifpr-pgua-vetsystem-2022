@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pet;
+use App\Models\Especie;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
 {
     public function index()
     {
-        //
+        $pets = Pet::all();
+
+        return view('pets.index', compact(['pets']));
     }
 
     public function create()
     {
-        //
+        $especies = Especie::all();
+
+        return view('Pets.create', compact(['especies']));
     }
 
     public function store(Request $request)

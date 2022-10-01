@@ -6,6 +6,7 @@ use App\Models\Raca;
 use App\Models\Especie;
 use Illuminate\Http\Request;
 use App\Facades\UserPermissions;
+use Illuminate\Support\Facades\Response;
 
 $GLOBALS['regras'] = [
     'nome' => 'required|max:30|min:2',
@@ -114,5 +115,11 @@ class RacaController extends Controller
         }
 
         return redirect()->route('racas.index');
+    }
+
+    public function selectRaca(Request $request) {
+        $racas = Raca::where('especie_id', $request->especie_id)->get();
+
+        return response()->json($racas);
     }
 }

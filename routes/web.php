@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteEnderecoController;
 use App\Http\Controllers\ClienteTelefoneController;
+use App\Http\Controllers\RacaController;
 
 Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], function() {
 
@@ -25,6 +26,8 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
 
     Route::get('/newTelefoneCliente/{cliente}', [ClienteTelefoneController::class, 'newTelefone'])
         ->name('clienteTelefones.newTelefone');
+
+    Route::resource('pets', 'PetController');
 });
 
 Route::get('/sistema', function () {
@@ -44,3 +47,6 @@ Route::get('/WebVeterinario', function () {
 })->middleware(['auth:veterinario', 'veterinario.verified'])->name('veterinario');
 
 require __DIR__.'/veterinario.php';
+
+//FUNCOES 
+Route::post('/selectRaca', 'RacaController@selectRaca');
