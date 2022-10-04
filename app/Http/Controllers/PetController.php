@@ -77,4 +77,43 @@ class PetController extends Controller
     {
         //
     }
+
+    public function createViewCliente($cliente) {
+
+        $especies = Especie::all();
+        $sexos = Sexo::all();
+
+        return view('Pets.createViewCliente', compact(['cliente', 'sexos', 'especies']));
+    }
+
+    public function storeViewCliente(Request $request)
+    {
+        //$request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+
+        try
+        {
+            $raca = Raca::find($request->raca_id);  
+            $cliente = Cliente::find($request->cliente_id);  
+            $sexo = Sexo::find($request->sexo_id);  
+
+            $pet = new Pet();
+            $pet->nome = mb_strtoupper($request->nome);
+            $pet->data_nascimento = $request->data_nascimento;
+            $pet->ativo = 1;
+            $pet->raca()->associate($raca);
+            $pet->cliente()->associate($cliente);
+            $pet->sexo()->associate($sexo);
+            $pet->save();
+
+            session()->flash('mensagem', "Item cadastrado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->to('sistema/clientes/'.$cliente->id);
+    }
 }

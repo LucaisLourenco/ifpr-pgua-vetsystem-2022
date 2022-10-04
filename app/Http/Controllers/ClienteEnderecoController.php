@@ -110,7 +110,7 @@ class ClienteEnderecoController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->to('clientes/'.$clienteEndereco->cliente_id);
+        return redirect()->to('sistema/clientes/'.$clienteEndereco->cliente_id);
     }
  
     public function destroy(ClienteEndereco $clienteEndereco)
@@ -127,6 +127,6 @@ class ClienteEnderecoController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->to('clientes/'.$clienteEndereco->cliente_id);
+        return redirect()->to('sistema/clientes/'.$clienteEndereco->cliente_id);
     }
 }

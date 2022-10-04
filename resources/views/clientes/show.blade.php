@@ -70,7 +70,11 @@
                             <td>{{ $item->sexo['nome'] }}</td>
                             <td>{{ $item->raca['nome'] }}</td>
                             <td>{{ $item['data_nascimento'] }}</td>
-                            <td>{{ $item['ativo'] }}</td>
+                            @if ($item['ativo'] == 1)
+                                <td>ATIVO</td>
+                            @else
+                                <td>DESABILITADO</td>
+                            @endif
                             <td>
                                 <!--PET EDIT-->
                                 <a href= "{{ route('pets.edit', $item) }}" class="btn btn-success">                                    
@@ -99,7 +103,7 @@
                 </tbody>
             </table>
             <div class="col d-flex justify-content-end">
-                <a href="" class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#createModalEndereco">
+                <a href="{{ route('pets.createViewCliente', $cliente) }}" class="btn btn-secondary text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg>

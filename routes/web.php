@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteEnderecoController;
 use App\Http\Controllers\ClienteTelefoneController;
 use App\Http\Controllers\RacaController;
+use App\Http\Controllers\PetController;
+
 
 Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], function() {
 
@@ -28,6 +30,12 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
 
     Route::get('/newTelefoneCliente/{cliente}', [ClienteTelefoneController::class, 'newTelefone'])
         ->name('clienteTelefones.newTelefone');
+
+    Route::get('/createViewCliente/{cliente}', [PetController::class, 'createViewCliente'])
+        ->name('pets.createViewCliente');
+
+    Route::post('createViewCliente', [PetController::class, 'storeViewCliente'])
+            ->name('pets.storeViewCliente');
 
     Route::resource('pets', 'PetController');
 });
