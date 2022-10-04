@@ -12,6 +12,11 @@ body, html {
     text-align: center;
 }
 
+#coluna-acoes-pet {
+    width: 14%; 
+    text-align: center;
+}
+
 #coluna-acoes-users {
     width: 12%; 
     text-align: center;

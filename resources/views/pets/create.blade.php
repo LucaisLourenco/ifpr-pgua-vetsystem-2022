@@ -28,7 +28,66 @@
         </div>
 
         <div class="row">
-            <div class="col" >
+            <div class="col-5" >
+                <div class="form-floating mb-3">
+                    <select id="cliente_id" name="cliente_id" placeholder="Tex" class="form-control {{ $errors->has('cliente_id') ? 'is-invalid' : '' }}" required>
+                    <option value="{{null}}">SELECIONE O TUTOR</option>
+                        @foreach ($clientes as $item) 
+                            <option value="{{$item->id}}">
+                                {{$item->name}}
+                            </option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('cliente_id'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('cliente_id') }}
+                        </div>
+                    @endif
+                    <label for="cliente_id">Tutor</label>
+                </div>
+            </div>
+   
+            <div class="col-4" >
+                <div class="form-floating mb-3">
+                    <select id="sexo_id" name="sexo_id" placeholder="Tex" class="form-control {{ $errors->has('sexo_id') ? 'is-invalid' : '' }}" required>
+                    <option value="{{null}}">SELECIONE O SEXO</option>
+                        @foreach ($sexos as $item) 
+                            <option value="{{$item->id}}">
+                                {{$item->nome}}
+                            </option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('sexo_id'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('sexo_id') }}
+                        </div>
+                    @endif
+                    <label for="sexo_id">Sexo</label>
+                </div>
+            </div>
+
+            <div class="col-3" >
+                <div class="form-floating mb-3">
+                    <input 
+                        type="date" 
+                        class="form-control {{ $errors->has('data_nascimento') ? 'is-invalid' : '' }}" 
+                        name="data_nascimento" 
+                        placeholder="Data de Nascimento"
+                        value="{{old('data_nascimento')}}"
+                        required
+                    />
+                    @if($errors->has('data_nascimento'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('data_nascimento') }}
+                        </div>
+                    @endif
+                    <label for="data_nascimento">Data de Nascimento do Pet</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6" >
                 <div class="form-floating mb-3">
                     <select id="especie_id" name="especie_id" placeholder="Tex" class="form-control {{ $errors->has('especie_id') ? 'is-invalid' : '' }}" required>
                     <option value="">SELECIONE A ESPÉCIE</option>
@@ -46,10 +105,8 @@
                     <label for="especie_id">Espécie</label>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col" >
+            
+            <div class="col-6" >
                 <div class="form-floating mb-3">
                     <select id="raca_id" name="raca_id" placeholder="Tex" class="form-control {{ $errors->has('raca_id') ? 'is-invalid' : '' }}" required disabled>
                         <option>SELECIONE A RACA</option>
@@ -112,8 +169,9 @@
                                 $('#raca_id').removeAttr('disabled');
                             });
                         },
+                        
                         error:function(){
-                        alert('Erro');
+                            alert('Erro');
                         },
                     });
                 }

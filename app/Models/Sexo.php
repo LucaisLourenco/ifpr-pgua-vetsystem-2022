@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Sexo extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nome'];
+
+    public function pet() {
+        return $this->belongsTo('App\Models\Pet');
+    }
 }

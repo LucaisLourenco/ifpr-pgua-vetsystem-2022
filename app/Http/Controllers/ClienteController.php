@@ -134,8 +134,9 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::with('enderecos','telefones', 'pets','genero')->findOrFail($cliente->id);
 
-        ($cliente);
-        return view('clientes.show', compact(['cliente']));
+        $pets = Pet::with('raca', 'sexo')->where('cliente_id', $cliente->id)->get();
+
+        return view('clientes.show', compact(['cliente', 'pets']));
     }
 
     public function edit(Cliente $cliente)

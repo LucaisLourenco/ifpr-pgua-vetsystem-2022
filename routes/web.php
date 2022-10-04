@@ -13,6 +13,8 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
 
     Route::resource('especies', 'EspecieController');
 
+    Route::resource('sexos', 'SexoController');
+
     Route::resource('racas', 'RacaController');
 
     Route::resource('clientes', 'ClienteController');

@@ -9,9 +9,9 @@
             <x-datalist
                 :title="'Pets'"
                 :route="'pets'"
-                :header="['ID', 'NOME', 'AÇÕES']" 
+                :header="['ID', 'NOME', 'TUTOR', 'STATUS', 'AÇÕES']" 
                 :data="$pets"
-                :hide="[true, true, false]" 
+                :hide="[true, true, true, true, false]" 
             />
         </div>
     </div>

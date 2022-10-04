@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Especie;
+use App\Models\Sexo;
 use Illuminate\Http\Request;
-use App\Facades\UserPermissions;
 
 $GLOBALS['regras'] = [
     'nome' => 'required|max:30|min:2',
@@ -16,22 +15,18 @@ $GLOBALS['mensagem']= [
     "nome.min" => "O campo NOME possui tamanho mínimo de 2 caracteres!",
 ];
 
-class EspecieController extends Controller
+class SexoController extends Controller
 {
-   /* public function __construct() {
-        $this->authorizeResource(Especie::class, 'especie');
-    } */
-
     public function index()
     {
-        $especies = Especie::all();
+        $sexos = Sexo::all();
 
-        return view('especies.index', compact(['especies']));
+        return view('sexos.index', compact(['sexos']));
     }
 
     public function create()
     {
-        return view('especies.create');
+        return view('sexos.create');
     }
 
     public function store(Request $request)
@@ -40,7 +35,7 @@ class EspecieController extends Controller
 
         try 
         {
-            Especie::create([
+            Sexo::create([
                 "nome" => mb_strtoupper($request->nome)
             ]);
 
@@ -53,26 +48,26 @@ class EspecieController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->route('especies.index');
+        return redirect()->route('sexos.index');
     }
 
-    public function show(Especie $especy)
+    public function show(Sexo $sexo)
     {
-        return view('especies.show', compact(['especy']));
+        //
     }
 
-    public function edit(Especie $especy)
+    public function edit(Sexo $sexo)
     {
-        return view('especies.edit', compact(['especy']));
+        return view('sexos.edit', compact(['sexo']));
     }
 
-    public function update(Request $request, Especie $especy)
+    public function update(Request $request, Sexo $sexo)
     {
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
 
         try
         {
-            $especy->update([
+            $sexo->update([
                 "nome" => mb_strtoupper($request->nome)
             ]);
 
@@ -85,14 +80,14 @@ class EspecieController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->route('especies.index');
+        return redirect()->route('sexos.index');
     }
 
-    public function destroy(Especie $especy)
+    public function destroy(Sexo $sexo)
     {
         try
         {
-            $especy->delete();
+            $sexo->delete();
             session()->flash('mensagem', "Item excluído com sucesso.");
             session()->flash('resultado', true);
             
@@ -102,6 +97,6 @@ class EspecieController extends Controller
            session()->flash('resultado', null);
         }
 
-        return redirect()->route('especies.index');
+        return redirect()->route('sexos.index');
     }
 }

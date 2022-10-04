@@ -22,6 +22,15 @@
 
                     @if($route == "racas")
                         <td>{{$item->especie['nome']}}</td>
+
+                    @elseif($route == "pets")
+                        <td>{{$item->cliente['name']}}</td>
+
+                        @if ($item['ativo'] == 1)
+                            <td>ATIVO</td>
+                        @else
+                            <td>DESABILITADO</td>
+                        @endif
                     @endif
 
                     <td>
