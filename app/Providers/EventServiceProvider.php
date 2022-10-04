@@ -22,6 +22,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\HomeEvent' => [
             'App\Listeners\HomeEventListener', 
         ],
+
+        'App\Events\ClienteCreateEvent' => [
+            'App\Listeners\ClienteCreateEventListener', 
+        ],
     ];
 
     /**

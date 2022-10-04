@@ -11,9 +11,13 @@ class ClienteCreateEmail extends Notification
 {
     use Queueable;
 
-    public function __construct()
+    public $cliente;
+    public $password;
+
+    public function __construct($cliente, $password)
     {
-        //
+        $this->cliente = $cliente;
+        $this->password = $password;
     }
 
     public function via($notifiable)
@@ -24,9 +28,11 @@ class ClienteCreateEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('cliente'))
-                    ->line('Thank you for using our application!');
+                    ->subject(__('VetSystem Cliente'))
+                    ->line('Suas credenciais de acesso em:')
+                    ->action('VetSystem WebCliente', url('WebCliente'))
+                    ->line('Seu E-mail: '.$this->cliente->email)
+                    ->line('Senha: '.$this->password);
     }
 
     public function toArray($notifiable)

@@ -6,6 +6,11 @@
 
     <form action="{{ route('clientes.store') }}" method="POST">
         @csrf
+        <div class="row">
+            <div class="col">
+                <h4>Dados cadastrais:</h4>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-9" >
@@ -83,27 +88,7 @@
                     <label for="data_nascimento">Data de Nascimento</label>
                 </div>
             </div>
-            <div class="col-4" >
-                <div class="form-floating mb-3">
-                    <input 
-                        type="password" 
-                        class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" 
-                        name="password" 
-                        placeholder="password"
-                        value="{{old('password')}}"
-                        required
-                    />
-                    @if($errors->has('password'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('password') }}
-                        </div>
-                    @endif
-                    <label for="password">Password</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4" >
+            <div class="col-3" >
                 <div class="form-floating mb-3">
                     <select name="genero_id" class="form-control {{ $errors->has('genero_id') ? 'is-invalid' : '' }}" required>
                     <option value="{{null}}">SELECIONE O GÊNERO</option>
@@ -121,6 +106,15 @@
                     <label for="genero_id">Gênero</label>
                 </div>
             </div>
+        </div><br>
+
+        <div class="row">
+            <div class="col">
+                <h4>Contato do cliente:</h4>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-4" >
                 <div class="form-floating mb-3">
                     <input 
@@ -158,8 +152,14 @@
                     <label for="numero_telefone">Número do Telefone</label>
                 </div>
             </div>
-        </div>
+        </div><br>
         
+        <div class="row">
+            <div class="col">
+                <h4>Endereço do cliente:</h4>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col" >
                 <div class="form-floating mb-3">

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
+use App\Events\ClienteCreateEvent;
+
 
 $GLOBALS['regras'] = [
     'name' => 'required|max:100|min:2',
@@ -87,13 +89,14 @@ class ClienteController extends Controller
     {
     
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+        $password = strtoupper(substr(bin2hex(random_bytes(4)), 1));
 
         try 
         {
             $cliente = Cliente::create([
                 "name" => mb_strtoupper($request->name),
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make($password),
                 'cpf' => $request->cpf,
                 'genero_id' => $request->genero_id,
                 'data_nascimento' => $request->data_nascimento,
@@ -117,6 +120,8 @@ class ClienteController extends Controller
             $telefone->numero = $request->numero_telefone;
             $telefone->cliente()->associate($cliente);
             $telefone->save();
+
+            event(new ClienteCreateEvent($cliente, $password));
 
             session()->flash('mensagem', "Item cadastrado com sucesso.");
             session()->flash('resultado', true);
@@ -179,7 +184,7 @@ class ClienteController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->to('clientes/'.$cliente->id);
+        return redirect()->to('sistema/clientes/'.$cliente->id);
     }
 
     public function destroy(Cliente $cliente)
