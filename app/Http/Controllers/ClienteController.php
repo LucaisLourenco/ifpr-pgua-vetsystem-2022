@@ -189,6 +189,18 @@ class ClienteController extends Controller
 
     public function destroy(Cliente $cliente)
     {
-        //
+        try
+        {
+            $cliente->delete();
+            session()->flash('mensagem', "Item excluído com sucesso.");
+            session()->flash('resultado', true);
+            
+        } catch(\Exception $exception)
+        { 
+           session()->flash('mensagem', $exception->getMessage());
+           session()->flash('resultado', null);
+        }
+
+        return redirect()->route('clientes.index');
     }
 }

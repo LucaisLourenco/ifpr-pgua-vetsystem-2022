@@ -9,6 +9,26 @@ use App\Models\Sexo;
 use App\Models\Especie;
 use Illuminate\Http\Request;
 
+$GLOBALS['regras'] = [
+    'nome' => 'required|max:100|min:2',
+    'especie_id' => 'required',
+    'cliente_id' => 'required',
+    'raca_id' => 'required',
+    'sexo_id' => 'required',
+    'data_nascimento' => 'required',
+];
+
+$GLOBALS['mensagem']= [
+    "name.required" => "O preenchimento do campo NOME é obrigatório!",
+    "name.max" => "O campo NOME possui tamanho máxixo de 100 caracteres!",
+    "name.min" => "O campo NOME possui tamanho mínimo de 2 caracteres!",
+    "especie_id.required" => "A seleção do campo Espécie é obrigatório!",
+    "cliente_id.required" => "A seleção do campo Cliente é obrigatório!",
+    "raca_id.required" => "A seleção do campo Raça é obrigatório!",
+    "sexo_id.required" => "A seleção do campo Sexo é obrigatório!",
+    "data_nascimento.required" => "O preenchimento do campo Data de Nascimento é obrigatório!"
+];
+
 class PetController extends Controller
 {
     public function index()
@@ -29,7 +49,7 @@ class PetController extends Controller
 
     public function store(Request $request)
     {
-        //$request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+        $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
 
         try
         {
@@ -60,22 +80,61 @@ class PetController extends Controller
 
     public function show(Pet $pet)
     {
-        //
+        return view('pets.show', compact(['pet']));
     }
 
     public function edit(Pet $pet)
     {
-        //
+        $especie = Especie::find($pet->raca->especie_id);
+        $especies = Especie::all();
+        $sexos = Sexo::all();
+        $clientes = Cliente::all();
+
+        return view('pets.edit', compact(['pet','especie','especies','sexos','clientes']));
     }
 
     public function update(Request $request, Pet $pet)
     {
-        //
+        $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+
+        try
+        {
+            $pet->update([
+                "nome" => mb_strtoupper($request->nome),
+                'data_nascimento' => $request->data_nascimento,
+                'ativo' => $request->ativo,
+                'raca_id' => $request->raca_id,
+                'cliente_id' => $request->cliente_id,
+                'sexo_id' => $request->sexo_id
+            ]);
+
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->to('sistema/pets/'.$pet->id);
     }
 
     public function destroy(Pet $pet)
     {
-        //
+        try
+        {
+            $pet->delete();
+            session()->flash('mensagem', "Item excluído com sucesso.");
+            session()->flash('resultado', true);
+            
+        } catch(\Exception $exception)
+        { 
+           session()->flash('mensagem', $exception->getMessage());
+           session()->flash('resultado', null);
+        }
+
+        return redirect()->route('pets.index');
     }
 
     public function createViewCliente($cliente) {
@@ -88,7 +147,7 @@ class PetController extends Controller
 
     public function storeViewCliente(Request $request)
     {
-        //$request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+        $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
 
         try
         {
@@ -115,5 +174,48 @@ class PetController extends Controller
         }
 
         return redirect()->to('sistema/clientes/'.$cliente->id);
+    }
+
+    public function editViewCliente(Pet $pet)
+    {
+        $especie = Especie::find($pet->raca->especie_id);
+        $especies = Especie::all();
+        $sexos = Sexo::all();
+
+        return view('pets.editViewCliente', compact(['pet','especie','especies','sexos']));
+    }
+
+    public function updateViewCliente(Request $request, Pet $pet)
+    {
+        $regra = [
+            'nome' => 'required|max:100|min:2',
+            'especie_id' => 'required',
+            'raca_id' => 'required',
+            'sexo_id' => 'required',
+            'data_nascimento' => 'required',
+        ];
+
+        $request->validate($regra,$GLOBALS['mensagem']);
+
+        try
+        {
+            $pet->update([
+                "nome" => mb_strtoupper($request->nome),
+                'data_nascimento' => $request->data_nascimento,
+                'ativo' => $request->ativo,
+                'raca_id' => $request->raca_id,
+                'sexo_id' => $request->sexo_id
+            ]);
+
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->to('sistema/clientes/'.$pet->cliente_id);
     }
 }

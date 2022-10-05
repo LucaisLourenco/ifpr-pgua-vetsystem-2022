@@ -11,7 +11,7 @@ class Especie extends Model
 
     protected $fillable = ['nome'];
 
-    public function raca() {
-        return $this->belongsTo('App\Models\Raca');
+    public function racas() {
+        return $this->hasMany('App\Models\Raca');
     }
 }

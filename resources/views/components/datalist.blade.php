@@ -25,6 +25,8 @@
 
                     @elseif($route == "pets")
                         <td>{{$item->cliente['name']}}</td>
+                        <td>{{$item->raca['nome']}}</td>
+                        <td>{{$item->raca->especie['nome']}}</td>
 
                         @if ($item['ativo'] == 1)
                             <td>ATIVO</td>

@@ -17,7 +17,7 @@
                     </label>
                     <label>
                         <input type="radio" class="{{ $errors->has('ativo') ? 'is-invalid' : '' }}" data-toggle="button" name="ativo" 
-                            id="option2" value="0" {{ $cliente->ativo == '0' ? 'checked' : ' '}} @if($cliente->ativo) selected="true" @endif> Desabilitado
+                            id="option2" value="0" {{ $cliente->ativo == '0' ? 'checked' : ' '}} @if($cliente->ativo) selected="true" @endif> Bloqueado
                     </label>
                     @if($errors->has('ativo'))
                         <div class='invalid-feedback'>
