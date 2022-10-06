@@ -37,12 +37,6 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
     Route::post('createViewCliente', [PetController::class, 'storeViewCliente'])
         ->name('pets.storeViewCliente');
 
-    Route::get('/editViewCliente/{pet}', [PetController::class, 'editViewCliente'])
-        ->name('pets.editViewCliente');
-    
-    Route::put('editViewCliente/{pet}', [PetController::class, 'updateViewCliente'])
-        ->name('pets.updateViewCliente');
-
     Route::resource('pets', 'PetController');
 });
 

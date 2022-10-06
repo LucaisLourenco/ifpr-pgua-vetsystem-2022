@@ -9,26 +9,6 @@
         @method('PUT')
 
         <div class="row">
-            <div class="col" >
-                <div class="mb-3" data-toggle="buttons">
-                    <label>
-                        <input type="radio" class="{{ $errors->has('ativo') ? 'is-invalid' : '' }}" data-toggle="button" name="ativo" 
-                            id="option1" value="1" {{ $cliente->ativo == '1' ? 'checked' : ' '}} @if($cliente->ativo) selected="true" @endif> Ativo
-                    </label>
-                    <label>
-                        <input type="radio" class="{{ $errors->has('ativo') ? 'is-invalid' : '' }}" data-toggle="button" name="ativo" 
-                            id="option2" value="0" {{ $cliente->ativo == '0' ? 'checked' : ' '}} @if($cliente->ativo) selected="true" @endif> Bloqueado
-                    </label>
-                    @if($errors->has('ativo'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('ativo') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-9" >
                 <div class="form-floating mb-3">
                     <input 

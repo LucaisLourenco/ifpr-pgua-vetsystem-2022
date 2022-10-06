@@ -33,14 +33,25 @@
 
     <div class="row">
         <!--EDITAR DADOS CADASTRAIS-->
-        <div class="col-2">
-            <a href= "{{ route('clientes.edit', $cliente) }}">Alterar Dados Cadastrais</a>
+        <div class="col-12">
+            <a class="btn btn-primary text-white" href= "{{ route('clientes.edit', $cliente) }}">Alterar Dados
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hearts" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.931.481c1.627-1.671 5.692 1.254 0 5.015-5.692-3.76-1.626-6.686 0-5.015Zm6.84 1.794c1.084-1.114 3.795.836 0 3.343-3.795-2.507-1.084-4.457 0-3.343ZM7.84 7.642c2.71-2.786 9.486 2.09 0 8.358-9.487-6.268-2.71-11.144 0-8.358Z"/>
+                </svg>
+            </a>
+
+            <!--REMOVER CLIENTE-->
+            <a nohref onclick="showRemoveModalCliente('{{ $cliente['id'] }}', '{{ $cliente['name'] }}')" class="btn btn-danger">Remover Cliente
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                </svg>
+            </a>
         </div>
 
-         <!--REDEFINIR SENHA-->
-         <div class="col-2">
-            <a href= "#">Redefinir Senha</a>
-        </div>
+        <form action="{{ route('clientes.destroy', $cliente['id']) }}" method="POST" id="cliente_{{$cliente['id']}}">
+            @csrf
+            @method('DELETE')
+        </form>
     </div>
 
     <hr>
@@ -60,22 +71,20 @@
                 </thead>
                 <tbody>
                     @foreach ($pets as $item)
-                        @if ($item->ativo == 1)
-                            <tr>
-                                <td>{{ $item['nome'] }}</td>
-                                <td>{{ $item->sexo['nome'] }}</td>
-                                <td>{{ $item->raca['nome'] }}</td>
-                                <td>{{ $item->raca->especie['nome'] }}</td>
-                                <td>{{ $item['data_nascimento'] }}</td>
-                                <td>
-                                    <a href= "{{ route('pets.show', $item) }}" class="btn btn-primary">Vizualizar
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-                                        </svg>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endif
+                        <tr>
+                            <td>{{ $item['nome'] }}</td>
+                            <td>{{ $item->sexo['nome'] }}</td>
+                            <td>{{ $item->raca['nome'] }}</td>
+                            <td>{{ $item->raca->especie['nome'] }}</td>
+                            <td>{{ $item['data_nascimento'] }}</td>
+                            <td>
+                                <a href= "{{ route('pets.show', $item) }}" class="btn btn-primary">Vizualizar
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

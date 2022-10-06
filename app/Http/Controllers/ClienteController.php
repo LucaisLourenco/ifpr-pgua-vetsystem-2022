@@ -137,9 +137,9 @@ class ClienteController extends Controller
 
     public function show(Cliente $cliente)
     {
-        $cliente = Cliente::with('enderecos','telefones', 'pets','genero')->findOrFail($cliente->id);
+        $cliente = Cliente::with('enderecos','telefones','pets','genero')->findOrFail($cliente->id);
 
-        $pets = Pet::with('raca', 'sexo')->where('cliente_id', $cliente->id)->get();
+        $pets = Pet::with('raca', 'sexo')->get();
 
         return view('clientes.show', compact(['cliente', 'pets']));
     }
@@ -172,7 +172,6 @@ class ClienteController extends Controller
                 'cpf' => $request->cpf,
                 'genero_id' => $request->genero_id,
                 'data_nascimento' => $request->data_nascimento,
-                'ativo' => $request->ativo
             ]);
 
             session()->flash('mensagem', "Item alterado com sucesso.");
@@ -184,14 +183,19 @@ class ClienteController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->to('sistema/clientes/'.$cliente->id);
+        return redirect()->route('clientes.show', $cliente->id);
     }
 
     public function destroy(Cliente $cliente)
     {
         try
         {
+            foreach($cliente->pets as $item) {
+                $item->delete();
+            }
+
             $cliente->delete();
+
             session()->flash('mensagem', "Item excluído com sucesso.");
             session()->flash('resultado', true);
             

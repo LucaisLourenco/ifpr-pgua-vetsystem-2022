@@ -11,10 +11,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cliente extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $guard = 'cliente';
 
@@ -25,7 +28,7 @@ class Cliente extends Authenticatable implements MustVerifyEmail
     }
 
     public function genero() {
-        return $this->belongsTo('App\Models\Genero');
+        return $this->belongsTo('App\Models\Genero')->withTrashed();
     }
 
     public function telefones() {

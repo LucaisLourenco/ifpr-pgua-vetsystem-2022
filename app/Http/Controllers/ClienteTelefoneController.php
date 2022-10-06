@@ -47,7 +47,7 @@ class ClienteTelefoneController extends Controller
         $telefone->cliente()->associate($cliente);
         $telefone->save();
 
-        return redirect()->to('sistema/clientes/'.$cliente->id);
+        return redirect()->route('clientes.show', $cliente->id);
     }
  
     public function show(ClienteTelefone $clienteTelefone)
@@ -80,7 +80,7 @@ class ClienteTelefoneController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->to('clientes/'.$clienteTelefone->cliente_id);
+        return redirect()->route('clientes.show', $clienteTelefone->cliente_id);
     }
  
     public function destroy(ClienteTelefone $clienteTelefone)
@@ -97,6 +97,6 @@ class ClienteTelefoneController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->to('sistema/clientes/'.$clienteTelefone->cliente_id);
+        return redirect()->route('clientes.show', $clienteTelefone->cliente_id);
     }
 }

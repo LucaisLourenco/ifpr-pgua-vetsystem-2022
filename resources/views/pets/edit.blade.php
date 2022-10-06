@@ -7,27 +7,7 @@
     <form action="{{ route('pets.update', $pet) }}" method="POST">
         @csrf
         @method('PUT')
-
-        <div class="row">
-            <div class="col" >
-                <div class="mb-3" data-toggle="buttons">
-                    <label>
-                        <input type="radio" class="{{ $errors->has('ativo') ? 'is-invalid' : '' }}" data-toggle="button" name="ativo" 
-                            id="option1" value="1" {{ $pet->ativo == '1' ? 'checked' : ' '}} @if($pet->ativo) selected="true" @endif> Ativo
-                    </label>
-                    <label>
-                        <input type="radio" class="{{ $errors->has('ativo') ? 'is-invalid' : '' }}" data-toggle="button" name="ativo" 
-                            id="option2" value="0" {{ $pet->ativo == '0' ? 'checked' : ' '}} @if($pet->ativo) selected="true" @endif> Desabilitado
-                    </label>
-                    @if($errors->has('ativo'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('ativo') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-
+        
         <div class="row">
             <div class="col" >
                 <div class="form-floating mb-3">

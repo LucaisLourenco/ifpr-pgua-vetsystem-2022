@@ -16,7 +16,6 @@
                             <th scope="col" class="d-none d-md-table-cell">TUTOR</th>
                             <th scope="col" class="d-none d-md-table-cell">RAÇA</th>
                             <th scope="col" class="d-none d-md-table-cell">ESPÉCIE</th>
-                            <th scope="col" class="d-none d-md-table-cell">STATUS</th>
                             <th id="coluna-acoes-users" scope="col">AÇÕES</th>
                         </tr>
                     </thead>
@@ -28,13 +27,6 @@
                                 <td>{{$item->cliente['name']}}</td>
                                 <td>{{$item->raca['nome']}}</td>
                                 <td>{{$item->raca->especie['nome']}}</td>
-        
-                                @if ($item['ativo'] == 1)
-                                    <td>ATIVO</td>
-                                @else
-                                    <td>DESABILITADO</td>
-                                @endif
-                
                                 <td>
                                     <a href= "{{ route('pets.show', $item) }}" class="btn btn-primary">Vizualizar
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-info-circle-fill" viewBox="0 0 16 16">

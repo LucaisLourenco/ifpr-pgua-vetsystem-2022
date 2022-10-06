@@ -88,6 +88,7 @@ class PetController extends Controller
         $especie = Especie::find($pet->raca->especie_id);
         $especies = Especie::all();
         $sexos = Sexo::all();
+
         $clientes = Cliente::all();
 
         return view('pets.edit', compact(['pet','especie','especies','sexos','clientes']));
@@ -102,7 +103,6 @@ class PetController extends Controller
             $pet->update([
                 "nome" => mb_strtoupper($request->nome),
                 'data_nascimento' => $request->data_nascimento,
-                'ativo' => $request->ativo,
                 'raca_id' => $request->raca_id,
                 'cliente_id' => $request->cliente_id,
                 'sexo_id' => $request->sexo_id
@@ -117,7 +117,7 @@ class PetController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->to('sistema/pets/'.$pet->id);
+        return redirect()->route('pets.show', $pet->id);
     }
 
     public function destroy(Pet $pet)
@@ -125,6 +125,7 @@ class PetController extends Controller
         try
         {
             $pet->delete();
+
             session()->flash('mensagem', "Item excluído com sucesso.");
             session()->flash('resultado', true);
             
@@ -173,49 +174,6 @@ class PetController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->to('sistema/clientes/'.$cliente->id);
-    }
-
-    public function editViewCliente(Pet $pet)
-    {
-        $especie = Especie::find($pet->raca->especie_id);
-        $especies = Especie::all();
-        $sexos = Sexo::all();
-
-        return view('pets.editViewCliente', compact(['pet','especie','especies','sexos']));
-    }
-
-    public function updateViewCliente(Request $request, Pet $pet)
-    {
-        $regra = [
-            'nome' => 'required|max:100|min:2',
-            'especie_id' => 'required',
-            'raca_id' => 'required',
-            'sexo_id' => 'required',
-            'data_nascimento' => 'required',
-        ];
-
-        $request->validate($regra,$GLOBALS['mensagem']);
-
-        try
-        {
-            $pet->update([
-                "nome" => mb_strtoupper($request->nome),
-                'data_nascimento' => $request->data_nascimento,
-                'ativo' => $request->ativo,
-                'raca_id' => $request->raca_id,
-                'sexo_id' => $request->sexo_id
-            ]);
-
-            session()->flash('mensagem', "Item alterado com sucesso.");
-            session()->flash('resultado', true);
-
-        } catch(\Exception $exception) 
-        {
-            session()->flash('mensagem', $exception->getMessage());
-            session()->flash('resultado', null);
-        }
-
-        return redirect()->to('sistema/clientes/'.$pet->cliente_id);
+        return redirect()->route('clientes.show', $cliente->id);
     }
 }

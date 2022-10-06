@@ -71,7 +71,7 @@ class ClienteEnderecoController extends Controller
         $endereco->cliente()->associate($cliente);
         $endereco->save();
 
-        return redirect()->to('clientes/'.$cliente->id);
+        return redirect()->route('clientes.show', $cliente->id);
     }
  
     public function show(ClienteEndereco $clienteEndereco)
@@ -110,7 +110,7 @@ class ClienteEnderecoController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->to('sistema/clientes/'.$clienteEndereco->cliente_id);
+        return redirect()->route('clientes.show', $clienteEndereco->cliente_id);
     }
  
     public function destroy(ClienteEndereco $clienteEndereco)
@@ -127,6 +127,6 @@ class ClienteEnderecoController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->to('sistema/clientes/'.$clienteEndereco->cliente_id);
+        return redirect()->route('clientes.show', $clienteEndereco->cliente_id);
     }
 }

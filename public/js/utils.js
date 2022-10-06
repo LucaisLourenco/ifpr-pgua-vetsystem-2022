@@ -99,6 +99,44 @@ function removeTelefone() {
     $("#removeModalTelefone").modal('hide')
 }
 
+//MODAL REMOVE PET
+function showRemoveModalPet(id, nome) {
+    $('#id_remove').val(id);
+    $('#removeModalPet').modal().find('.modal-body').html("");
+    $('#removeModalPet').modal().find('.modal-body').append("Deseja remover o registro <b class='text-danger'>'"+nome+"'</b> ?");
+    $("#removeModalPet").modal('show');
+}
+
+function closeRemoveModalPet() {
+    $("#removeModalPet").modal('hide');
+}
+
+function removePet() {
+    let id = $('#id_remove').val();
+    let form = "pet_" + $('#id_remove').val();
+    document.getElementById(form).submit();
+    $("#removeModalPet").modal('hide')
+}
+
+//MODAL REMOVE CLIENTE
+function showRemoveModalCliente(id, nome) {
+    $('#id_remove').val(id);
+    $('#removeModalCliente').modal().find('.modal-body').html("");
+    $('#removeModalCliente').modal().find('.modal-body').append("Deseja remover o registro <b class='text-danger'>'"+nome+"'</b> ?");
+    $("#removeModalCliente").modal('show');
+}
+
+function closeRemoveModalCliente() {
+    $("#removeModalCliente").modal('hide');
+}
+
+function removeCliente() {
+    let id = $('#id_remove').val();
+    let form = "cliente_" + $('#id_remove').val();
+    document.getElementById(form).submit();
+    $("#removeModalCliente").modal('hide')
+}
+
 //FUNCOES
 $(document).ready(function(){
     setTimeout(() => {
