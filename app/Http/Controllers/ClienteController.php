@@ -148,6 +148,10 @@ class ClienteController extends Controller
     {
         $generos = Genero::all();
 
+        if(!array_exists_in_array($generos, $cliente->genero)) {
+            $generos->push($cliente->genero);
+        }
+
         return view('clientes.edit', compact(['cliente','generos']));
     }
 

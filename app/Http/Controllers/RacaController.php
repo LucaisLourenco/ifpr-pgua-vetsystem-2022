@@ -74,6 +74,10 @@ class RacaController extends Controller
     {
         $especies = Especie::all();
 
+        if(!array_exists_in_array($especies, $raca->especie)) {
+            $especies->push($raca->especie);
+        }
+
         return view('racas.edit', compact(['raca','especies']));
     }
 

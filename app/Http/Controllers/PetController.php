@@ -85,11 +85,22 @@ class PetController extends Controller
 
     public function edit(Pet $pet)
     {
-        $especie = Especie::find($pet->raca->especie_id);
+        $especie = $pet->raca->especie;
+
         $especies = Especie::all();
+        if(!array_exists_in_array($especies, $especie)) {
+            $especies->push($especie);
+        }
+        
         $sexos = Sexo::all();
+        if(!array_exists_in_array($sexos, $pet->sexo)) {
+            $sexos->push($pet->sexo);
+        }
 
         $clientes = Cliente::all();
+        if(!array_exists_in_array($clientes, $pet->cliente)) {
+            $clientes->push($pet->cliente);
+        }
 
         return view('pets.edit', compact(['pet','especie','especies','sexos','clientes']));
     }
