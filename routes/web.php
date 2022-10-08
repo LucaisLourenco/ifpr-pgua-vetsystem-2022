@@ -23,10 +23,15 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
 
     Route::resource('clienteEnderecos', 'ClienteEnderecoController');
 
+    Route::resource('clienteTelefones', 'ClienteTelefoneController');
+
+    Route::resource('pesos', 'PesoController');
+
+    Route::get('/newPeso/{pet}', [PesoController::class, 'newPeso'])
+        ->name('pesos.newPeso');
+
     Route::get('/newEnderecoCliente/{cliente}', [ClienteEnderecoController::class, 'newEndereco'])
         ->name('clienteEnderecos.newEndereco');
-
-    Route::resource('clienteTelefones', 'ClienteTelefoneController');
 
     Route::get('/newTelefoneCliente/{cliente}', [ClienteTelefoneController::class, 'newTelefone'])
         ->name('clienteTelefones.newTelefone');

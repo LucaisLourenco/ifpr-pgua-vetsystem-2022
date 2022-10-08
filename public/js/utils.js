@@ -258,6 +258,13 @@ function mCEP(cep){
     return cep
 }
 
+function mPeso(peso){
+    peso=peso.substring(0, 6)
+    peso=peso.replace(/\D/g,"")
+    peso=peso.replace(/(\d{2})(\d)/,"$1.$2")
+    return peso
+}
+
 //MÁSCARA DE TELEFONE
 function mask(o, f) {
     setTimeout(function() {

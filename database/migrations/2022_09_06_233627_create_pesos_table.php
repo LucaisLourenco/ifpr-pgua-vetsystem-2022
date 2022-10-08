@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pet_id');
             $table->foreign('pet_id')->references('id')->on('pets');
-            $table->integer('peso');
+            $table->double('peso');
             $table->softDeletes();
             $table->timestamps();
         });

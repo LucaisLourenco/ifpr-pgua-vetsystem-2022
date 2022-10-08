@@ -25,4 +25,8 @@ class Pet extends Model
     public function sexo() {
         return $this->belongsTo('App\Models\Sexo')->withTrashed();
     }
+
+    public function pesos() {
+        return $this->hasMany('App\Models\Peso');
+    }
 }
