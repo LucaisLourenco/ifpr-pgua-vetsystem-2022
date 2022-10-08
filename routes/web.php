@@ -5,7 +5,7 @@ use App\Http\Controllers\ClienteEnderecoController;
 use App\Http\Controllers\ClienteTelefoneController;
 use App\Http\Controllers\RacaController;
 use App\Http\Controllers\PetController;
-
+use App\Http\Controllers\PesoController;
 
 Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], function() {
 

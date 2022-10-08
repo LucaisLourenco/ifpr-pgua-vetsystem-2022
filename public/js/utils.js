@@ -137,6 +137,25 @@ function removeCliente() {
     $("#removeModalCliente").modal('hide')
 }
 
+//MODAL REMOVE FORM2
+function showRemoveModalForm2(id, nome) {
+    $('#id_remove').val(id);
+    $('#removeModalForm2').modal().find('.modal-body').html("");
+    $('#removeModalForm2').modal().find('.modal-body').append("Deseja remover o registro <b class='text-danger'>'"+nome+"'</b> ?");
+    $("#removeModalForm2").modal('show');
+}
+
+function closeRemoveModalForm2() {
+    $("#removeModalForm2").modal('hide');
+}
+
+function removeForm2() {
+    let id = $('#id_remove').val();
+    let form = "form2_" + $('#id_remove').val();
+    document.getElementById(form).submit();
+    $("#removeModalForm2").modal('hide')
+}
+
 //FUNCOES
 $(document).ready(function(){
     setTimeout(() => {

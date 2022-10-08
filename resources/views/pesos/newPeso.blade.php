@@ -6,6 +6,9 @@
 
     <form action="{{ route('pesos.store') }}" method="POST">
         @csrf
+
+        <input type="hidden" name="pet_id" value="{{ $pet }}"/>
+
         <div class="row">
             <div class="col" >
                 <div class="form-floating mb-3">

@@ -64,6 +64,18 @@ class PesoController extends Controller
 
     public function destroy(Peso $peso)
     {
-        //
+        try
+        {
+            $peso->delete();
+            session()->flash('mensagem', "Item excluído com sucesso.");
+            session()->flash('resultado', true);
+           
+        } catch(\Exception $exception)
+        { 
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->route('pets.show', $peso->pet_id);
     }
 }
