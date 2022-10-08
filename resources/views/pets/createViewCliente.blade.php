@@ -28,6 +28,26 @@
                     <label for="nome">Nome do Pet</label>
                 </div>
             </div>
+
+            <div class="col-3" >
+                <div class="form-floating mb-3">
+                    <input 
+                        type="text" 
+                        class="form-control {{ $errors->has('peso') ? 'is-invalid' : '' }}" 
+                        name="peso" 
+                        onkeydown="javascript: fMasc( this, mPeso );"
+                        placeholder="peso"
+                        value="{{old('peso')}}"
+                        required
+                    />
+                    @if($errors->has('peso'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('peso') }}
+                        </div>
+                    @endif
+                    <label for="peso">Peso do Pet</label>
+                </div>
+            </div>
         </div>
 
         <div class="row">   

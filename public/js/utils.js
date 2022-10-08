@@ -252,7 +252,6 @@ function fMasc(objeto,mascara) {
 function fMascEx() {
     obj.value=masc(obj.value)
 }
-
 function mCNPJ(cnpj){
     cnpj=cnpj.replace(/\D/g,"")
     cnpj=cnpj.replace(/^(\d{2})(\d)/,"$1.$2")
@@ -276,12 +275,22 @@ function mCEP(cep){
     cep=cep.replace(/\.(\d{3})(\d)/,".$1-$2")
     return cep
 }
-
 function mPeso(peso){
-    peso=peso.substring(0, 6)
-    peso=peso.replace(/\D/g,"")
-    peso=peso.replace(/(\d{2})(\d)/,"$1.$2")
-    return peso
+  
+        peso=peso.substring(0, 7)
+        peso = peso.replace(/\D/, "");
+		peso = peso.replace(/^[0]+/, "");
+
+		if(peso.length <= 3)
+		{
+			if(peso.length === 1) peso = '0.00' + peso;
+			if(peso.length === 2) peso = '0.0' + peso;
+			if(peso.length === 3) peso = '0.' + peso;
+		} else {
+			peso = peso.replace(/^(\d{1,})(\d{3})/, "$1.$2")
+		}
+
+        return peso
 }
 
 //MÁSCARA DE TELEFONE

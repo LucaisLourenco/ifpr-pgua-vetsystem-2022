@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Pet;
+use App\Models\Peso;
 use App\Models\Raca;
 use App\Models\Sexo;
 use App\Models\Especie;
@@ -16,6 +17,7 @@ $GLOBALS['regras'] = [
     'raca_id' => 'required',
     'sexo_id' => 'required',
     'data_nascimento' => 'required',
+    'peso' => 'required|max:6|min:4'  
 ];
 
 $GLOBALS['mensagem']= [
@@ -26,7 +28,10 @@ $GLOBALS['mensagem']= [
     "cliente_id.required" => "A seleção do campo Cliente é obrigatório!",
     "raca_id.required" => "A seleção do campo Raça é obrigatório!",
     "sexo_id.required" => "A seleção do campo Sexo é obrigatório!",
-    "data_nascimento.required" => "O preenchimento do campo Data de Nascimento é obrigatório!"
+    "data_nascimento.required" => "O preenchimento do campo Data de Nascimento é obrigatório!",
+    "peso.required" => "O preenchimento do campo Peso é obrigatório!",
+    "peso.max" => "O campo Peso possui tamanho máxixo de 6 caracteres!",
+    "peso.min" => "O campo Peso possui tamanho mínimo de 4 caracteres!"
 ];
 
 class PetController extends Controller
@@ -65,6 +70,11 @@ class PetController extends Controller
             $pet->cliente()->associate($cliente);
             $pet->sexo()->associate($sexo);
             $pet->save();
+
+            $peso = new Peso();
+            $peso->peso = mb_strtoupper($request->peso);
+            $peso->pet()->associate($pet);
+            $peso->save();
 
             session()->flash('mensagem', "Item cadastrado com sucesso.");
             session()->flash('resultado', true);
@@ -164,6 +174,11 @@ class PetController extends Controller
             $pet->cliente()->associate($cliente);
             $pet->sexo()->associate($sexo);
             $pet->save();
+
+            $peso = new Peso();
+            $peso->peso = mb_strtoupper($request->peso);
+            $peso->pet()->associate($pet);
+            $peso->save();
 
             session()->flash('mensagem', "Item cadastrado com sucesso.");
             session()->flash('resultado', true);

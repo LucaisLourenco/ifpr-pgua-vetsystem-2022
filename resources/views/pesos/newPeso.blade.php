@@ -10,7 +10,7 @@
         <input type="hidden" name="pet_id" value="{{ $pet }}"/>
 
         <div class="row">
-            <div class="col" >
+            <div class="col-3" >
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
