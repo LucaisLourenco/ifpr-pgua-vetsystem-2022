@@ -87,7 +87,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
-        $password = strtoupper(substr(bin2hex(random_bytes(4)), 1));
+        $password =  'maluga00';//strtoupper(substr(bin2hex(random_bytes(4)), 1));
 
         try 
         {
