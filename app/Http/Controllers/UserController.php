@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserCreateEvent;
 use App\Models\User;
 use App\Models\Genero;
 use App\Models\Role;
@@ -119,6 +120,8 @@ class UserController extends Controller
             $telefone->numero = $request->numero_telefone;
             $telefone->user()->associate($user);
             $telefone->save();
+
+            event(new UserCreateEvent($user, $password));
 
             session()->flash('mensagem', "Item cadastrado com sucesso.");
             session()->flash('resultado', true);

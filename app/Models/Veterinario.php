@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\VeterinarioCreateEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\VeterinarioResetPasswordNotification;
 use App\Notifications\VeterinarioVerifyEmail;
@@ -54,5 +55,10 @@ class Veterinario extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VeterinarioVerifyEmail);
+    }
+
+    public function sendVeterinarioCreateNotification($veterinario, $password) 
+    {
+        $this->notify(new VeterinarioCreateEmail($veterinario, $password));
     }
 }

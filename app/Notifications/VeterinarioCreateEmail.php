@@ -11,47 +11,30 @@ class VeterinarioCreateEmail extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $veterinario;
+    public $password;
+
+    public function __construct($veterinario, $password)
     {
-        //
+        $this->veterinario = $veterinario;
+        $this->password = $password;
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function via($notifiable)
     {
         return ['mail'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject(__('Vet System Veterinário'))
+                    ->line('Suas credenciais de acesso em:')
+                    ->action('Vet System WebVeterinario', url('WebVeterinario'))
+                    ->line('Seu E-mail: '.$this->veterinario->email)
+                    ->line('Senha: '.$this->password);
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function toArray($notifiable)
     {
         return [

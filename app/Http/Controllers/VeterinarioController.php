@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\VeterinarioCreateEvent;
 use App\Models\Especialidade;
 use App\Models\Genero;
 use App\Models\Veterinario;
@@ -124,6 +125,8 @@ class VeterinarioController extends Controller
             $telefone->numero = $request->numero_telefone;
             $telefone->veterinario()->associate($veterinario);
             $telefone->save();
+
+            event(new VeterinarioCreateEvent($veterinario, $password));
 
             session()->flash('mensagem', "Item cadastrado com sucesso.");
             session()->flash('resultado', true);
