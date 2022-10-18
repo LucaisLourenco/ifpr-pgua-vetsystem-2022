@@ -9,7 +9,7 @@
             <x-datalist-users
                 :title="'Veterinários'"
                 :route="'veterinarios'"
-                :header="['ID', 'NOME', 'FUNÇÃO', 'E-MAIL', 'STATUS', 'AÇÕES']" 
+                :header="['ID', 'NOME', 'ESPECIALIDADE', 'E-MAIL', 'STATUS', 'AÇÕES']" 
                 :data="$veterinarios"
                 :hide="[true, true, true, true, true, false]" 
             />

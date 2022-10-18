@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('veterinarios', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('cfmv');
+            $table->string('crmv');
             $table->string('cpf')->unique();
             $table->unsignedBigInteger('genero_id');
             $table->foreign('genero_id')->references('id')->on('generos');

@@ -5,6 +5,8 @@ use App\Http\Controllers\ClienteEnderecoController;
 use App\Http\Controllers\ClienteTelefoneController;
 use App\Http\Controllers\UserEnderecoController;
 use App\Http\Controllers\UserTelefoneController;
+use App\Http\Controllers\VeterinarioEnderecoController;
+use App\Http\Controllers\VeterinarioTelefoneController;
 use App\Http\Controllers\RacaController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\PesoController;

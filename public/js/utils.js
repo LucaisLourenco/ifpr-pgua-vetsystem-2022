@@ -292,6 +292,12 @@ function mPeso(peso){
 
         return peso
 }
+function mCRMV(crmv){
+    crmv=crmv.substring(0, 10)
+    crmv=crmv.replace(/\D/g,"")
+
+    return crmv
+}
 
 //MÁSCARA DE TELEFONE
 function mask(o, f) {

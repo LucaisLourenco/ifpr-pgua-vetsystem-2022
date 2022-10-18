@@ -9,7 +9,7 @@
         @method('PUT')
 
         <div class="row">
-            <div class="col-9" >
+            <div class="col-6" >
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
@@ -27,6 +27,27 @@
                     <label for="name">Nome do Veterinário</label>
                 </div>
             </div>
+
+            <div class="col-3" >
+                <div class="form-floating mb-3">
+                    <input 
+                        type="text" 
+                        class="form-control {{ $errors->has('crmv') ? 'is-invalid' : '' }}" 
+                        name="crmv" 
+                        onkeydown="javascript: fMasc( this, mCRMV );"
+                        placeholder="crmv"
+                        value="{{$veterinario->crmv}}"
+                        required
+                    />
+                    @if($errors->has('crmv'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('crmv') }}
+                        </div>
+                    @endif
+                    <label for="crmv">CRMV do Veterinário</label>
+                </div>
+            </div>
+
             <div class="col-3" >
                 <div class="form-floating mb-3">
                     <input 
@@ -105,20 +126,20 @@
 
             <div class="col-3" >
                 <div class="form-floating mb-3">
-                    <select name="role_id" class="form-control {{ $errors->has('role_id') ? 'is-invalid' : '' }}" required>
-                    <option value="{{null}}">SELECIONE A FUNÇÃO</option>
-                        @foreach ($roles as $item) 
-                            <option value="{{$item->id}}"  @if($item->id == $veterinario->role_id) selected="true" @endif>
+                    <select name="especialidade_id" class="form-control {{ $errors->has('especialidade_id') ? 'is-invalid' : '' }}" required>
+                    <option value="{{null}}">SELECIONE A ESPECIALIDADE</option>
+                        @foreach ($especialidades as $item) 
+                            <option value="{{$item->id}}"  @if($item->id == $veterinario->especialidade_id) selected="true" @endif>
                                 {{$item->nome}}
                             </option>
                         @endforeach
                     </select>
-                    @if($errors->has('role_id'))
+                    @if($errors->has('especialidade_id'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('role_id') }}
+                            {{ $errors->first('especialidade_id') }}
                         </div>
                     @endif
-                    <label for="role_id">Função</label>
+                    <label for="especialidade_id">Especialidade</label>
                 </div>
             </div>
         </div>
