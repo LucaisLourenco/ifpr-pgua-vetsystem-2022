@@ -9,6 +9,7 @@ use App\Models\UserEndereco;
 use App\Models\UserTelefone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 $GLOBALS['regras'] = [
     'name' => 'required|max:100|min:2',
@@ -140,16 +141,72 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        //
+        $generos = Genero::all();
+
+        if(!array_exists_in_array($generos, $user->genero)) {
+            $generos->push($user->genero);
+        }
+
+        $roles = Role::all();
+
+        if(!array_exists_in_array($roles, $user->role)) {
+            $roles->push($user->role);
+        }
+
+        return view('users.edit', compact(['user','generos','roles']));
     }
 
     public function update(Request $request, User $user)
     {
-        //
+        $regras = [
+            'name' => 'required|max:100|min:2',
+            'cpf' => ['required','min:14',Rule::unique('users')->ignore($user->id)],
+            'email' => ['required','string','email','max:255',Rule::unique('users')->ignore($user->id)],
+            'genero_id' => 'required',
+            'role_id' => 'required',
+            'data_nascimento' => 'required',
+        ];
+
+        $request->validate($regras,$GLOBALS['mensagem']);
+
+        try
+        {
+            $user->update([
+                "name" => mb_strtoupper($request->name),
+                'email' => $request->email,
+                'cpf' => $request->cpf,
+                'genero_id' => $request->genero_id,
+                'role_id' => $request->role_id,
+                'data_nascimento' => $request->data_nascimento,
+            ]);
+
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->route('users.show', $user->id);
     }
 
     public function destroy(User $user)
     {
-        //
+        try
+        {
+            $user->delete();
+
+            session()->flash('mensagem', "Item excluído com sucesso.");
+            session()->flash('resultado', true);
+            
+        } catch(\Exception $exception)
+        { 
+           session()->flash('mensagem', $exception->getMessage());
+           session()->flash('resultado', null);
+        }
+
+        return redirect()->route('users.index');
     }
 }
