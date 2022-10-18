@@ -71,6 +71,8 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
 
     Route::resource('users', 'UserController');
 
+    Route::resource('especialidades', 'EspecialidadeController');
+
     Route::resource('veterinarios', 'VeterinarioController');
 });
 
