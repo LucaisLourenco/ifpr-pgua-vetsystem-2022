@@ -19,7 +19,13 @@
                 <tr>
                     <td>{{ $item['id'] }}</td>
                     <td>{{ $item['name'] }}</td>
-                    <td>{{ $item['cpf'] }}</td> 
+
+                    @if ($route == 'clientes')    
+                        <td>{{ $item['cpf'] }}</td> 
+                    @elseif ($route == 'users')
+                        <td>{{ $item->role['nome'] }}</td> 
+                    @endif
+
                     <td>{{ $item['email'] }}</td> 
                     @if($item->ativo == 1)
                         <td>ATIVO</td>

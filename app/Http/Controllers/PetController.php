@@ -145,7 +145,7 @@ class PetController extends Controller
            session()->flash('resultado', null);
         }
 
-        return redirect()->route('pets.index');
+        return redirect()->route('pets.show', $pet->id);
     }
 
     public function createViewCliente($cliente) {

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nota;
+use App\Models\Vacina;
 use Illuminate\Http\Request;
 
-class NotaController extends Controller
+class VacinaController extends Controller
 {
     public function index()
     {
@@ -22,22 +22,22 @@ class NotaController extends Controller
         //
     }
 
-    public function show(Nota $nota)
+    public function show(Vacina $vacina)
     {
         //
     }
 
-    public function edit(Nota $nota)
+    public function edit(Vacina $vacina)
     {
         //
     }
 
-    public function update(Request $request, Nota $nota)
+    public function update(Request $request, Vacina $vacina)
     {
         //
     }
 
-    public function destroy(Nota $nota)
+    public function destroy(Vacina $vacina)
     {
         //
     }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteEnderecoController;
 use App\Http\Controllers\ClienteTelefoneController;
+use App\Http\Controllers\UserEnderecoController;
+use App\Http\Controllers\UserTelefoneController;
 use App\Http\Controllers\RacaController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\PesoController;
@@ -21,15 +23,27 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
 
     Route::resource('clientes', 'ClienteController');
 
-    Route::resource('clienteEnderecos', 'ClienteEnderecoController');
-
-    Route::resource('clienteTelefones', 'ClienteTelefoneController');
-
     Route::resource('pesos', 'PesoController');
 
     Route::get('/newPeso/{pet}', [PesoController::class, 'newPeso'])
         ->name('pesos.newPeso');
 
+    //Funcionário endereços e telefones
+    Route::resource('userEnderecos', 'UserEnderecoController');
+
+    Route::resource('userTelefones', 'UserTelefoneController');
+
+    Route::get('/newEnderecoUser/{user}', [UserEnderecoController::class, 'newEndereco'])
+        ->name('userEnderecos.newEndereco');
+
+    Route::get('/newTelefoneUser/{user}', [UserTelefoneController::class, 'newTelefone'])
+        ->name('userTelefones.newTelefone');
+
+    //Cliente endereços e telefones
+    Route::resource('clienteEnderecos', 'ClienteEnderecoController');
+
+    Route::resource('clienteTelefones', 'ClienteTelefoneController');
+    
     Route::get('/newEnderecoCliente/{cliente}', [ClienteEnderecoController::class, 'newEndereco'])
         ->name('clienteEnderecos.newEndereco');
 
@@ -43,6 +57,8 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
         ->name('pets.storeViewCliente');
 
     Route::resource('pets', 'PetController');
+
+    Route::resource('users', 'UserController');
 });
 
 Route::get('/sistema', function () {
