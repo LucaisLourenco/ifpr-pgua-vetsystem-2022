@@ -28,6 +28,17 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
     Route::get('/newPeso/{pet}', [PesoController::class, 'newPeso'])
         ->name('pesos.newPeso');
 
+    //Veterinário endereços e telefones
+    Route::resource('veterinarioEnderecos', 'VeterinarioEnderecoController');
+
+    Route::resource('veterinarioTelefones', 'VeterinarioTelefoneController');
+
+    Route::get('/newEnderecoVeterinario/{veterinario}', [VeterinarioEnderecoController::class, 'newEndereco'])
+        ->name('veterinarioEnderecos.newEndereco');
+
+    Route::get('/newTelefoneVeterinario/{veterinario}', [VeterinarioTelefoneController::class, 'newTelefone'])
+        ->name('veterinarioTelefones.newTelefone');
+
     //Funcionário endereços e telefones
     Route::resource('userEnderecos', 'UserEnderecoController');
 
@@ -59,6 +70,8 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
     Route::resource('pets', 'PetController');
 
     Route::resource('users', 'UserController');
+
+    Route::resource('veterinarios', 'VeterinarioController');
 });
 
 Route::get('/sistema', function () {
