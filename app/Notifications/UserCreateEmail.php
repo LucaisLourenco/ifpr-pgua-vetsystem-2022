@@ -28,9 +28,9 @@ class UserCreateEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(__('Vet System Sistema'))
+                    ->subject(__('VetSystem Sistema'))
                     ->line('Suas credenciais de acesso em:')
-                    ->action('Vet System Sistema', url('sistema'))
+                    ->action('VetSystem Sistema', url('sistema'))
                     ->line('Seu E-mail: '.$this->user->email)
                     ->line('Senha: '.$this->password);
     }

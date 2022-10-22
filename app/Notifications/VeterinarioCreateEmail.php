@@ -28,9 +28,9 @@ class VeterinarioCreateEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(__('Vet System Veterinário'))
+                    ->subject(__('VetSystem Veterinário'))
                     ->line('Suas credenciais de acesso em:')
-                    ->action('Vet System WebVeterinario', url('WebVeterinario'))
+                    ->action('VetSystem WebVeterinario', url('WebVeterinario'))
                     ->line('Seu E-mail: '.$this->veterinario->email)
                     ->line('Senha: '.$this->password);
     }

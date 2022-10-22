@@ -28,9 +28,9 @@ class ClienteCreateEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(__('Vet System Cliente'))
+                    ->subject(__('VetSystem Cliente'))
                     ->line('Suas credenciais de acesso em:')
-                    ->action('Vet System WebCliente', url('WebCliente'))
+                    ->action('VetSystem WebCliente', url('WebCliente'))
                     ->line('Seu E-mail: '.$this->cliente->email)
                     ->line('Senha: '.$this->password);
     }

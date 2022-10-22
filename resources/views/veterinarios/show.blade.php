@@ -73,7 +73,7 @@
                         <th scope="col" class="d-none d-md-table-cell">NOME</th>
                         <th scope="col" class="d-none d-md-table-cell">RUA</th>
                         <th scope="col" class="d-none d-md-table-cell">BAIRRO</th>
-                        <th id="coluna-acoes-veterinarios-perfil-enderecos" scope="col">AÇÕES</th>
+                        <th id="coluna-acoes-users-perfil-enderecos" scope="col">AÇÕES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -134,7 +134,7 @@
                     <tr>
                         <th scope="col" class="d-none d-md-table-cell">TIPO DE TELEFONE</th>
                         <th scope="col" class="d-none d-md-table-cell">NÚMERO</th>
-                        <th id="coluna-acoes-veterinarios-perfil" scope="col">AÇÕES</th>
+                        <th id="coluna-acoes-users-perfil" scope="col">AÇÕES</th>
                     </tr>
                 </thead>
                 <tbody>
