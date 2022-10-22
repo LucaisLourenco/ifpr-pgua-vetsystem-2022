@@ -11,6 +11,7 @@ use App\Models\UserTelefone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules;
 
 $GLOBALS['regras'] = [
     'name' => 'required|max:100|min:2',
@@ -65,7 +66,10 @@ $GLOBALS['mensagem']= [
     "nome_endereco.min" => "O campo Nome do Endereço possui tamanho mínimo de 2 caracteres!",
     "rua.required" => "O preenchimento do campo Rua é obrigatório!",
     "rua.max" => "O campo Rua possui tamanho máxixo de 30 caracteres!",
-    "data_nascimento.required" => "O preenchimento do campo Data de Nascimento é obrigatório!"
+    "data_nascimento.required" => "O preenchimento do campo Data de Nascimento é obrigatório!",
+    "password.confirmed" => "As senhas não coincidem!",
+    "password.required" => "O preenchimento do campo Senha é obrigatório!",
+    "password.min" => "O campo Senha possui tamanho mínimo de 8 caracteres!",
 ];
 
 class UserController extends Controller
@@ -211,5 +215,37 @@ class UserController extends Controller
         }
 
         return redirect()->route('users.index');
+    }
+
+    public function redefinirSenha(User $user)
+    {
+        return view('users.redefinirSenha', compact(['user']));
+    }
+
+    public function newSenha(Request $request, User $user) {
+
+        $regras = [
+            'password' => ['required', 'min:8', 'confirmed', Rules\Password::defaults()],
+
+        ];
+       
+        $request->validate($regras,$GLOBALS['mensagem']);
+
+        try
+        {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->route('users.show', $user->id);
     }
 }

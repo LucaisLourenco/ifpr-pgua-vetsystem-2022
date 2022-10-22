@@ -9,7 +9,6 @@ use App\Models\ClienteTelefone;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 use App\Events\ClienteCreateEvent;
@@ -66,7 +65,10 @@ $GLOBALS['mensagem']= [
     "nome_endereco.min" => "O campo Nome do Endereço possui tamanho mínimo de 2 caracteres!",
     "rua.required" => "O preenchimento do campo Rua é obrigatório!",
     "rua.max" => "O campo Rua possui tamanho máxixo de 30 caracteres!",
-    "data_nascimento.required" => "O preenchimento do campo Data de Nascimento é obrigatório!"
+    "data_nascimento.required" => "O preenchimento do campo Data de Nascimento é obrigatório!",
+    "password.confirmed" => "As senhas não coincidem!",
+    "password.required" => "O preenchimento do campo Senha é obrigatório!",
+    "password.min" => "O campo Senha possui tamanho mínimo de 8 caracteres!",
 ];
 
 class ClienteController extends Controller
@@ -210,5 +212,37 @@ class ClienteController extends Controller
         }
 
         return redirect()->route('clientes.index');
+    }
+
+    public function redefinirSenha(Cliente $cliente)
+    {
+        return view('clientes.redefinirSenha', compact(['cliente']));
+    }
+
+    public function newSenha(Request $request, Cliente $cliente) {
+
+        $regras = [
+            'password' => ['required', 'min:8', 'confirmed', Rules\Password::defaults()],
+
+        ];
+       
+        $request->validate($regras,$GLOBALS['mensagem']);
+
+        try
+        {
+            $cliente->update([
+                'password' => Hash::make($request->password),
+            ]);
+
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->route('clientes.show', $cliente->id);
     }
 }

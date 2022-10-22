@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteEnderecoController;
 use App\Http\Controllers\ClienteTelefoneController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\VeterinarioTelefoneController;
 use App\Http\Controllers\RacaController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\PesoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VeterinarioController;
 
 Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], function() {
 
@@ -68,6 +71,27 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
 
     Route::post('createViewCliente', [PetController::class, 'storeViewCliente'])
         ->name('pets.storeViewCliente');
+
+    //Redefinir senha cliente
+    Route::get('/redefinirSenhaCliente/{cliente}', [ClienteController::class, 'redefinirSenha'])
+        ->name('clientes.redefinirSenha');
+
+    Route::put('redefinirSenhaCliente/{cliente}', [ClienteController::class, 'newSenha'])
+        ->name('clientes.newSenha');
+
+    //Redefinir senha veterinário
+    Route::get('/redefinirSenhaVeterinario/{veterinario}', [VeterinarioController::class, 'redefinirSenha'])
+    ->name('veterinarios.redefinirSenha');
+
+    Route::put('redefinirSenhaVeterinario/{veterinario}', [VeterinarioController::class, 'newSenha'])
+        ->name('veterinarios.newSenha');
+
+    //Redefinir senha veterinário
+    Route::get('/redefinirSenhaFuncionario/{user}', [UserController::class, 'redefinirSenha'])
+    ->name('users.redefinirSenha');
+
+    Route::put('redefinirSenhaFuncionario/{user}', [UserController::class, 'newSenha'])
+        ->name('users.newSenha');
 
     Route::resource('pets', 'PetController');
 
