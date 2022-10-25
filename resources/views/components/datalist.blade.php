@@ -33,6 +33,10 @@
                         @else
                             <td>DESABILITADO</td>
                         @endif
+
+                    @elseif($route == "servicos")
+                        <td>{{ $item['valor'] }}</td>
+                        <td>{{ $item['descricao'] }}</td>
                     @endif
 
                     <td>

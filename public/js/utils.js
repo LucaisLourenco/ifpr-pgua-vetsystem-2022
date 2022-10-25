@@ -299,6 +299,23 @@ function mCRMV(crmv){
     return crmv
 }
 
+//MÁSCARA DE MOEDA
+function mascaraMoeda(event) {
+    const onlyDigits = event.target.value
+      .split("")
+      .filter(s => /\d/.test(s))
+      .join("")
+      .padStart(3, "0")
+    const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2)
+    event.target.value = maskCurrency(digitsFloat)
+  }
+  function maskCurrency(valor, locale = 'pt-BR', currency = 'BRL') {
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency
+    }).format(valor)
+  }
+
 //MÁSCARA DE TELEFONE
 function mask(o, f) {
     setTimeout(function() {
@@ -308,7 +325,6 @@ function mask(o, f) {
         }
     }, 1);
 }
-
 function mphone(v) {
     var r = v.replace(/\D/g, "");
     r = r.replace(/^0/, "");
