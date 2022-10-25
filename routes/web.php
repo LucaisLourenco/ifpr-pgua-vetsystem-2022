@@ -100,6 +100,8 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
     Route::resource('especialidades', 'EspecialidadeController');
 
     Route::resource('veterinarios', 'VeterinarioController');
+
+    Route::resource('servicos', 'ServicoController');
 });
 
 Route::get('/sistema', function () {

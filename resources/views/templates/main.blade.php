@@ -68,7 +68,6 @@
                                 <li><a href="{{ route('clientes.index') }}" class="dropdown-item">Manter Clientes</a></li>
                                 <li><a href="{{ route('users.index') }}" class="dropdown-item">Manter Funcionário</a></li>
                                 <li><a href="{{ route('veterinarios.index') }}" class="dropdown-item">Manter Veterinários</a></li>
-                                <li><a href=" " class="dropdown-item">Manter Serviços</a></li>
                             </ul>
                         </li>               
                         <li class="nav-item dropdown ps-1">
