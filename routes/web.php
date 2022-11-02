@@ -16,6 +16,12 @@ use App\Http\Controllers\VeterinarioController;
 
 Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], function() {
 
+    Route::resource('statuses', 'Statuscontroller');
+
+    Route::resource('servicoagendamentos', 'ServicoAgendamentoController');
+
+    Route::resource('consultaagendamentos', 'ConsultaAgendamentoController');
+    
     Route::resource('parametros', 'ParametroController');
 
     Route::resource('generos', 'GeneroController');

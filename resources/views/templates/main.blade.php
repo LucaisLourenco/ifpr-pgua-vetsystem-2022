@@ -51,7 +51,7 @@
                                 <span class="ps-1 text-dark">Agendamentos</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href=" " class="dropdown-item">Gerenciar Consultas</a></li>
+                                <li><a href="{{ route('consultaagendamentos.index') }}" class="dropdown-item">Gerenciar Consultas</a></li>
                                 <li><a href=" " class="dropdown-item">Gerenciar Serviços</a></li>
                             </ul>
                         </li>    
