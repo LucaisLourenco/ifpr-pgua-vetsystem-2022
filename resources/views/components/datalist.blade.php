@@ -35,7 +35,7 @@
                         @endif
 
                     @elseif($route == "servicos")
-                        <td>{{ $item['valor'] }}</td>
+                        <td>R$ {{ $item['valor'] }}</td>
                         <td>{{ $item['descricao'] }}</td>
                     @endif
 
