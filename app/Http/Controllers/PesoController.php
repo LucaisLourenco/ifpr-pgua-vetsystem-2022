@@ -7,7 +7,7 @@ use App\Models\Pet;
 use Illuminate\Http\Request;
 
 $GLOBALS['regras'] = [
-    'peso' => 'required|max:6|min:4'  
+    'peso' => 'required|max:7|min:4'  
 ];
 
 $GLOBALS['mensagem']= [
@@ -54,12 +54,29 @@ class PesoController extends Controller
 
     public function edit(Peso $peso)
     {
-        //
+        return view('pesos.edit', compact(['peso']));
     }
 
     public function update(Request $request, Peso $peso)
     {
-        //
+        $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+
+        try
+        {
+            $peso->update([
+                "peso" => $request->peso,
+            ]);
+
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->route('pets.show', $peso->pet_id);
     }
 
     public function destroy(Peso $peso)
