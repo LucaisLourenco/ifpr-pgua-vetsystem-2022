@@ -14,10 +14,9 @@ return new class extends Migration
             $table->foreign('pet_id')->references('id')->on('pets');
             $table->unsignedBigInteger('veterinario_id');
             $table->foreign('veterinario_id')->references('id')->on('veterinarios');
-            $table->date('data_agendamento');
-            $table->time('horario_agendamento');
             $table->date('data_consulta');
             $table->time('horario_consulta');
+            $table->text('relatorio')->nullable();
             $table->unsignedBigInteger('status_id');
             $table->foreign('status_id')->references('id')->on('statuses');
             $table->decimal('valor');

@@ -18,7 +18,10 @@
             @foreach ($data as $item)
                 <tr>
                     <td>{{ $item['id'] }}</td>
-                    <td>{{ $item['nome'] }}</td>
+                    
+                    @if($route != "consultaagendamentos")
+                        <td>{{ $item['nome'] }}</td>
+                    @endif
 
                     @if($route == "racas")
                         <td>{{$item->especie['nome']}}</td>

@@ -8,60 +8,101 @@
         @csrf
 
         <div class="row">
-            <div class="col-9" >
+        
+            <div class="col-5" >
                 <div class="form-floating mb-3">
-                    <input 
-                        type="text" 
-                        class="form-control {{ $errors->has('nome') ? 'is-invalid' : '' }}" 
-                        name="nome" 
-                        placeholder="nome"
-                        value="{{old('nome')}}"
-                        required
-                    />
-                    @if($errors->has('nome'))
+                    <select id="pet_id" name="pet_id" placeholder="Tex" class="form-control {{ $errors->has('pet_id') ? 'is-invalid' : '' }}" required>
+                    <option value="{{null}}">SELECIONE O PET</option>
+                        @foreach ($pets as $item) 
+                            <option value="{{$item->id}}">
+                                {{$item->nome}}
+                            </option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('pet_id'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('nome') }}
+                            {{ $errors->first('pet_id') }}
                         </div>
                     @endif
-                    <label for="nome">Nome</label>
-                </div>
-            </div>
-            
-            <div class="col-3" >
-                <div class="form-floating mb-3">
-                    <input 
-                        type="date" 
-                        class="form-control {{ $errors->has('dataAgendamento') ? 'is-invalid' : '' }}" 
-                        name="dataAgendamento" 
-                        placeholder="dataAgendamento"
-                        value="{{old('dataAgendamento')}}"
-                        required
-                    />
-                    @if($errors->has('dataAgendamento'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('dataAgendamento') }}
-                        </div>
-                    @endif
-                    <label for="dataAgendamento">Valor</label>
+                    <label for="pet_id">Pet</label>
                 </div>
             </div>
 
-            <div class="col-3" >
+            <div class="col-5" >
+                <div class="form-floating mb-3">
+                    <select id="veterinario_id" name="veterinario_id" placeholder="Tex" class="form-control {{ $errors->has('veterinario_id') ? 'is-invalid' : '' }}" required>
+                    <option value="{{null}}">SELECIONE O VETERINÁRIO</option>
+                        @foreach ($veterinarios as $item) 
+                            <option value="{{$item->id}}">
+                                {{$item->name}}
+                            </option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('veterinario_id'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('veterinario_id') }}
+                        </div>
+                    @endif
+                    <label for="veterinario_id">Veterinário</label>
+                </div>
+            </div>
+
+            <div class="col-2" >
+                <div class="form-floating mb-3">
+                    <input 
+                        type="text" 
+                        class="form-control {{ $errors->has('valor') ? 'is-invalid' : '' }}" 
+                        name="valor" 
+                        placeholder="valor"
+                        value="{{old('valor')}}"
+                        required
+                    />
+                    @if($errors->has('valor'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('valor') }}
+                        </div>
+                    @endif
+                    <label for="valor">Valor</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-2" >
+                <div class="form-floating mb-2">
+                    <input 
+                        type="date" 
+                        class="form-control {{ $errors->has('dataConsulta') ? 'is-invalid' : '' }}" 
+                        name="dataConsulta" 
+                        placeholder="dataConsulta"
+                        value="{{old('dataConsulta')}}"
+                        required
+                    />
+                    @if($errors->has('dataConsulta'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('dataConsulta') }}
+                        </div>
+                    @endif
+                    <label for="dataConsulta">Data da consulta</label>
+                </div>
+            </div>
+
+            <div class="col-2" >
                 <div class="form-floating mb-3">
                     <input 
                         type="time" 
-                        class="form-control {{ $errors->has('horaAgendamento') ? 'is-invalid' : '' }}" 
-                        name="horaAgendamento" 
-                        placeholder="horaAgendamento"
-                        value="{{old('horaAgendamento')}}"
+                        class="form-control {{ $errors->has('horarioConsulta') ? 'is-invalid' : '' }}" 
+                        name="horarioConsulta" 
+                        placeholder="horarioConsulta"
+                        value="{{old('horarioConsulta')}}"
                         required
                     />
-                    @if($errors->has('horaAgendamento'))
+                    @if($errors->has('horarioConsulta'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('horaAgendamento') }}
+                            {{ $errors->first('horarioConsulta') }}
                         </div>
                     @endif
-                    <label for="horaAgendamento">Valor</label>
+                    <label for="horarioConsulta">Horário da consulta</label>
                 </div>
             </div>
         </div>

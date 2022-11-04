@@ -4,11 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ConsultaAgendamento extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $fillable = ['pet_id','veterinario_id','data_agendamento','horario_agendamento','data_consulta','horario_consulta','relatorio','valor','status_id'];
+    protected $dates = ['deleted_at'];
 
+    protected $fillable = ['pet_id','veterinario_id','data_consulta','horario_consulta','relatorio','valor','status_id'];
+
+    public function pet() {
+        return $this->belongsTo('App\Models\Pet')->withTrashed();
+    }
+
+    public function veterinario() {
+        return $this->belongsTo('App\Models\Veterinario')->withTrashed();
+    }
 }
