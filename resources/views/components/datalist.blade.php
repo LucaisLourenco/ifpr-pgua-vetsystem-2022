@@ -21,6 +21,12 @@
                     
                     @if($route != "consultaagendamentos")
                         <td>{{ $item['nome'] }}</td>
+                    @else
+                        <td>{{$item->veterinario['name']}}</td>
+                        <td>{{$item->pet['nome']}}</td>
+                        <td>{{$item['data_consulta']}}</td>
+                        <td>{{$item['horario_consulta']}}</td>
+                        <td>{{$item->status['nome']}}</td>
                     @endif
 
                     @if($route == "racas")

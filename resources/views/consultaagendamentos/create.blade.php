@@ -15,7 +15,7 @@
                     <option value="{{null}}">SELECIONE O PET</option>
                         @foreach ($pets as $item) 
                             <option value="{{$item->id}}">
-                                {{$item->nome}}
+                                {{'PET '.$item->nome.' / TUTOR '.$item->cliente->name}}
                             </option>
                         @endforeach
                     </select>

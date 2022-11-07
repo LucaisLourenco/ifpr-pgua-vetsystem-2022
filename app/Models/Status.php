@@ -13,4 +13,8 @@ class Status extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = ['nome'];
+
+    public function consultaagendamentos() {
+        return $this->hasMany('App\Models\ConsultaAgendamento');
+    }
 }

@@ -21,4 +21,8 @@ class ConsultaAgendamento extends Model
     public function veterinario() {
         return $this->belongsTo('App\Models\Veterinario')->withTrashed();
     }
+
+    public function status() {
+        return $this->belongsTo('App\Models\Status')->withTrashed();
+    }
 }

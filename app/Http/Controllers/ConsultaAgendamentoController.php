@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ConsultaAgendamento;
 use App\Models\Pet;
+use App\Models\Status;
 use App\Models\Veterinario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -79,14 +80,55 @@ class ConsultaAgendamentoController extends Controller
         //
     }
 
-    public function edit(ConsultaAgendamento $consultaAgendamento)
+    public function edit(ConsultaAgendamento $consultaagendamento)
     {
-        //
+        $statuses = Status::all();
+
+        if(!array_exists_in_array($statuses, $consultaagendamento->status)) {
+            $statuses->push($consultaagendamento->status);
+        }
+
+        $pets = Pet::all();
+
+        if(!array_exists_in_array($pets, $consultaagendamento->pet)) {
+            $pets->push($consultaagendamento->pet);
+        }
+
+        $veterinarios = Veterinario::all();
+
+        if(!array_exists_in_array($veterinarios, $consultaagendamento->veterinario)) {
+            $veterinarios->push($consultaagendamento->veterinario);
+        }
+
+        return view('consultaagendamentos.edit', compact(['consultaagendamento','pets','veterinarios','statuses']));
     }
 
-    public function update(Request $request, ConsultaAgendamento $consultaAgendamento)
+    public function update(Request $request, ConsultaAgendamento $consultaagendamento)
     {
-        //
+        //$request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+     
+        try
+        {
+            $consultaagendamento->update([
+                "pet_id" => $request->pet_id,
+                "veterinario_id" => $request->veterinario_id,
+                "data_consulta" => $request->dataConsulta,
+                "horario_consulta" => $request->horarioConsulta,
+                "status_id" => $request->status_id,
+                "valor" => $request->valor,
+                "relatorio" => $request->relatorio,
+            ]);
+
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->route('consultaagendamentos.index');
     }
 
     public function destroy(ConsultaAgendamento $consultaAgendamento)
