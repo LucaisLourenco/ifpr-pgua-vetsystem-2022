@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\ConsultaAgendamento;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
 class AtualizarStatusCron extends Command
@@ -14,14 +15,18 @@ class AtualizarStatusCron extends Command
 
     public function handle()
     {
-        /*$consultas = ConsultaAgendamento::all();
+        $data = date("Y-m-d");
+        $hora = date("H:i:s");
+
+        $consultas = ConsultaAgendamento::all();
 
         foreach($consultas as $item) {
-            if($item->status->id == 1) {
+            if(strtotime($item->data_consulta) <= strtotime($data) 
+                && strtotime($item->hora_consulta) <= strtotime($hora) && $item->status == 1) {
                 $item->update([
-                    'status_id' => 2,
+                    'status_id' => 5,
                 ]);
             }
-        }*/
+        }
     }
 }
