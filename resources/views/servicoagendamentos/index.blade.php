@@ -9,7 +9,7 @@
             <x-datalist
                 :title="'Serviços'"
                 :route="'servicoagendamentos'"
-                :header="['ID', 'VETERINÁRIO', 'CATEGORIA', 'PET', 'DATA', 'HORÁRIO', 'STATUS', 'AÇÕES']" 
+                :header="['ID', 'VETERINÁRIO', 'PET', 'CATEGORIA', 'DATA', 'HORÁRIO', 'STATUS', 'AÇÕES']" 
                 :data="$servicoAgendamentos"
                 :hide="[true, true, true, true, true, true, true, false]" 
             />
