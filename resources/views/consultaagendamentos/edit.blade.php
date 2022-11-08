@@ -16,7 +16,7 @@
                     <option value="{{null}}">SELECIONE O PET</option>
                         @foreach ($pets as $item) 
                             <option value="{{$item->id}}" @if($item->id == $consultaagendamento->pet_id) selected="true" @endif>
-                                {{'PET '.$item->nome.' / TUTOR '.$item->cliente->name}}
+                                {{'PET '.$item->nome.' & TUTOR '.$item->cliente->name}}
                             </option>
                         @endforeach
                     </select>

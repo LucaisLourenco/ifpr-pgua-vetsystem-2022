@@ -23,13 +23,13 @@
                         <td>{{ $item['nome'] }}</td>
                     @elseif($route == "consultaagendamentos")
                         <td>{{$item->veterinario['name']}}</td>
-                        <td>{{$item->pet['nome']}}</td>
+                        <td>{{$item->pet['nome'].' & '.$item->pet->cliente->name}}</td>
                         <td>{{$item['data_consulta']}}</td>
                         <td>{{$item['horario_consulta']}}</td>
                         <td>{{$item->status['nome']}}</td>
                     @else
                         <td>{{$item->veterinario['name']}}</td>
-                        <td>{{$item->pet['nome']}}</td>
+                        <td>{{$item->pet['nome'].' & '.$item->pet->cliente->name}}</td>
                         <td>{{$item->servico['nome']}}</td>
                         <td>{{$item['data_servico']}}</td>
                         <td>{{$item['horario_servico']}}</td>
