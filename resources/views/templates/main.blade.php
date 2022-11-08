@@ -52,7 +52,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('consultaagendamentos.index') }}" class="dropdown-item">Gerenciar Consultas</a></li>
-                                <li><a href=" " class="dropdown-item">Gerenciar Serviços</a></li>
+                                <li><a href="{{ route('servicoagendamentos.index') }}" class="dropdown-item">Gerenciar Serviços</a></li>
                             </ul>
                         </li>    
                         <li class="nav-item dropdown ps-1">

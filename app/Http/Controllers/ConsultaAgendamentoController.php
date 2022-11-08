@@ -10,6 +10,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Spatie\GoogleCalendar\Event;
 
+$GLOBALS['regras'] = [
+    'dataConsulta' => 'required',
+    'horarioConsulta' => 'required',
+    'pet_id' => 'required',
+    'veterinario_id' => 'required',
+    'valor' => 'required',
+];
+
+$GLOBALS['mensagem']= [
+    "dataConsulta.required" => "O preenchimento do campo Data da Consulta é obrigatório!",
+    "horarioConsulta.required" => "O preenchimento do campo Horário da Consulta é obrigatório!",
+    "pet_id.required" => "A seleção do campo Pet é obrigatório!",
+    "veterinario_id.required" => "A seleção do campo Veterinário é obrigatório!",
+    "valor.required" => "O preenchimento do campo Valor é obrigatório!",
+];
+
 class ConsultaAgendamentoController extends Controller
 {
     public function index()
@@ -33,10 +49,13 @@ class ConsultaAgendamentoController extends Controller
         $pet = Pet::find($request->pet_id);
         $veterinario = Veterinario::find($request->veterinario_id);
 
-        $startDateTime = Carbon::parse($request->dataConsulta.''.$request->horarioConsulta);
-        $endDateTime = (clone $startDateTime)->addHour();
+        /*$startDateTime = Carbon::parse($request->dataConsulta.''.$request->horarioConsulta);
+        $endDateTime = (clone $startDateTime)->addHour();*/
 
-        
+        $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+     
+        try 
+        {
             $consultaAgendamento = new ConsultaAgendamento();
             $consultaAgendamento->pet()->associate($pet);
             $consultaAgendamento->veterinario()->associate($veterinario);    
@@ -46,33 +65,24 @@ class ConsultaAgendamentoController extends Controller
             $consultaAgendamento->status_id = 1;
             $consultaAgendamento->save();
 
-            $event = new Event;
+            /*$event = new Event;
             $event->name = 'Consulta '.$pet->nome;
             $event->description = 'A consulta do cliente '.$pet->cliente->name.' com o Médico Veterinário '.$veterinario->name.' foi agendada para o dia '.$request->dataConsulta.' às '.$request->horarioConsulta.'.';
             $event->startDateTime = $startDateTime;
             $event->endDateTime = $endDateTime;
-            $event->save();
+            $event->save();*/
+
+            session()->flash('mensagem', "Item cadastrado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
 
 
         return redirect()->route('consultaagendamentos.index');
-
-        /*
-
-        Event::create([
-            'name' => 'Consulta',
-            'startDateTime' => $startDateTime,
-            'endDateTime' => $endDateTime,
-        ]);
-
-        $event = new Event;
-        $event->name = 'A new event';
-        $event->description = 'Event description';
-        $event->startDateTime = $startDateTime;
-        $event->endDateTime = $endDateTime;
-        $event->addAttendee(['email' => $request->pet->cliente->email]);
-        $event->addAttendee(['email' => $request->veterinario->email]);
-
-        $event->save();*/
     }
 
     public function show(ConsultaAgendamento $consultaAgendamento)
@@ -105,7 +115,7 @@ class ConsultaAgendamentoController extends Controller
 
     public function update(Request $request, ConsultaAgendamento $consultaagendamento)
     {
-        //$request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+        $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
      
         try
         {
@@ -131,8 +141,20 @@ class ConsultaAgendamentoController extends Controller
         return redirect()->route('consultaagendamentos.index');
     }
 
-    public function destroy(ConsultaAgendamento $consultaAgendamento)
+    public function destroy(ConsultaAgendamento $consultaagendamento)
     {
-        //
+        try
+        {
+            $consultaagendamento->delete();
+            session()->flash('mensagem', "Item excluído com sucesso.");
+            session()->flash('resultado', true);
+            
+        } catch(\Exception $exception)
+        { 
+           session()->flash('mensagem', $exception->getMessage());
+           session()->flash('resultado', null);
+        }
+
+        return redirect()->route('consultaagendamentos.index');
     }
 }

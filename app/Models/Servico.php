@@ -14,4 +14,8 @@ class Servico extends Model
 
     protected $fillable = ['nome', 'valor', 'descricao'];
 
+    public function servicos() {
+        return $this->hasMany('App\Models\ServicoAgendamento');
+    }
+
 }
