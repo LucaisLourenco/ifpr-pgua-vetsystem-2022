@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pet;
 use App\Models\Servico;
 use App\Models\ServicoAgendamento;
+use App\Models\Status;
 use App\Models\Veterinario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -83,18 +84,77 @@ class ServicoAgendamentoController extends Controller
         //
     }
 
-    public function edit(ServicoAgendamento $servicoAgendamento)
+    public function edit(ServicoAgendamento $servicoagendamento)
     {
-        //
+        $statuses = Status::all();
+
+        if(!array_exists_in_array($statuses, $servicoagendamento->status)) {
+            $statuses->push($servicoagendamento->status);
+        }
+
+        $pets = Pet::all();
+
+        if(!array_exists_in_array($pets, $servicoagendamento->pet)) {
+            $pets->push($servicoagendamento->pet);
+        }
+
+        $veterinarios = Veterinario::all();
+
+        if(!array_exists_in_array($veterinarios, $servicoagendamento->veterinario)) {
+            $veterinarios->push($servicoagendamento->veterinario);
+        }
+
+        $servicos = Servico::all();
+
+        if(!array_exists_in_array($servicos, $servicoagendamento->servico)) {
+            $servicos->push($servicoagendamento->servico);
+        }
+
+        return view('servicoagendamentos.edit', compact(['servicoagendamento','pets','veterinarios','servicos','statuses']));
     }
 
-    public function update(Request $request, ServicoAgendamento $servicoAgendamento)
+    public function update(Request $request, ServicoAgendamento $servicoagendamento)
     {
-        //
+        $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+     
+        try
+        {
+            $servicoagendamento->update([
+                "pet_id" => $request->pet_id,
+                "veterinario_id" => $request->veterinario_id,
+                "data_servico" => $request->dataServico,
+                "horario_servico" => $request->horarioServico,
+                "servico_id" => $request->servico_id,
+                "status_id" => $request->status_id,
+                "relatorio" => $request->relatorio,
+            ]);
+
+            session()->flash('mensagem', "Item alterado com sucesso.");
+            session()->flash('resultado', true);
+
+        } catch(\Exception $exception) 
+        {
+            session()->flash('mensagem', $exception->getMessage());
+            session()->flash('resultado', null);
+        }
+
+        return redirect()->route('servicoagendamentos.index');
     }
 
-    public function destroy(ServicoAgendamento $servicoAgendamento)
+    public function destroy(ServicoAgendamento $servicoagendamento)
     {
-        //
+        try
+        {
+            $servicoagendamento->delete();
+            session()->flash('mensagem', "Item excluído com sucesso.");
+            session()->flash('resultado', true);
+            
+        } catch(\Exception $exception)
+        { 
+           session()->flash('mensagem', $exception->getMessage());
+           session()->flash('resultado', null);
+        }
+
+        return redirect()->route('servicoagendamentos.index');
     }
 }
