@@ -49,7 +49,7 @@ class PetController extends Controller
         $sexos = Sexo::all();
         $clientes = Cliente::all();
 
-        return view('Pets.create', compact(['especies','sexos','clientes']));
+        return view('pets.create', compact(['especies','sexos','clientes']));
     }
 
     public function store(Request $request)
@@ -153,7 +153,7 @@ class PetController extends Controller
         $especies = Especie::all();
         $sexos = Sexo::all();
 
-        return view('Pets.createViewCliente', compact(['cliente', 'sexos', 'especies']));
+        return view('pets.createViewCliente', compact(['cliente', 'sexos', 'especies']));
     }
 
     public function storeViewCliente(Request $request)
