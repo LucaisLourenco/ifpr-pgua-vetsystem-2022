@@ -17,6 +17,10 @@ $GLOBALS['mensagem']= [
 
 class EspecialidadeController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Especialidade::class, 'especialidade');
+    }
+
     public function index()
     {
         $especialidades = Especialidade::all();

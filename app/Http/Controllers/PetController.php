@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\UserPermissions;
 use App\Models\Cliente;
 use App\Models\Pet;
 use App\Models\Peso;
@@ -36,6 +37,10 @@ $GLOBALS['mensagem']= [
 
 class PetController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Pet::class, 'pet');
+    }
+
     public function index()
     {
         $pets = Pet::with(['cliente','sexo','raca'])->get();
@@ -148,7 +153,11 @@ class PetController extends Controller
         return redirect()->route('pets.show', $pet->id);
     }
 
-    public function createViewCliente($cliente) {
+    public function createViewCliente($cliente) 
+    {
+        if(!UserPermissions::isAuthorized('pets.create')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
 
         $especies = Especie::all();
         $sexos = Sexo::all();
@@ -158,6 +167,10 @@ class PetController extends Controller
 
     public function storeViewCliente(Request $request)
     {
+        if(!UserPermissions::isAuthorized('pets.create')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
+        
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
 
         try

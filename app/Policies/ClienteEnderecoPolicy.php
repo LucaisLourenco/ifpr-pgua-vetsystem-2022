@@ -2,91 +2,52 @@
 
 namespace App\Policies;
 
+use App\Facades\UserPermissions;
 use App\Models\ClienteEndereco;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class ClienteEnderecoPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function viewAny(User $user)
     {
         //
     }
 
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\ClienteEndereco  $clienteEndereco
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function view(User $user, ClienteEndereco $clienteEndereco)
     {
         //
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function create(User $user)
     {
-        //
+        return UserPermissions::isAuthorized('clienteEnderecos.create')
+            ? Response::allow()
+            : abort(redirect()->route('acessonegado.index'));
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\ClienteEndereco  $clienteEndereco
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function update(User $user, ClienteEndereco $clienteEndereco)
     {
-        //
+        return UserPermissions::isAuthorized('clienteEnderecos.edit')
+            ? Response::allow()
+            : abort(redirect()->route('acessonegado.index'));
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\ClienteEndereco  $clienteEndereco
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function delete(User $user, ClienteEndereco $clienteEndereco)
     {
-        //
+        return UserPermissions::isAuthorized('clienteEnderecos.destroy')
+            ? Response::allow()
+            : abort(redirect()->route('acessonegado.index'));
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\ClienteEndereco  $clienteEndereco
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function restore(User $user, ClienteEndereco $clienteEndereco)
     {
         //
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\ClienteEndereco  $clienteEndereco
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
     public function forceDelete(User $user, ClienteEndereco $clienteEndereco)
     {
         //

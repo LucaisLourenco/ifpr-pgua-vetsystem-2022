@@ -85,9 +85,9 @@ class ConsultaAgendamentoController extends Controller
         return redirect()->route('consultaagendamentos.index');
     }
 
-    public function show(ConsultaAgendamento $consultaAgendamento)
+    public function show(ConsultaAgendamento $consultaagendamento)
     {
-        //
+        return view('consultaagendamentos.show', compact(['consultaagendamento']));
     }
 
     public function edit(ConsultaAgendamento $consultaagendamento)

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\Rule;
 use App\Events\ClienteCreateEvent;
-
+use App\Facades\UserPermissions;
 
 $GLOBALS['regras'] = [
     'name' => 'required|max:100|min:2',
@@ -73,6 +73,10 @@ $GLOBALS['mensagem']= [
 
 class ClienteController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Cliente::class, 'cliente');
+    }
+
     public function index()
     {
         $clientes = Cliente::all();
@@ -141,9 +145,7 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::with('enderecos','telefones','pets','genero')->findOrFail($cliente->id);
 
-        $pets = Pet::with('raca', 'sexo')->get();
-
-        return view('clientes.show', compact(['cliente', 'pets']));
+        return view('clientes.show', compact(['cliente']));
     }
 
     public function edit(Cliente $cliente)
@@ -216,14 +218,21 @@ class ClienteController extends Controller
 
     public function redefinirSenha(Cliente $cliente)
     {
+        if(!UserPermissions::isAuthorized('clientes.newSenha')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
+
         return view('clientes.redefinirSenha', compact(['cliente']));
     }
 
     public function newSenha(Request $request, Cliente $cliente) {
 
+        if(!UserPermissions::isAuthorized('clientes.newSenha')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
+
         $regras = [
             'password' => ['required', 'min:8', 'confirmed', Rules\Password::defaults()],
-
         ];
        
         $request->validate($regras,$GLOBALS['mensagem']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\UserPermissions;
 use App\Models\Cliente;
 use App\Models\ClienteTelefone;
 use Illuminate\Http\Request;
@@ -21,6 +22,10 @@ $GLOBALS['mensagem']= [
 
 class ClienteTelefoneController extends Controller
 { 
+    public function __construct() {
+        $this->authorizeResource(ClienteTelefone::class, 'clienteTelefone');
+    }
+
     public function index()
     {
         //
@@ -31,7 +36,12 @@ class ClienteTelefoneController extends Controller
         //
     }
 
-    public function newTelefone($cliente) {
+    public function newTelefone($cliente) 
+    {
+        if(!UserPermissions::isAuthorized('clienteTelefones.create')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
+
         return view('clienteTelefones.newTelefone', compact(['cliente']));
     }
  

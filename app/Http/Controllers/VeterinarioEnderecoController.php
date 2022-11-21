@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\UserPermissions;
 use App\Models\Veterinario;
 use App\Models\VeterinarioEndereco;
 use Illuminate\Http\Request;
@@ -39,6 +40,10 @@ $GLOBALS['mensagem']= [
 
 class VeterinarioEnderecoController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(VeterinarioEndereco::class, 'veterinarioEndereco');
+    }
+
     public function index()
     {
         //
@@ -49,7 +54,12 @@ class VeterinarioEnderecoController extends Controller
         //
     }
 
-    public function newEndereco($veterinario) {
+    public function newEndereco($veterinario) 
+    {
+        if(!UserPermissions::isAuthorized('veterinarioEnderecos.create')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
+
         return view('veterinarioEnderecos.newEndereco', compact(['veterinario']));
     }
 

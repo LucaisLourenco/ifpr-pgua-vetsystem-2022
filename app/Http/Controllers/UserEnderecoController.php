@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\UserPermissions;
 use App\Models\User;
 use App\Models\UserEndereco;
 use Illuminate\Http\Request;
@@ -39,6 +40,10 @@ $GLOBALS['mensagem']= [
 
 class UserEnderecoController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(UserEndereco::class, 'userEndereco');
+    }
+
     public function index()
     {
         //
@@ -49,7 +54,12 @@ class UserEnderecoController extends Controller
         //
     }
 
-    public function newEndereco($user) {
+    public function newEndereco($user) 
+    {
+        if(!UserPermissions::isAuthorized('userEnderecos.create')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
+
         return view('userEnderecos.newEndereco', compact(['user']));
     }
 

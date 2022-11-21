@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\VeterinarioCreateEvent;
+use App\Facades\UserPermissions;
 use App\Models\Especialidade;
 use App\Models\Genero;
 use App\Models\Veterinario;
@@ -78,6 +79,10 @@ $GLOBALS['mensagem']= [
 
 class VeterinarioController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Veterinario::class, 'veterinario');
+    }
+
     public function index()
     {
         $veterinarios = Veterinario::with(['especialidade'])->get();
@@ -226,14 +231,21 @@ class VeterinarioController extends Controller
 
     public function redefinirSenha(Veterinario $veterinario)
     {
+        if(!UserPermissions::isAuthorized('veterinarios.newSenha')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
+
         return view('veterinarios.redefinirSenha', compact(['veterinario']));
     }
 
-    public function newSenha(Request $request, Veterinario $veterinario) {
+    public function newSenha(Request $request, Veterinario $veterinario) 
+    {
+        if(!UserPermissions::isAuthorized('veterinarios.newSenha')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
 
         $regras = [
             'password' => ['required', 'min:8', 'confirmed', Rules\Password::defaults()],
-
         ];
        
         $request->validate($regras,$GLOBALS['mensagem']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\UserPermissions;
 use App\Models\Veterinario;
 use App\Models\VeterinarioTelefone;
 use Illuminate\Http\Request;
@@ -21,6 +22,10 @@ $GLOBALS['mensagem']= [
 
 class VeterinarioTelefoneController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(VeterinarioTelefone::class, 'veterinarioTelefone');
+    }
+
     public function index()
     {
         //
@@ -31,7 +36,12 @@ class VeterinarioTelefoneController extends Controller
         //
     }
 
-    public function newTelefone($veterinario) {
+    public function newTelefone($veterinario) 
+    {
+        if(!UserPermissions::isAuthorized('veterinarioTelefones.create')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
+
         return view('veterinarioTelefones.newTelefone', compact(['veterinario']));
     }
 

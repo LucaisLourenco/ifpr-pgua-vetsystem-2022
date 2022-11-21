@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\UserCreateEvent;
+use App\Facades\UserPermissions;
 use App\Models\User;
 use App\Models\Genero;
 use App\Models\Role;
@@ -74,6 +75,10 @@ $GLOBALS['mensagem']= [
 
 class UserController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(User::class, 'user');
+    }
+
     public function index()
     {
         $users = User::with(['role'])->get();
@@ -219,14 +224,21 @@ class UserController extends Controller
 
     public function redefinirSenha(User $user)
     {
+        if(!UserPermissions::isAuthorized('users.newSenha')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
+
         return view('users.redefinirSenha', compact(['user']));
     }
 
-    public function newSenha(Request $request, User $user) {
+    public function newSenha(Request $request, User $user) 
+    {
+        if(!UserPermissions::isAuthorized('users.newSenha')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
 
         $regras = [
             'password' => ['required', 'min:8', 'confirmed', Rules\Password::defaults()],
-
         ];
        
         $request->validate($regras,$GLOBALS['mensagem']);

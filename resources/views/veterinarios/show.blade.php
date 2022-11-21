@@ -118,7 +118,7 @@
 
             <!--ENDERECOS CADASTRAR-->
             <div class="col d-flex justify-content-end">
-                <a href="{{ route('veterinarioEnderecos.newEndereco', $veterinario) }}" class="btn btn-secondary">
+                <a href="{{ route('veterinarioEnderecos.newEndereco', $veterinario) }}" class="btn btn-secondary">Novo Endereço
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg>
@@ -169,7 +169,7 @@
 
             <!--TELEFONES CADASTRAR-->
             <div class="col d-flex justify-content-end">
-                <a href="{{ route('veterinarioTelefones.newTelefone', $veterinario) }}" class="btn btn-secondary text-white">
+                <a href="{{ route('veterinarioTelefones.newTelefone', $veterinario) }}" class="btn btn-secondary text-white">Novo Telefone
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#FFF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg>

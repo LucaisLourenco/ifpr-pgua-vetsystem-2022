@@ -16,6 +16,10 @@ use App\Http\Controllers\VeterinarioController;
 
 Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], function() {
 
+    Route::get('/acessonegado', function(){
+        return view('acessonegado.index');
+    })->name('acessonegado.index');
+
     Route::resource('statuses', 'Statuscontroller');
 
     Route::resource('servicoagendamentos', 'ServicoAgendamentoController');

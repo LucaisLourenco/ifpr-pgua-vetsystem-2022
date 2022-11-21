@@ -29,4 +29,12 @@ class Pet extends Model
     public function pesos() {
         return $this->hasMany('App\Models\Peso');
     }
+
+    public function consultas() {
+        return $this->hasMany('App\Models\ConsultaAgendamento');
+    }
+
+    public function servicos() {
+        return $this->hasMany('App\Models\ServicoAgendamento');
+    }
 }
