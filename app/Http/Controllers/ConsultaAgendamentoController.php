@@ -138,7 +138,7 @@ class ConsultaAgendamentoController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->route('consultaagendamentos.index');
+        return redirect()->route('consultaagendamentos.show',$consultaagendamento->id);
     }
 
     public function destroy(ConsultaAgendamento $consultaagendamento)

@@ -79,9 +79,9 @@ class ServicoAgendamentoController extends Controller
         return redirect()->route('servicoagendamentos.index');
     }
 
-    public function show(ServicoAgendamento $servicoAgendamento)
+    public function show(ServicoAgendamento $servicoagendamento)
     {
-        //
+        return view('servicoagendamentos.show', compact(['servicoagendamento']));
     }
 
     public function edit(ServicoAgendamento $servicoagendamento)
@@ -138,7 +138,7 @@ class ServicoAgendamentoController extends Controller
             session()->flash('resultado', null);
         }
 
-        return redirect()->route('servicoagendamentos.index');
+        return redirect()->route('servicoagendamentos.show', $servicoagendamento->id);
     }
 
     public function destroy(ServicoAgendamento $servicoagendamento)
