@@ -29,6 +29,10 @@ $GLOBALS['mensagem']= [
 
 class ServicoAgendamentoController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(ServicoAgendamento::class, 'servicoagendamento');
+    }
+
     public function index()
     {
         $servicoAgendamentos = ServicoAgendamento::all();
