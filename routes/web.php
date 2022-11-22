@@ -11,6 +11,7 @@ use App\Http\Controllers\VeterinarioTelefoneController;
 use App\Http\Controllers\RacaController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\PesoController;
+use App\Http\Controllers\PetObservacaoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VeterinarioController;
 
@@ -42,6 +43,11 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
 
     Route::get('/newPeso/{pet}', [PesoController::class, 'newPeso'])
         ->name('pesos.newPeso');
+
+    Route::resource('petobservacaos', 'PetObservacaoController');
+
+    Route::get('/newObservacao/{pet}', [PetObservacaoController::class, 'newObservacao'])
+        ->name('petobservacaos.newObservacao');
 
     //Veterinário endereços e telefones
     Route::resource('veterinarioEnderecos', 'VeterinarioEnderecoController');

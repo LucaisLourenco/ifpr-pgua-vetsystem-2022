@@ -24,6 +24,17 @@ function closeInfoModalDanger() {
     $("#infoModalDanger").modal('hide');
 }
 
+//MOSTRAR MODALS 
+function showInfoModal(descricao) {
+    $('#infoModal').modal().find('.modal-body').html("");
+    $('#infoModal').modal().find('.modal-body').append("<em>"+descricao+"</em>");
+    $("#infoModal").modal('show');
+}
+
+function closeInfoModal() {
+    $("#infoModal").modal('hide');
+}
+
 //MOSTRAR MODALS ENDERECO
 function showInfoModalEndereco(nome, cep, rua, numero, complemento, bairro, cidade, uf ) {
     $('#infoModalEndereco').modal().find('.modal-body').html("");

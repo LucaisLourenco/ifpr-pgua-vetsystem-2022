@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\UserPermissions;
 use App\Models\Peso;
 use App\Models\Pet;
 use Illuminate\Http\Request;
@@ -34,6 +35,10 @@ class PesoController extends Controller
 
     public function newPeso($pet)
     {
+        if(!UserPermissions::isAuthorized('pets.create')) {
+            return abort(redirect()->route('acessonegado.index'));
+        }
+
         return view('pesos.newPeso', compact(['pet']));
     }
 

@@ -30,6 +30,10 @@ class Pet extends Model
         return $this->hasMany('App\Models\Peso');
     }
 
+    public function obs() {
+        return $this->hasMany('App\Models\PetObservacao');
+    }
+
     public function consultas() {
         return $this->hasMany('App\Models\ConsultaAgendamento');
     }
