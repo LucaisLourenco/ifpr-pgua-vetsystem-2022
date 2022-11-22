@@ -4,7 +4,7 @@
 
 @section('conteudo')
 
-    <h3>Dados da Serviço</h3>
+    <h3>Dados do Serviço</h3>
 
     <dl class="row">
         <dt class="col-sm-2">PET</dt>
@@ -19,8 +19,14 @@
         <dt class="col-sm-2">Veterinário</dt>
         <dd class="col-sm-10">{{ $servicoagendamento->veterinario->name }}</dd>
 
+        <dt class="col-sm-2">Data e Horário</dt>
+        <dd class="col-sm-10">{{ $servicoagendamento->data_servico.' '.$servicoagendamento->horario_servico }}</dd>
+
         <dt class="col-sm-2">Status</dt>
         <dd class="col-sm-10">{{ $servicoagendamento->status->nome }}</dd>
+
+        <dt class="col-sm-2">Valor da Serviço</dt>
+        <dd class="col-sm-10">{{ 'R$ '.$servicoagendamento->servico->valor }}</dd>
     </dl>
 
     <div class="row">
@@ -33,7 +39,7 @@
 
             <a href="{{ route('pets.show', $servicoagendamento->pet) }}" class="btn btn-success text-white">Vizualizar Pet
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-heart" viewBox="0 0 16 16">
-                    <path d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z"/>
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
                 </svg>
             </a>
 
@@ -49,13 +55,23 @@
             @method('DELETE')
         </form>
     </div>
+
+    <hr>
+    <h3>Relatório do Serviço</h3>
+    <div class="row">
+        <div class="col" >
+            <textarea id="relatorio" class="form-control" name="relatorio" rows="8" disabled>@isset($servicoagendamento->relatorio){{$servicoagendamento->relatorio}}@else @endIf</textarea>
+            
+            <div class="form-floating mb-3"></div>
+        </div>
+    </div>
    
     <hr>
     <div class="row">    
         <div class="col-12">   
-            <a href="{{route('servicoagendamentos.index')}}" class="btn btn-primary text-white">Tela de Serviços
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-text-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            <a href="{{ route('servicoagendamentos.index') }}" class="btn btn-secondary btn-block align-content-center">Tela de Serviços
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                    <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
                 </svg>
             </a>
         </div>

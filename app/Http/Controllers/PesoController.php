@@ -18,6 +18,10 @@ $GLOBALS['mensagem']= [
 
 class PesoController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Peso::class, 'peso');
+    }
+
     public function index()
     {
         //

@@ -144,7 +144,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pet->consultas as $item)
+                    @foreach ($consultas as $item)
                         <tr>
                             <td>{{$item->veterinario['name']}}</td>
                             <td>{{$item['data_consulta']}}</td>
@@ -187,7 +187,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pet->servicos as $item)
+                    @foreach ($servicos as $item)
                         <tr>
                             <td>{{$item->veterinario['name']}}</td>
                             <td>{{$item->servico->nome}}</td>

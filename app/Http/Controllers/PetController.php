@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Facades\UserPermissions;
 use App\Models\Cliente;
+use App\Models\ConsultaAgendamento;
 use App\Models\Pet;
 use App\Models\Peso;
 use App\Models\Raca;
 use App\Models\Sexo;
 use App\Models\Especie;
+use App\Models\ServicoAgendamento;
 use Illuminate\Http\Request;
 
 $GLOBALS['regras'] = [
@@ -95,7 +97,11 @@ class PetController extends Controller
 
     public function show(Pet $pet)
     {
-        return view('pets.show', compact(['pet']));
+        $consultas = ConsultaAgendamento::where('pet_id', $pet->id)->orderBy('id', 'DESC')->get();
+
+        $servicos = ServicoAgendamento::where('pet_id', $pet->id)->orderBy('id', 'DESC')->get();
+
+        return view('pets.show', compact(['pet', 'consultas', 'servicos']));
     }
 
     public function edit(Pet $pet)

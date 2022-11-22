@@ -131,7 +131,6 @@
 
         <h4>Relatório Médico</h4>
 
-
         <div class="row">
             <div class="col" >
                 <textarea id="relatorio" class="form-control" name="relatorio" rows="8">@isset($consultaagendamento->relatorio){{$consultaagendamento->relatorio}}@else @endIf</textarea>
