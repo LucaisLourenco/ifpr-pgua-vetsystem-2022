@@ -20,10 +20,10 @@ class Veterinario extends Authenticatable implements MustVerifyEmail
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['name', 'crmv', 'email', 'password', 'cpf', 'genero_id', 'especialidade_id', 'data_nascimento', 'ativo'];
+    protected $fillable = ['name', 'crmv', 'email', 'password', 'cpf', 'genero_id', 'data_nascimento', 'ativo'];
 
-    public function especialidade() {
-        return $this->belongsTo('App\Models\Especialidade')->withTrashed();
+    public function especialidades() {
+        return $this->belongsToMany('App\Models\Especialidade','veterinario_especialidades')->withTrashed();
     }
 
     public function enderecos() {

@@ -25,7 +25,7 @@
                     @elseif ($route == 'users')
                         <td>{{ $item->role['nome'] }}</td> 
                     @else
-                        <td>{{ $item->especialidade['nome'] }}</td> 
+                        <td>{{ $item['crmv'] }}</td> 
                     @endif
 
                     <td>{{ $item['email'] }}</td> 

@@ -14,6 +14,7 @@ use App\Http\Controllers\PesoController;
 use App\Http\Controllers\PetObservacaoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VeterinarioController;
+use App\Http\Controllers\VeterinarioEspecialidadeController;
 
 Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], function() {
 
@@ -108,6 +109,11 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
 
     Route::put('redefinirSenhaFuncionario/{user}', [UserController::class, 'newSenha'])
         ->name('users.newSenha');
+
+    //Especialidades do veterinário
+    Route::resource('veterinarioespecialidades', 'VeterinarioEspecialidadeController');
+
+    Route::get('/gravarEspecialidades/{id}', [VeterinarioEspecialidadeController::class, 'gravar'])->name('veterinarioespecialidades.gravar');
 
     Route::resource('pets', 'PetController');
 

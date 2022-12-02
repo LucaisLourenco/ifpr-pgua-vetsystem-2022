@@ -13,4 +13,8 @@ class Especialidade extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = ['nome'];
+
+    public function veterinarios() {
+        return $this->belongsToMany('App\Models\Veternario','veterinario_especialidades')->withTrashed();
+    }
 }

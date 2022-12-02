@@ -19,7 +19,6 @@ $GLOBALS['regras'] = [
     'cpf' => 'required|min:14|unique:veterinarios',
     'email' => 'required|string|email|max:255|unique:veterinarios',
     'genero_id' => 'required',
-    'especialidade_id' => 'required',
     'data_nascimento' => 'required',
     'crmv' => 'required|max:10|min:5|unique:veterinarios',
 ];
@@ -51,7 +50,6 @@ $GLOBALS['mensagem']= [
     "bairro.max" => "O campo Bairro possui tamanho máxixo de 60 caracteres!",
     "bairro.min" => "O campo Bairro possui tamanho mínimo de 3 caracteres!",
     "genero_id.required" => "A seleção do campo Gênero é obrigatório!",
-    "especialidade_id.required" => "A seleção do campo Especialidade é obrigatório!",
     "crmv.max" => "O campo CRMV possui tamanho máxixo de 10 números!",
     "crmv.min" => "O campo CRMV possui tamanho mínimo de 5 números!",
     "crmv.unique" => "O CRMV informado já existe!",
@@ -76,7 +74,7 @@ class VeterinarioController extends Controller
 
     public function index()
     {
-        $veterinarios = Veterinario::with(['especialidade'])->get();
+        $veterinarios = Veterinario::with(['especialidades'])->get();
 
         return view('veterinarios.index', compact(['veterinarios']));
     }
@@ -136,7 +134,6 @@ class VeterinarioController extends Controller
                 'password' => Hash::make($password),
                 'cpf' => $request->cpf,
                 'genero_id' => $request->genero_id,
-                'especialidade_id' => $request->especialidade_id,
                 'data_nascimento' => $request->data_nascimento,
                 'ativo' => 1
             ]);
@@ -179,7 +176,7 @@ class VeterinarioController extends Controller
 
     public function show(Veterinario $veterinario)
     {
-        $veterinario = Veterinario::with('enderecos','telefones','especialidade','genero')->findOrFail($veterinario->id);
+        $veterinario = Veterinario::with('enderecos','telefones','especialidades','genero')->findOrFail($veterinario->id);
 
         return view('veterinarios.show', compact(['veterinario']));
     }
@@ -192,13 +189,7 @@ class VeterinarioController extends Controller
             $generos->push($veterinario->genero);
         }
 
-        $especialidades = Especialidade::all();
-
-        if(!array_exists_in_array($especialidades, $veterinario->especialidade)) {
-            $especialidades->push($veterinario->especialidade);
-        }
-
-        return view('veterinarios.edit', compact(['veterinario','generos', 'especialidades']));
+        return view('veterinarios.edit', compact(['veterinario','generos']));
     }
 
     public function update(Request $request, Veterinario $veterinario)

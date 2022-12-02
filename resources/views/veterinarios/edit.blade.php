@@ -123,25 +123,6 @@
                     <label for="genero_id">Gênero *</label>
                 </div>
             </div>
-
-            <div class="col-3" >
-                <div class="form-floating mb-3">
-                    <select name="especialidade_id" class="form-control {{ $errors->has('especialidade_id') ? 'is-invalid' : '' }}" required>
-                    <option value="{{null}}">SELECIONE A ESPECIALIDADE</option>
-                        @foreach ($especialidades as $item) 
-                            <option value="{{$item->id}}"  @if($item->id == $veterinario->especialidade_id) selected="true" @endif>
-                                {{$item->nome}}
-                            </option>
-                        @endforeach
-                    </select>
-                    @if($errors->has('especialidade_id'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('especialidade_id') }}
-                        </div>
-                    @endif
-                    <label for="especialidade_id">Especialidade *</label>
-                </div>
-            </div>
         </div>
         <div class="row">
             <div class="col">
