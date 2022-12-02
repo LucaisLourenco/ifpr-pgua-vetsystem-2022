@@ -25,7 +25,7 @@
                             {{ $errors->first('nome_telefone') }}
                         </div>
                     @endif
-                    <label for="nome_telefone">Tipo de Telefone</label>
+                    <label for="nome_telefone">Tipo de Telefone *</label>
                 </div>
             </div>
             <div class="col-4" >
@@ -44,7 +44,7 @@
                             {{ $errors->first('numero_telefone') }}
                         </div>
                     @endif
-                    <label for="numero_telefone">Número do Telefone</label>
+                    <label for="numero_telefone">Número do Telefone *</label>
                 </div>
             </div>
         </div>

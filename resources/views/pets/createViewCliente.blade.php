@@ -25,7 +25,7 @@
                             {{ $errors->first('nome') }}
                         </div>
                     @endif
-                    <label for="nome">Nome do Pet</label>
+                    <label for="nome">Nome do Pet *</label>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
                             {{ $errors->first('peso') }}
                         </div>
                     @endif
-                    <label for="peso">Peso do Pet</label>
+                    <label for="peso">Peso do Pet *</label>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                             {{ $errors->first('sexo_id') }}
                         </div>
                     @endif
-                    <label for="sexo_id">Sexo</label>
+                    <label for="sexo_id">Sexo *</label>
                 </div>
             </div>
 
@@ -78,14 +78,13 @@
                         name="data_nascimento" 
                         placeholder="Data de Nascimento"
                         value="{{old('data_nascimento')}}"
-                        required
                     />
                     @if($errors->has('data_nascimento'))
                         <div class='invalid-feedback'>
                             {{ $errors->first('data_nascimento') }}
                         </div>
                     @endif
-                    <label for="data_nascimento">Data de Nascimento do Pet</label>
+                    <label for="data_nascimento">Nascimento do Pet</label>
                 </div>
             </div>
 
@@ -104,7 +103,7 @@
                             {{ $errors->first('especie_id') }}
                         </div>
                     @endif
-                    <label for="especie_id">Espécie</label>
+                    <label for="especie_id">Espécie *</label>
                 </div>
             </div>
 
@@ -118,7 +117,7 @@
                             {{ $errors->first('raca_id') }}
                         </div>
                     @endif
-                    <label for="raca_id">Raça</label>
+                    <label for="raca_id">Raça *</label>
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@
                             {{ $errors->first('name') }}
                         </div>
                     @endif
-                    <label for="name">Nome do Veterinário</label>
+                    <label for="name">Nome do Veterinário *</label>
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
                             {{ $errors->first('crmv') }}
                         </div>
                     @endif
-                    <label for="crmv">CRMV do Veterinário</label>
+                    <label for="crmv">CRMV do Veterinário *</label>
                 </div>
             </div>
 
@@ -68,7 +68,7 @@
                             {{ $errors->first('cpf') }}
                         </div>
                     @endif
-                    <label for="cpf">CPF do Veterinário</label>
+                    <label for="cpf">CPF do Veterinário *</label>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
                             {{ $errors->first('email') }}
                         </div>
                     @endif
-                    <label for="email">E-mail do Veterinário</label>
+                    <label for="email">E-mail do Veterinário *</label>
                 </div>
             </div>
             <div class="col-2" >
@@ -107,7 +107,7 @@
                             {{ $errors->first('data_nascimento') }}
                         </div>
                     @endif
-                    <label for="data_nascimento">Data de Nascimento</label>
+                    <label for="data_nascimento">Nascimento *</label>
                 </div>
             </div>
             <div class="col-3" >
@@ -125,7 +125,7 @@
                             {{ $errors->first('genero_id') }}
                         </div>
                     @endif
-                    <label for="genero_id">Gênero</label>
+                    <label for="genero_id">Gênero *</label>
                 </div>
             </div>
 
@@ -144,7 +144,7 @@
                             {{ $errors->first('especialidade_id') }}
                         </div>
                     @endif
-                    <label for="especialidade_id">Especialidade</label>
+                    <label for="especialidade_id">Especialidade *</label>
                 </div>
             </div>
         </div><br>
@@ -164,7 +164,6 @@
                         name="nome_telefone" 
                         placeholder="nome_telefone"
                         value="{{old('nome_telefone')}}"
-                        required
                     />
                     @if($errors->has('nome_telefone'))
                         <div class='invalid-feedback'>
@@ -183,7 +182,6 @@
                         onkeypress="mask(this, mphone);"
                         placeholder="numero_telefone"
                         value="{{old('numero_telefone')}}"
-                        required
                     />
                     @if($errors->has('numero_telefone'))
                         <div class='invalid-feedback'>
@@ -210,7 +208,6 @@
                         name="nome_endereco" 
                         placeholder="nome_endereco"
                         value="{{old('nome_endereco')}}"
-                        required
                     />
                     @if($errors->has('nome_endereco'))
                         <div class='invalid-feedback'>
@@ -232,7 +229,6 @@
                         onkeydown="javascript: fMasc( this, mCEP );"
                         placeholder="CEP"
                         value="{{old('cep')}}"
-                        required
                     />
                     @if($errors->has('cep'))
                         <div class='invalid-feedback'>
@@ -251,7 +247,6 @@
                         name="rua" 
                         placeholder="rua"
                         value="{{old('rua')}}"
-                        required
                     />
                     @if($errors->has('rua'))
                         <div class='invalid-feedback'>
@@ -270,7 +265,6 @@
                         name="numero_endereco" 
                         placeholder="Número"
                         value="{{old('numero_endereco')}}"
-                        required
                     />
                     @if($errors->has('numero_endereco'))
                         <div class='invalid-feedback'>
@@ -291,7 +285,6 @@
                         name="bairro" 
                         placeholder="bairro"
                         value="{{old('bairro')}}"
-                        required
                     />
                     @if($errors->has('bairro'))
                         <div class='invalid-feedback'>
@@ -328,7 +321,6 @@
                         name="cidade" 
                         placeholder="cidade"
                         value="{{old('cidade')}}"
-                        required
                     />
                     @if($errors->has('cidade'))
                         <div class='invalid-feedback'>
@@ -347,7 +339,6 @@
                         name="uf" 
                         placeholder="uf"
                         value="{{old('uf')}}"
-                        required
                     />
                     @if($errors->has('uf'))
                         <div class='invalid-feedback'>

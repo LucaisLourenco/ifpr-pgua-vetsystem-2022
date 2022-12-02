@@ -24,7 +24,7 @@
                             {{ $errors->first('name') }}
                         </div>
                     @endif
-                    <label for="name">Nome do Funcionário</label>
+                    <label for="name">Nome do Funcionário *</label>
                 </div>
             </div>
             <div class="col-3" >
@@ -43,7 +43,7 @@
                             {{ $errors->first('cpf') }}
                         </div>
                     @endif
-                    <label for="cpf">CPF do Funcionário</label>
+                    <label for="cpf">CPF do Funcionário *</label>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
                             {{ $errors->first('email') }}
                         </div>
                     @endif
-                    <label for="email">E-mail do Funcionário</label>
+                    <label for="email">E-mail do Funcionário *</label>
                 </div>
             </div>
             <div class="col-2" >
@@ -81,7 +81,7 @@
                             {{ $errors->first('data_nascimento') }}
                         </div>
                     @endif
-                    <label for="data_nascimento">Data de Nascimento</label>
+                    <label for="data_nascimento">Nascimento *</label>
                 </div>
             </div>
             <div class="col-3" >
@@ -99,7 +99,7 @@
                             {{ $errors->first('genero_id') }}
                         </div>
                     @endif
-                    <label for="genero_id">Gênero</label>
+                    <label for="genero_id">Gênero *</label>
                 </div>
             </div>
 
@@ -118,7 +118,7 @@
                             {{ $errors->first('role_id') }}
                         </div>
                     @endif
-                    <label for="role_id">Função</label>
+                    <label for="role_id">Função *</label>
                 </div>
             </div>
         </div>

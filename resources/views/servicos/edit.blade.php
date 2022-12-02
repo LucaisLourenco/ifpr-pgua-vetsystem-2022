@@ -24,7 +24,7 @@
                         {{ $errors->first('nome') }}
                     </div>
                 @endif
-                <label for="nome">Nome</label>
+                <label for="nome">Nome *</label>
             </div>
         </div>
         
@@ -43,7 +43,7 @@
                         {{ $errors->first('valor') }}
                     </div>
                 @endif
-                <label for="valor">Valor</label>
+                <label for="valor">Valor *</label>
             </div>
         </div>
     </div>

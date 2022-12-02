@@ -9,6 +9,11 @@
     <dl class="row">
         <dt class="col-sm-2">Pet</dt>
         <dd class="col-sm-10">{{ $pet->nome }}</dd>
+
+        @isset($pet->data_nascimento)
+            <dt class="col-sm-2">Nascimento</dt>
+            <dd class="col-sm-10">{{ $pet->data_nascimento }}</dd>
+        @endif
         
         <dt class="col-sm-2">Tutor</dt>
         <dd class="col-sm-10">{{ $pet->cliente->name }}</dd>

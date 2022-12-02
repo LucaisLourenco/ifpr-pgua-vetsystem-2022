@@ -23,7 +23,7 @@
                             {{ $errors->first('nome_endereco') }}
                         </div>
                     @endif
-                    <label for="nome_endereco">Nome do Endereço</label>
+                    <label for="nome_endereco">Nome do Endereço *</label>
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                             {{ $errors->first('cep') }}
                         </div>
                     @endif
-                    <label for="cep">CEP</label>
+                    <label for="cep">CEP *</label>
                 </div>
             </div>
             <div class="col-8" >
@@ -64,7 +64,7 @@
                             {{ $errors->first('rua') }}
                         </div>
                     @endif
-                    <label for="rua">Rua</label>
+                    <label for="rua">Rua *</label>
                 </div>
             </div>
             <div class="col-2" >
@@ -83,7 +83,7 @@
                             {{ $errors->first('numero_endereco') }}
                         </div>
                     @endif
-                    <label for="numero_endereco">Número</label>
+                    <label for="numero_endereco">Número *</label>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
                             {{ $errors->first('bairro') }}
                         </div>
                     @endif
-                    <label for="bairro">Bairro</label>
+                    <label for="bairro">Bairro *</label>
                 </div>
             </div>
             <div class="col-5" >
@@ -141,7 +141,7 @@
                             {{ $errors->first('cidade') }}
                         </div>
                     @endif
-                    <label for="cidade">Cidade</label>
+                    <label for="cidade">Cidade *</label>
                 </div>
             </div>
             <div class="col-1" >
@@ -160,7 +160,7 @@
                             {{ $errors->first('uf') }}
                         </div>
                     @endif
-                    <label for="uf">UF</label>
+                    <label for="uf">UF *</label>
                 </div>
             </div>
         </div>

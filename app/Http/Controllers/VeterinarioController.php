@@ -18,18 +18,9 @@ $GLOBALS['regras'] = [
     'name' => 'required|max:100|min:2',
     'cpf' => 'required|min:14|unique:veterinarios',
     'email' => 'required|string|email|max:255|unique:veterinarios',
-    'nome_telefone' => 'required|min:3|max:30',
-    'numero_telefone' => 'required|min:14',
-    'cep' => 'required|min:10',
     'genero_id' => 'required',
     'especialidade_id' => 'required',
     'data_nascimento' => 'required',
-    'nome_endereco' => 'required|min:3|max:30',
-    'rua' => 'required|max:60',
-    'bairro' => 'required|min:3|max:60',
-    'cidade' => 'required|min:3|max:30',
-    'numero_endereco' => 'required|max:10',
-    'uf' => 'required|min:2|max:2',
     'crmv' => 'required|max:10|min:5|unique:veterinarios',
 ];
 
@@ -103,6 +94,39 @@ class VeterinarioController extends Controller
         $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
         $password = strtoupper(substr(bin2hex(random_bytes(4)), 1));
 
+        $verificador_de_endereco = false;
+        $verificador_de_telefone = false;
+
+        if($request->nome_telefone != null or $request->numero_telefone != null) {
+            
+            $regras_telefone = [
+                'nome_telefone' => 'required|min:3|max:30',
+                'numero_telefone' => 'required|min:14',
+            ];
+
+            $request->validate($regras_telefone,$GLOBALS['mensagem']);
+
+            $verificador_de_telefone = true;
+        }
+
+        if($request->nome_endereco != null or $request->cep != null or $request->rua != null
+            or $request->numero_complemento != null or $request->bairro != null or $request->cidade != null) {
+            
+            $regras_endereco = [
+                'cep' => 'required|min:10',
+                'nome_endereco' => 'required|min:3|max:30',
+                'rua' => 'required|max:60',
+                'bairro' => 'required|min:3|max:60',
+                'cidade' => 'required|min:3|max:30',
+                'numero_endereco' => 'required|max:10',
+                'uf' => 'required|min:2|max:2',
+            ];
+
+            $request->validate($regras_endereco,$GLOBALS['mensagem']);
+
+            $verificador_de_endereco = true;
+        }
+
         try 
         {
             $veterinario = Veterinario::create([
@@ -117,23 +141,27 @@ class VeterinarioController extends Controller
                 'ativo' => 1
             ]);
 
-            $endereco = new VeterinarioEndereco();
-            $endereco->nome = mb_strtoupper($request->nome_endereco);
-            $endereco->cep = $request->cep;
-            $endereco->rua = $request->rua;
-            $endereco->numero = $request->numero_endereco;
-            $endereco->complemento = $request->complemento;
-            $endereco->bairro = $request->bairro;
-            $endereco->cidade = $request->cidade;
-            $endereco->uf = mb_strtoupper($request->uf);
-            $endereco->veterinario()->associate($veterinario);
-            $endereco->save();
+            if($verificador_de_endereco == true ) {
+                $endereco = new VeterinarioEndereco();
+                $endereco->nome = mb_strtoupper($request->nome_endereco);
+                $endereco->cep = $request->cep;
+                $endereco->rua = $request->rua;
+                $endereco->numero = $request->numero_endereco;
+                $endereco->complemento = $request->complemento;
+                $endereco->bairro = $request->bairro;
+                $endereco->cidade = $request->cidade;
+                $endereco->uf = mb_strtoupper($request->uf);
+                $endereco->veterinario()->associate($veterinario);
+                $endereco->save();
+            }
 
-            $telefone = new VeterinarioTelefone();
-            $telefone->nome = mb_strtoupper($request->nome_telefone);
-            $telefone->numero = $request->numero_telefone;
-            $telefone->veterinario()->associate($veterinario);
-            $telefone->save();
+            if($verificador_de_telefone == true ) {
+                $telefone = new VeterinarioTelefone();
+                $telefone->nome = mb_strtoupper($request->nome_telefone);
+                $telefone->numero = $request->numero_telefone;
+                $telefone->veterinario()->associate($veterinario);
+                $telefone->save();
+            }
 
             event(new VeterinarioCreateEvent($veterinario, $password));
 

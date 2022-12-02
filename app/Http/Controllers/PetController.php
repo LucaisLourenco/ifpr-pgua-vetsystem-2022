@@ -19,7 +19,6 @@ $GLOBALS['regras'] = [
     'cliente_id' => 'required',
     'raca_id' => 'required',
     'sexo_id' => 'required',
-    'data_nascimento' => 'required',
     'peso' => 'required|max:6|min:4'  
 ];
 
@@ -31,7 +30,6 @@ $GLOBALS['mensagem']= [
     "cliente_id.required" => "A seleção do campo Cliente é obrigatório!",
     "raca_id.required" => "A seleção do campo Raça é obrigatório!",
     "sexo_id.required" => "A seleção do campo Sexo é obrigatório!",
-    "data_nascimento.required" => "O preenchimento do campo Data de Nascimento é obrigatório!",
     "peso.required" => "O preenchimento do campo Peso é obrigatório!",
     "peso.max" => "O campo Peso possui tamanho máxixo de 6 caracteres!",
     "peso.min" => "O campo Peso possui tamanho mínimo de 4 caracteres!"
@@ -117,7 +115,15 @@ class PetController extends Controller
 
     public function update(Request $request, Pet $pet)
     {
-        $request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+        $regras_pet = [
+            'nome' => 'required|max:100|min:2',
+            'especie_id' => 'required',
+            'cliente_id' => 'required',
+            'raca_id' => 'required',
+            'sexo_id' => 'required',
+        ];
+
+        $request->validate($regras_pet,$GLOBALS['mensagem']);
 
         try
         {

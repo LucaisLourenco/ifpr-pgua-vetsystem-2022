@@ -25,7 +25,7 @@
                             {{ $errors->first('pet_id') }}
                         </div>
                     @endif
-                    <label for="pet_id">Pet</label>
+                    <label for="pet_id">Pet *</label>
                 </div>
             </div>
 
@@ -44,14 +44,14 @@
                             {{ $errors->first('veterinario_id') }}
                         </div>
                     @endif
-                    <label for="veterinario_id">Veterinário</label>
+                    <label for="veterinario_id">Veterinário *</label>
                 </div>
             </div>
 
             <div class="col-3" >
                 <div class="form-floating mb-3">
                     <select id="servico_id" name="servico_id" placeholder="Tex" class="form-control {{ $errors->has('servico_id') ? 'is-invalid' : '' }}" required>
-                    <option value="{{null}}">SELECIONE O servico ATUAL</option>
+                    <option value="{{null}}">SELECIONE O SERVIÇO</option>
                         @foreach ($servicos as $item) 
                             <option value="{{$item->id}}" @if($item->id == $servicoagendamento->servico_id) selected="true" @endif>
                                 {{$item->nome}}
@@ -63,7 +63,7 @@
                             {{ $errors->first('servico_id') }}
                         </div>
                     @endif
-                    <label for="servico_id">Serviço</label>
+                    <label for="servico_id">Serviço *</label>
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
                             {{ $errors->first('dataServico') }}
                         </div>
                     @endif
-                    <label for="dataServico">Data do Serviço</label>
+                    <label for="dataServico">Data do Serviço *</label>
                 </div>
             </div>
 
@@ -103,7 +103,7 @@
                             {{ $errors->first('horarioServico') }}
                         </div>
                     @endif
-                    <label for="horarioServico">Horário do Serviço</label>
+                    <label for="horarioServico">Horário do Serviço *</label>
                 </div>
             </div>
 

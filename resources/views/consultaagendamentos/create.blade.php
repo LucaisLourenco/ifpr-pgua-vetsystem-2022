@@ -24,7 +24,7 @@
                             {{ $errors->first('pet_id') }}
                         </div>
                     @endif
-                    <label for="pet_id">Pet</label>
+                    <label for="pet_id">Pet *</label>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
                             {{ $errors->first('veterinario_id') }}
                         </div>
                     @endif
-                    <label for="veterinario_id">Veterinário</label>
+                    <label for="veterinario_id">Veterinário *</label>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
                             {{ $errors->first('valor') }}
                         </div>
                     @endif
-                    <label for="valor">Valor</label>
+                    <label for="valor">Valor *</label>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
                             {{ $errors->first('dataConsulta') }}
                         </div>
                     @endif
-                    <label for="dataConsulta">Data da consulta</label>
+                    <label for="dataConsulta">Data da consulta *</label>
                 </div>
             </div>
 
@@ -102,7 +102,7 @@
                             {{ $errors->first('horarioConsulta') }}
                         </div>
                     @endif
-                    <label for="horarioConsulta">Horário da consulta</label>
+                    <label for="horarioConsulta">Horário da consulta *</label>
                 </div>
             </div>
         </div>

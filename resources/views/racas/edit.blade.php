@@ -23,7 +23,7 @@
                             {{ $errors->first('nome') }}
                         </div>
                     @endif
-                    <label for="nome">Raça</label>
+                    <label for="nome">Raça *</label>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                             {{ $errors->first('especie_id') }}
                         </div>
                     @endif
-                    <label for="especie_id">ESPÉCIE</label>
+                    <label for="especie_id">ESPÉCIE *</label>
                 </div>
             </div>
         </div>
