@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->date('data_nascimento');
+            $table->date('data_nascimento')->nullable();
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->unsignedBigInteger('sexo_id');

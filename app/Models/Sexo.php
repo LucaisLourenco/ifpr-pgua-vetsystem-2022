@@ -14,7 +14,7 @@ class Sexo extends Model
 
     protected $fillable = ['nome'];
 
-    public function pet() {
-        return $this->belongsTo('App\Models\Pet');
+    public function pets() {
+        return $this->hasMany('App\Models\Pet');
     }
 }

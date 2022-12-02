@@ -17,4 +17,8 @@ class Status extends Model
     public function consultaagendamentos() {
         return $this->hasMany('App\Models\ConsultaAgendamento');
     }
+
+    public function servicoagendamentos() {
+        return $this->hasMany('App\Models\ServicoAgendamento');
+    }
 }
