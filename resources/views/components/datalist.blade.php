@@ -1,7 +1,6 @@
 <div class="row">
     <div class="container">
         <div class="col">
-            <div class="table-responsive"> 
                 <table class="table align-middle caption-top table-striped">
                     <caption>Tabela de <b>{{$title}}</b></caption>
                     <thead>
@@ -92,7 +91,6 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>
