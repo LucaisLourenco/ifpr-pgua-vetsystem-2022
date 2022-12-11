@@ -149,54 +149,61 @@
                     @yield('conteudo')
                 @else
                     <div class="row">
-                        <div class="col-6">
-                            <table class="table table-warning align-middle caption-top">
-                                <caption>Consultas de <b>HOJE</b></caption>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">PET</th>
-                                        <th scope="col">VETERINÁRIO</th>
-                                        <th scope="col">HORÁRIO</th>
-                                        <th scope="col">STATUS</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (buscar_consultas_hoje() as $item)
-                                        <tr>
-                                            <td> {{ $item->pet->nome }} </td>
-                                            <td> {{ $item->veterinario->name }}</td>
-                                            <td> {{ $item->horario_consulta }} </td>
-                                            <td> {{ $item->status->nome }} </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                        <div class="container">
+                            <div class="col-6">
+                                <div class="table-responsive">
+                                    <table class="table table-warning align-middle caption-top">
+                                        <caption>Consultas de <b>HOJE</b></caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">PET</th>
+                                                <th scope="col">VETERINÁRIO</th>
+                                                <th scope="col">HORÁRIO</th>
+                                                <th scope="col">STATUS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (buscar_consultas_hoje() as $item)
+                                                <tr>
+                                                    <td> {{ $item->pet->nome }} </td>
+                                                    <td> {{ $item->veterinario->name }}</td>
+                                                    <td> {{ $item->horario_consulta }} </td>
+                                                    <td> {{ $item->status->nome }} </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
-                        <div class="col-6">
-                            <table class="table table-success align-middle caption-top">
-                                <caption>Serviços de <b>HOJE</b></caption>
-                                <thead>
-                                    <tr>
-                                        <th scope="col">PET</th>
-                                        <th scope="col">VETERINÁRIO</th>
-                                        <th scope="col">TIPO</th>
-                                        <th scope="col">HORÁRIO</th>
-                                        <th scope="col">STATUS</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (buscar_servicos_hoje() as $item)
-                                        <tr>
-                                            <td> {{ $item->pet->nome }} </td>
-                                            <td> {{ $item->veterinario->name }}</td>
-                                            <td> {{ $item->servico->nome }}</td>
-                                            <td> {{ $item->horario_servico }} </td>
-                                            <td> {{ $item->status->nome }} </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <div class="col-6">
+                                <div class="table-responsive">
+
+                                    <table class="table table-success align-middle caption-top">
+                                        <caption>Serviços de <b>HOJE</b></caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">PET</th>
+                                                <th scope="col">VETERINÁRIO</th>
+                                                <th scope="col">TIPO</th>
+                                                <th scope="col">HORÁRIO</th>
+                                                <th scope="col">STATUS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (buscar_servicos_hoje() as $item)
+                                                <tr>
+                                                    <td> {{ $item->pet->nome }} </td>
+                                                    <td> {{ $item->veterinario->name }}</td>
+                                                    <td> {{ $item->servico->nome }}</td>
+                                                    <td> {{ $item->horario_servico }} </td>
+                                                    <td> {{ $item->status->nome }} </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endif
