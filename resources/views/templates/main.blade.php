@@ -148,8 +148,8 @@
                 @hasSection('conteudo')
                     @yield('conteudo')
                 @else
-                    <div class="row">
-                        <div class="container">
+                    <div class="container">
+                        <div class="row">
                             <div class="col-6">
                                 <div class="table-responsive">
                                     <table class="table table-warning align-middle caption-top">

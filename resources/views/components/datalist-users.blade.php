@@ -1,6 +1,6 @@
-<div class="row">
-    <div class="container">
+    <div class="row">
         <div class="col">
+            <div class="table-responsive">
                 <table class="table align-middle caption-top table-striped">
                     <caption>Tabela de <b>{{$title}}</b></caption>
                     <thead>
@@ -47,9 +47,9 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
         </div>
     </div>
-</div>
 
 @if(session('mensagem') && session('resultado') == false)
     <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>

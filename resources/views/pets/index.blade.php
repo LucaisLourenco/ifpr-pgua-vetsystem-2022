@@ -3,10 +3,9 @@
 @section('titulo')- Pets @endsection
 
 @section('conteudo')
-
     <div class="row">
         <div class="col">
-            <div>    
+            <div class="table-responsive">    
                 <table class="table align-middle caption-top table-striped">
                     <caption>Tabela de <b>Pets</b></caption>
                     <thead>
@@ -41,4 +40,5 @@
             </div>
         </div>
     </div>
+
 @endsection
