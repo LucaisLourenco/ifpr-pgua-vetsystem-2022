@@ -32,6 +32,11 @@ body, html {
     text-align: center;
 }
 
+#coluna-acoes-atendimentos {
+    width: 23%; 
+    text-align: center;
+}
+
 #logo-img {
     max-width:220px;
     max-height:50px;

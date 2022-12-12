@@ -15,6 +15,7 @@ use App\Http\Controllers\PetObservacaoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VeterinarioController;
 use App\Http\Controllers\VeterinarioEspecialidadeController;
+use App\Http\Controllers\AtendimentoController;
 
 Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], function() {
 
@@ -126,6 +127,15 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
     Route::resource('servicos', 'ServicoController');
 });
 
+//Atendimentos WebVeterinario
+Route::group(['middleware' => ['auth:veterinario','veterinario.verified'], 'prefix' => 'WebVeterinario'], function() {
+    
+    Route::get('meusAtendimentos/{veterinario}', [AtendimentoController::class, 'atendimentos'])
+        ->name('atendimentos.index');
+});
+
+
+//TEMPLATES
 Route::get('/sistema', function () {
     return view('templates.main')->with('titulo');
 })->middleware(['auth','verified'])->name('sistema');
