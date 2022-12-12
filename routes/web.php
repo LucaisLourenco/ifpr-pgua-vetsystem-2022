@@ -147,6 +147,9 @@ Route::group(['middleware' => ['auth:veterinario','veterinario.verified'], 'pref
 
     Route::post('novaObservacao', [AtendimentoController::class, 'adicionarObservacao'])
         ->name('atendimentos.adicionarObservacao');
+
+    Route::put('alterarConsulta/{consultaAgendamento}', [AtendimentoController::class, 'alterarConsulta'])
+        ->name('atendimentos.alterarConsulta');
 });
 
 

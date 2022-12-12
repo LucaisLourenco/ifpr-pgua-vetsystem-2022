@@ -31,6 +31,18 @@ class AtendimentoController extends Controller
         return view('atendimentos.atendimentoconsulta', compact(['consultaAgendamento', 'statuses']));
     }
 
+    public function alterarConsulta(Request $request, ConsultaAgendamento $consultaAgendamento)
+    {
+        //$request->validate($GLOBALS['regras'],$GLOBALS['mensagem']);
+     
+        $consultaAgendamento->update([
+            "status_id" => $request->status_id,
+            "relatorio" => $request->relatorio,
+        ]);
+
+        return redirect()->route('atendimentos.atendimentoconsulta',$consultaAgendamento->id);
+    }
+
     public function novoPeso(ConsultaAgendamento $consultaAgendamento)
     {
         return view('atendimentos.novoPeso', compact(['consultaAgendamento']));

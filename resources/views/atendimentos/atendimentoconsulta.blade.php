@@ -116,7 +116,7 @@
         </div>
     </div>
 
-    <form action="{{ route('consultaagendamentos.update', $consultaAgendamento) }}" method="POST">
+    <form action="{{ route('atendimentos.alterarConsulta', $consultaAgendamento) }}" method="POST">
         @csrf
         @method('PUT')
         
