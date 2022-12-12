@@ -132,6 +132,21 @@ Route::group(['middleware' => ['auth:veterinario','veterinario.verified'], 'pref
     
     Route::get('meusAtendimentos/{veterinario}', [AtendimentoController::class, 'atendimentos'])
         ->name('atendimentos.index');
+
+    Route::get('atendimentoConsulta/{consultaAgendamento}', [AtendimentoController::class, 'atendimentoConsulta'])
+        ->name('atendimentos.atendimentoconsulta');
+
+    Route::get('/novoPeso/{consultaAgendamento}', [AtendimentoController::class, 'novoPeso'])
+        ->name('atendimentos.novoPeso');
+
+    Route::post('novoPeso', [AtendimentoController::class, 'adicionarPeso'])
+        ->name('atendimentos.adicionarPeso');
+
+    Route::get('/novaObservacao/{consultaAgendamento}', [AtendimentoController::class, 'novaObservacao'])
+        ->name('atendimentos.novaObservacao');
+
+    Route::post('novaObservacao', [AtendimentoController::class, 'adicionarObservacao'])
+        ->name('atendimentos.adicionarObservacao');
 });
 
 
