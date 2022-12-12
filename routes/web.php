@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth','verified'], 'prefix' => 'sistema'], funct
         return view('acessonegado.index');
     })->name('acessonegado.index');
 
-    Route::resource('statuses', 'Statuscontroller');
+    Route::resource('statuses', 'StatusController');
 
     Route::resource('servicoagendamentos', 'ServicoAgendamentoController');
 
